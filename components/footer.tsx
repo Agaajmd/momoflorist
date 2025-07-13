@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Phone, MessageCircle, MapPin, Clock, Instagram, Flower2 } from "lucide-react"
+import MapsEmbed from "./maps-embed"
 
 export default function Footer() {
   const whatsappNumber = "6281213142558"
@@ -85,6 +86,15 @@ export default function Footer() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Maps Section */}
+        <div className="mt-12 mb-8">
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-bold text-pink-400 mb-2">Temukan Kami</h3>
+            <p className="text-gray-300">Kunjungi toko kami langsung di Pasar Bunga Kayoon, Surabaya</p>
+          </div>
+          <MapsEmbed />
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8">
