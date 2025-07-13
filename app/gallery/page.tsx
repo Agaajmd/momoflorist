@@ -381,18 +381,6 @@ export default function GalleryPage() {
               </motion.div>
             </motion.div>
           </div>
-
-          {/* Maps Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mb-8"
-          >
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Lokasi Kami</h3>
-            <MapsEmbed />
-          </motion.div>
         </div>
       </section>
 
