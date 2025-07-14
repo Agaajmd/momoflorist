@@ -29,13 +29,6 @@ const standingFlowerImages = [
     price: "Rp 400.000",
   },
   {
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Standing Flower 4",
-    title: "Standing Flower Modern",
-    description: "Rangkaian modern dengan sentuhan kontemporer",
-    price: "Rp 475.000",
-  },
-  {
     src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Standing Flower 5",
     title: "Standing Flower Luxury",
@@ -71,13 +64,6 @@ const standingFlowerImages = [
     price: "Rp 450.000",
   },
   {
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Standing Flower 10",
-    title: "Standing Flower Minimalist",
-    description: "Desain minimalis yang elegan",
-    price: "Rp 375.000",
-  },
-  {
     src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Standing Flower 11",
     title: "Standing Flower Traditional",
@@ -90,6 +76,34 @@ const standingFlowerImages = [
     title: "Standing Flower Exclusive",
     description: "Rangkaian eksklusif untuk acara VIP",
     price: "Rp 750.000",
+  },
+  {
+    src: "/bunga standing/bunga standing.jpg",
+    alt: "Standing Flower 13",
+    title: "Standing Flower Spesial",
+    description: "Rangkaian standing flower dengan bunga segar pilihan",
+    price: "Rp 525.000",
+  },
+  {
+    src: "/bunga standing/bunga standing2.jpg",
+    alt: "Standing Flower 14",
+    title: "Standing Flower Elegant Premium",
+    description: "Desain elegant premium untuk acara istimewa",
+    price: "Rp 575.000",
+  },
+  {
+    src: "/bunga standing/bunga standing3.jpg",
+    alt: "Standing Flower 15",
+    title: "Standing Flower Mewah",
+    description: "Rangkaian mewah dengan bunga import berkualitas",
+    price: "Rp 650.000",
+  },
+  {
+    src: "/bunga standing/bunga standing4.jpg",
+    alt: "Standing Flower 16",
+    title: "Standing Flower Terbaru",
+    description: "Koleksi terbaru dengan desain modern",
+    price: "Rp 600.000",
   },
 ]
 

@@ -22,7 +22,7 @@ const bouquetImages = [
     price: "Rp 200.000",
   },
   {
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    src: "/hand bouquet/hand bouquet3.jpg",
     alt: "Hand Bouquet 3",
     title: "Bouquet White Elegance",
     description: "Rangkaian putih elegan untuk acara formal",
@@ -64,13 +64,6 @@ const bouquetImages = [
     price: "Rp 210.000",
   },
   {
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Hand Bouquet 9",
-    title: "Bouquet Classic Red",
-    description: "Mawar merah klasik yang timeless",
-    price: "Rp 260.000",
-  },
-  {
     src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 10",
     title: "Bouquet Modern Mix",
@@ -106,11 +99,25 @@ const bouquetImages = [
     price: "Rp 400.000",
   },
   {
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    src: "/hand bouquet/hand bouquet.jpg",
     alt: "Hand Bouquet 15",
-    title: "Bouquet Anniversary Special",
-    description: "Spesial untuk perayaan anniversary",
-    price: "Rp 320.000",
+    title: "Bouquet Spesial",
+    description: "Rangkaian hand bouquet dengan bunga segar pilihan",
+    price: "Rp 275.000",
+  },
+  {
+    src: "/hand bouquet/hand bouquet2.jpg",
+    alt: "Hand Bouquet 16",
+    title: "Bouquet Elegant Premium",
+    description: "Desain elegant premium untuk momen istimewa",
+    price: "Rp 325.000",
+  },
+  {
+    src: "/hand bouquet/hand bouquet4.jpg",
+    alt: "Hand Bouquet 17",
+    title: "Bouquet Terbaru",
+    description: "Koleksi terbaru dengan bunga berkualitas tinggi",
+    price: "Rp 300.000",
   },
 ]
 

@@ -12,8 +12,7 @@ const categories = [
   {
     title: "Bunga Papan",
     description: "Spesialis bunga papan untuk berbagai acara",
-    image:
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/bunga papan/bunga papan.jpg",
     href: "/bunga-papan",
     color: "from-pink-500 to-rose-500",
   },

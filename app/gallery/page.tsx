@@ -45,13 +45,6 @@ const galleryImages = [
     price: "Rp 550.000",
   },
   {
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Bunga Papan 6",
-    title: "Bunga Papan Colorful",
-    description: "Rangkaian warna-warni yang meriah",
-    price: "Rp 375.000",
-  },
-  {
     src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Bunga Papan 7",
     title: "Bunga Papan Festive",
@@ -88,13 +81,6 @@ const galleryImages = [
     price: "Rp 400.000",
   },
   {
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Standing Flower 4",
-    title: "Standing Flower Modern",
-    description: "Rangkaian modern dengan gaya kontemporer",
-    price: "Rp 475.000",
-  },
-  {
     src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Standing Flower 5",
     title: "Standing Flower Luxury",
@@ -122,13 +108,6 @@ const galleryImages = [
     title: "Bouquet Spring Garden",
     description: "Buket tema taman musim semi",
     price: "Rp 200.000",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Hand Bouquet 3",
-    title: "Bouquet White Elegance",
-    description: "Rangkaian putih yang elegan",
-    price: "Rp 275.000",
   },
   {
     src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -167,13 +146,6 @@ const galleryImages = [
   },
   // Dekorasi
   {
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    alt: "Dekorasi Bunga 1",
-    title: "Dekorasi Wedding",
-    description: "Dekorasi bunga untuk pernikahan",
-    price: "Rp 2.500.000",
-  },
-  {
     src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Dekorasi Bunga 2",
     title: "Dekorasi Event",
@@ -207,6 +179,63 @@ const galleryImages = [
     title: "Dekorasi Luxury",
     description: "Dekorasi mewah untuk acara eksklusif",
     price: "Rp 3.500.000",
+  },
+  // Gallery Images
+  {
+    src: "/gallery/gallery toko bunga.jpg",
+    alt: "Gallery Toko Bunga 1",
+    title: "Showcase Toko Bunga",
+    description: "Tampilan koleksi bunga di toko kami",
+    price: "Konsultasi",
+  },
+  {
+    src: "/gallery/gallery toko bunga2.jpg",
+    alt: "Gallery Toko Bunga 2",
+    title: "Rangkaian Bunga Spesial",
+    description: "Koleksi rangkaian bunga terbaru",
+    price: "Konsultasi",
+  },
+  {
+    src: "/gallery/gallery toko bunga3.jpg",
+    alt: "Gallery Toko Bunga 3",
+    title: "Dekorasi Bunga Cantik",
+    description: "Inspirasi dekorasi untuk acara Anda",
+    price: "Konsultasi",
+  },
+  {
+    src: "/gallery/gallery toko bunga4.jpg",
+    alt: "Gallery Toko Bunga 4",
+    title: "Bunga Segar Pilihan",
+    description: "Koleksi bunga segar berkualitas",
+    price: "Konsultasi",
+  },
+  {
+    src: "/gallery/gallery toko bunga5.jpg",
+    alt: "Gallery Toko Bunga 5",
+    title: "Karya Seni Bunga",
+    description: "Kreasi seni dengan bunga-bunga indah",
+    price: "Konsultasi",
+  },
+  {
+    src: "/gallery/gallery toko bunga6.jpg",
+    alt: "Gallery Toko Bunga 6",
+    title: "Presentasi Bunga Elegan",
+    description: "Penyajian bunga dengan gaya elegan",
+    price: "Konsultasi",
+  },
+  {
+    src: "/gallery/gallery toko bunga7.jpg",
+    alt: "Gallery Toko Bunga 7",
+    title: "Workshop Bunga",
+    description: "Suasana workshop dan pembelajaran",
+    price: "Konsultasi",
+  },
+  {
+    src: "/gallery/gallery toko bunga8.jpg",
+    alt: "Gallery Toko Bunga 8",
+    title: "Koleksi Premium",
+    description: "Koleksi bunga premium terbaik",
+    price: "Konsultasi",
   },
 ]
 
