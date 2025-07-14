@@ -142,7 +142,8 @@ export default function HandBouquetPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-green-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-green-900 py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1487070183336-b863922373d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-5"></div>
+        <div className="absolute inset-0 bg-[url('/background/bunga%20papan,%20bunga%20tangan4.jpg')] bg-cover bg-center bg-no-repeat opacity-30 dark:opacity-20"></div>
+        <div className="absolute inset-0 bg-white/40 dark:bg-gray-900/50"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -315,8 +316,10 @@ export default function HandBouquetPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 bg-gray-50 dark:bg-gray-800 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/background/bunga%20papan,%20bunga%20tangan.jpg')] bg-cover bg-center bg-no-repeat opacity-30 dark:opacity-20"></div>
+        <div className="absolute inset-0 bg-gray-50/40 dark:bg-gray-800/50"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -353,8 +356,10 @@ export default function HandBouquetPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-teal-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 bg-gradient-to-r from-green-600 to-teal-600">
+        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/bunga papan/bunga tangan2.jpg')" }}></div>
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
