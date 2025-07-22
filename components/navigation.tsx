@@ -2,9 +2,10 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Flower2, Sun, Moon } from "lucide-react"
+import { Menu, X, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 
@@ -27,8 +28,19 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
-              <Flower2 className="h-8 w-8 text-pink-600 dark:text-pink-400" />
+            <motion.div 
+              whileHover={{ scale: 1.05 }} 
+              transition={{ duration: 0.3 }}
+              className="relative w-10 h-10 rounded-full overflow-hidden bg-white shadow-lg"
+            >
+              <Image
+                src="/logo popo florist.jpg"
+                alt="Popo Florist Logo"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
             </motion.div>
             <span className="text-xl font-bold text-gray-900 dark:text-white">Popo Florist</span>
           </Link>

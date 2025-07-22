@@ -14,7 +14,12 @@ export const metadata: Metadata = {
     "Popo Florist adalah toko bunga online di Surabaya yang melayani pengiriman ke seluruh Indonesia. Spesialis bunga papan, standing flower, dan hand bouquet. Buka 24 jam, gratis ongkir, pengerjaan cepat 2 jam.",
   keywords:
     "bunga, bunga papan, karangan bunga, standing flower, bouquet, toko bunga surabaya, florist, bunga duka cita, bunga pernikahan",
-    generator: 'v0.dev'
+    generator: 'Aga',
+  icons: {
+    icon: "/logo popo florist.jpg",
+    shortcut: "/logo popo florist.jpg",
+    apple: "/logo popo florist.jpg",
+  },
 }
 
 export default function RootLayout({
