@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Clock, Truck, Award, Phone } from "lucide-react"
+import { Clock, Truck, Award, Phone, ArrowRight } from "lucide-react"
 import MobileProductGrid from "@/components/mobile-product-grid"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
@@ -230,17 +230,23 @@ export default function BungaPapanPage() {
               <span className="font-semibold text-rose-600">Pengerjaan hanya 2 jam, gratis ongkir.</span>
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya ingin memesan bunga papan dari Popo Florist"
-                className="text-lg px-8 py-3 h-12"
+                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
               >
                 Pesan Bunga Papan
               </WhatsAppButton>
-              <Button variant="outline" size="lg" className="h-12 bg-transparent" asChild>
-                <a href="tel:081213142558" className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4" />
+              <Button 
+                variant="ghost" 
+                size="lg" 
+                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                asChild
+              >
+                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
                   <span>Telepon Langsung</span>
+                  <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>
             </div>
@@ -291,17 +297,22 @@ export default function BungaPapanPage() {
                 <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6">
                   {category.description}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col items-center gap-4">
                   <WhatsAppButton
                     message={`Halo, saya ingin memesan bunga papan ${category.title} dari Popo Florist`}
-                    className="h-12"
+                    className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                    hideIcon
                   >
                     Pesan {category.title}
                   </WhatsAppButton>
-                  <Button variant="outline" className="h-12 bg-transparent" asChild>
-                    <a href="tel:081213142558" className="flex items-center space-x-2">
-                      <Phone className="h-4 w-4" />
-                      <span>Call</span>
+                  <Button 
+                    variant="ghost" 
+                    className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                    asChild
+                  >
+                    <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
+                      <span>Telepon Langsung</span>
+                      <ArrowRight className="h-4 w-4" />
                     </a>
                   </Button>
                 </div>
@@ -328,19 +339,24 @@ export default function BungaPapanPage() {
             <p className="text-xl text-rose-100 mb-8">
               Proses cepat 2 jam, kualitas terjamin, gratis ongkir area Surabaya
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya butuh bunga papan segera dari Popo Florist"
-                className="bg-white text-rose-600 hover:bg-gray-100 text-lg px-8 py-3 h-12"
+                className="bg-white text-[#E5A96E] hover:bg-gray-50 hover:text-[#D4A574] font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
               >
                 Order Sekarang
               </WhatsAppButton>
               <Button
-                variant="outline"
+                variant="ghost"
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-rose-600 bg-transparent h-12"
+                className="border-2 border-white text-white hover:text-gray-200 hover:border-gray-200 hover:bg-white/10 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                asChild
               >
-                <a href="tel:081213142558">Telepon: 081213142558</a>
+                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
+                  <span>Telepon: 081213142558</span>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </Button>
             </div>
           </motion.div>

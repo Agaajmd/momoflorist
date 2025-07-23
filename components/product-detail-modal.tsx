@@ -172,11 +172,12 @@ export default function ProductDetailModal({
                 <div className="space-y-3 mt-4 sm:mt-6 flex-shrink-0">
                   <WhatsAppButton
                     message={`Halo, saya tertarik dengan ${product.title} dari Popo Florist. Bisa tolong berikan informasi lebih lanjut?`}
-                    className="w-full text-sm sm:text-lg py-2.5 sm:py-3"
+                    className="w-full bg-[#D4A574] hover:bg-[#C19A68] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl h-10"
+                    hideIcon
                   >
                     Pesan via WhatsApp
                   </WhatsAppButton>
-                  <Button variant="outline" className="w-full bg-transparent text-sm sm:text-base py-2.5 sm:py-3" asChild>
+                  <Button variant="ghost" className="w-full border-2 border-[#E19CAF] text-[#E19CAF] hover:text-[#D4A574] hover:border-[#D4A574] hover:bg-[#E19CAF]/5 bg-transparent rounded-full px-6 py-2 font-medium transition-all duration-200 transform hover:scale-105 text-sm h-10" asChild>
                     <a href="tel:081213142558">Telepon: 081213142558</a>
                   </Button>
                 </div>

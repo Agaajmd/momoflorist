@@ -126,13 +126,22 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              className="flex flex-col items-center gap-4"
             >
-              <WhatsAppButton message="Halo, saya ingin memesan bunga dari Popo Florist" className="text-lg px-8 py-3">
+              <WhatsAppButton 
+                message="Halo, saya ingin memesan bunga dari Popo Florist" 
+                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
+              >
                 Pesan Sekarang
               </WhatsAppButton>
-              <Button variant="outline" size="lg" asChild>
-                <Link href="/gallery" className="flex items-center space-x-2">
+              <Button 
+                variant="ghost" 
+                size="lg" 
+                asChild 
+                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+              >
+                <Link href="/gallery" className="flex items-center justify-center space-x-2">
                   <span>Lihat Gallery</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -198,12 +207,13 @@ export default function HomePage() {
                           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 min-h-[2.5rem] flex items-center">{category.title}</h3>
                           <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1 min-h-[3rem] flex items-start">{category.description}</p>
                           <div className="flex space-x-3 mt-auto">
-                            <Button asChild variant="outline" className="flex-1 bg-transparent">
+                            <Button asChild variant="ghost" className="flex-1 border-2 border-[#E19CAF] text-[#E19CAF] hover:text-[#D4A574] hover:border-[#D4A574] hover:bg-[#E19CAF]/5 bg-transparent rounded-full px-6 py-2 font-medium transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 text-sm">
                               <Link href={category.href}>Lihat Produk</Link>
                             </Button>
                             <WhatsAppButton
                               message={`Halo, saya tertarik dengan ${category.title} dari Popo Florist`}
-                              className="flex-1"
+                              className="flex-1 bg-[#D4A574] hover:bg-[#C19A68] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10"
+                              hideIcon
                             >
                               Pesan
                             </WhatsAppButton>
@@ -279,12 +289,13 @@ export default function HomePage() {
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 min-h-[2.5rem] flex items-center">{category.title}</h3>
                     <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1 min-h-[3rem] flex items-start">{category.description}</p>
                     <div className="flex space-x-3 mt-auto">
-                      <Button asChild variant="outline" className="flex-1 bg-transparent">
+                      <Button asChild variant="ghost" className="flex-1 border-2 border-[#E19CAF] text-[#E19CAF] hover:text-[#D4A574] hover:border-[#D4A574] hover:bg-[#E19CAF]/5 bg-transparent rounded-full px-6 py-2 font-medium transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 text-sm">
                         <Link href={category.href}>Lihat Produk</Link>
                       </Button>
                       <WhatsAppButton
                         message={`Halo, saya tertarik dengan ${category.title} dari Popo Florist`}
-                        className="flex-1"
+                        className="flex-1 bg-[#D4A574] hover:bg-[#C19A68] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10"
+                        hideIcon
                       >
                         Pesan
                       </WhatsAppButton>
@@ -352,20 +363,23 @@ export default function HomePage() {
             <p className="text-xl text-pink-100 mb-8">
               Hubungi kami sekarang untuk konsultasi gratis dan dapatkan penawaran terbaik
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya ingin konsultasi dan memesan bunga dari Popo Florist"
-                className="bg-white text-pink-600 hover:bg-gray-100 text-lg px-8 py-3"
+                className="bg-white text-[#E5A96E] hover:bg-gray-50 hover:text-[#D4A574] font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
               >
                 Konsultasi Gratis
               </WhatsAppButton>
               <Button
-                variant="outline"
+                variant="ghost"
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-pink-600 bg-transparent"
+                className="border-2 border-white text-white hover:text-gray-200 hover:border-gray-200 hover:bg-white/10 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                asChild
               >
-                <a href="tel:081213142558" className="flex items-center space-x-2">
+                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
                   <span>Telepon Langsung</span>
+                  <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>
             </div>

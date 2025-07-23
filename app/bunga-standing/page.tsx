@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Gift, Heart, Star, Phone } from "lucide-react"
+import { Gift, Heart, Star, Phone, ArrowRight } from "lucide-react"
 import MobileProductGrid from "@/components/mobile-product-grid"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
@@ -148,17 +148,23 @@ export default function BungaStandingPage() {
               Spesialis Bunga Standing (Standing Flower) untuk acara Pernikahan, Selamat, Duka Cita, dll.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <div className="flex flex-col items-center gap-4 mb-8">
               <WhatsAppButton
                 message="Halo, saya ingin memesan bunga standing dari Popo Florist"
-                className="text-lg px-8 py-3 h-12"
+                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
               >
                 Pesan Standing Flower
               </WhatsAppButton>
-              <Button variant="outline" size="lg" className="h-12 bg-transparent" asChild>
-                <a href="tel:081213142558" className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4" />
+              <Button 
+                variant="ghost" 
+                size="lg" 
+                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                asChild
+              >
+                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
                   <span>Telepon Langsung</span>
+                  <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>
             </div>
@@ -171,7 +177,8 @@ export default function BungaStandingPage() {
             >
               <WhatsAppButton
                 message="Halo, saya ingin mendapatkan promo menarik untuk bunga standing dari Popo Florist"
-                className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg animate-pulse h-14"
+                className="bg-gradient-to-r from-[#D4A574] to-[#E19CAF] hover:from-[#C19A68] hover:to-[#D48BA3] text-white font-bold text-base px-8 py-3 rounded-full shadow-lg transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                hideIcon
               >
                 🎉 Dapatkan Promo Menarik!
               </WhatsAppButton>
@@ -216,7 +223,7 @@ export default function BungaStandingPage() {
                 <p className="text-gray-600 dark:text-gray-300 mb-4">{occasion.description}</p>
                 <WhatsAppButton
                   message={`Halo, saya ingin memesan standing flower untuk acara ${occasion.title} dari Popo Florist`}
-                  className="w-full h-10"
+                  className="w-full bg-[#D4A574] hover:bg-[#C19A68] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10"
                 >
                   Pesan untuk {occasion.title}
                 </WhatsAppButton>
@@ -244,17 +251,23 @@ export default function BungaStandingPage() {
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
               Lihat koleksi standing flower terbaik kami yang telah dipercaya oleh ratusan pelanggan
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya tertarik dengan standing flower di gallery Popo Florist"
-                className="text-lg px-8 py-3 h-12"
+                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
               >
                 Konsultasi Design
               </WhatsAppButton>
-              <Button variant="outline" size="lg" className="h-12 bg-transparent" asChild>
-                <a href="tel:081213142558" className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4" />
-                  <span>Call: 081213142558</span>
+              <Button 
+                variant="ghost" 
+                size="lg" 
+                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                asChild
+              >
+                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
+                  <span>Telepon Langsung</span>
+                  <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>
             </div>
@@ -279,19 +292,24 @@ export default function BungaStandingPage() {
             <p className="text-xl text-purple-100 mb-8">
               Standing flower berkualitas premium dengan harga bersahabat. Konsultasi gratis sekarang!
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya ingin konsultasi dan memesan standing flower dari Popo Florist"
-                className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-3 h-12"
+                className="bg-white text-[#E5A96E] hover:bg-gray-50 hover:text-[#D4A574] font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
               >
                 Konsultasi Gratis
               </WhatsAppButton>
               <Button
-                variant="outline"
+                variant="ghost"
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-purple-600 bg-transparent h-12"
+                className="border-2 border-white text-white hover:text-gray-200 hover:border-gray-200 hover:bg-white/10 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                asChild
               >
-                <a href="tel:081213142558">Telepon: 081213142558</a>
+                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
+                  <span>Telepon: 081213142558</span>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </Button>
             </div>
           </motion.div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Heart, Clock, Phone, MapPin } from "lucide-react"
+import { Heart, Clock, Phone, MapPin, ArrowRight } from "lucide-react"
 import MobileProductGrid from "@/components/mobile-product-grid"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
@@ -168,17 +168,23 @@ export default function HandBouquetPage() {
               pasangan/keluarga Anda!
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya ingin memesan hand bouquet dari Popo Florist"
-                className="text-lg px-8 py-3 h-12"
+                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
               >
                 Pesan Hand Bouquet
               </WhatsAppButton>
-              <Button variant="outline" size="lg" className="h-12 bg-transparent" asChild>
-                <a href="tel:081213142558" className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4" />
+              <Button 
+                variant="ghost" 
+                size="lg" 
+                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                asChild
+              >
+                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
                   <span>Telepon Langsung</span>
+                  <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>
             </div>
@@ -217,7 +223,8 @@ export default function HandBouquetPage() {
               <div className="mt-8">
                 <WhatsAppButton
                   message="Halo, saya ingin tahu lebih lanjut tentang hand bouquet Popo Florist"
-                  className="text-lg px-8 py-3 h-12"
+                  className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                  hideIcon
                 >
                   Pelajari Lebih Lanjut
                 </WhatsAppButton>
@@ -302,17 +309,23 @@ export default function HandBouquetPage() {
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
               Dari yang romantis hingga elegan, temukan hand bouquet yang sempurna untuk momen spesial Anda
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya ingin melihat pilihan hand bouquet yang tersedia di Popo Florist"
-                className="text-lg px-8 py-3 h-12"
+                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
               >
                 Konsultasi Design
               </WhatsAppButton>
-              <Button variant="outline" size="lg" className="h-12 bg-transparent" asChild>
-                <a href="tel:081213142558" className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4" />
+              <Button 
+                variant="ghost" 
+                size="lg" 
+                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                asChild
+              >
+                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
                   <span>Call: 081213142558</span>
+                  <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>
             </div>
@@ -344,17 +357,23 @@ export default function HandBouquetPage() {
               <strong>Jam Buka:</strong>{" "}
               <span className="font-semibold text-green-600 dark:text-green-400">24 Jam</span>
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya ingin memesan hand bouquet dari Popo Florist"
-                className="text-lg px-8 py-3 h-12"
+                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
               >
                 Pesan Sekarang
               </WhatsAppButton>
-              <Button variant="outline" size="lg" className="h-12 bg-transparent" asChild>
-                <a href="tel:081213142558" className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4" />
+              <Button 
+                variant="ghost" 
+                size="lg" 
+                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                asChild
+              >
+                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
                   <span>081213142558</span>
+                  <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>
             </div>
@@ -377,19 +396,24 @@ export default function HandBouquetPage() {
             <p className="text-xl text-green-100 mb-8">
               Hand bouquet berkualitas premium untuk orang terkasih. Pesan sekarang dan buat momen jadi tak terlupakan!
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya ingin memesan hand bouquet spesial dari Popo Florist"
-                className="bg-white text-green-600 hover:bg-gray-100 text-lg px-8 py-3 h-12"
+                className="bg-white text-[#E5A96E] hover:bg-gray-50 hover:text-[#D4A574] font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                hideIcon
               >
                 Pesan Hand Bouquet
               </WhatsAppButton>
               <Button
-                variant="outline"
+                variant="ghost"
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-green-600 bg-transparent h-12"
+                className="border-2 border-white text-white hover:text-gray-200 hover:border-gray-200 hover:bg-white/10 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                asChild
               >
-                <a href="tel:081213142558">Telepon: 081213142558</a>
+                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
+                  <span>Telepon: 081213142558</span>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </Button>
             </div>
           </motion.div>
