@@ -18,7 +18,7 @@ const navItems = [
 ]
 
 // Dropdown content data - Full Screen Layout
-const dropdownData = {
+const dropdownData: Record<string, { title: string; products: Array<{ name: string; image: string; category: string }> }> = {
   "bunga-papan": {
     title: "Bunga Papan",
     products: [
@@ -146,7 +146,7 @@ export default function Navigation() {
                       {/* Header */}
                       <div className="mb-8 text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700 delay-100">
                         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                          {dropdownData[item.href.replace('/', '') as keyof typeof dropdownData]?.title}
+                          {dropdownData[item.href.replace('/', '') as keyof typeof dropdownData]?.title || 'Koleksi Kami'}
                         </h3>
                         <p className="text-gray-600 dark:text-gray-400">
                           Pilih dari koleksi terbaik kami
@@ -155,7 +155,7 @@ export default function Navigation() {
 
                       {/* Products Grid */}
                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-                        {dropdownData[item.href.replace('/', '') as keyof typeof dropdownData]?.products.map((product, index) => (
+                        {(dropdownData[item.href.replace('/', '') as keyof typeof dropdownData]?.products || []).map((product, index) => (
                           <div
                             key={index}
                             className="transform translate-y-8 group-hover:translate-y-0 transition-all duration-700 ease-out opacity-0 group-hover:opacity-100"
