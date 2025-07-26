@@ -78,6 +78,25 @@ export default function Navigation() {
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
 
+  // Helper function to get dropdown data safely
+  const getDropdownData = (href: string) => {
+    // Convert href to key, handle all possible cases
+    let key = href.replace('/', '')
+    
+    // Handle root path
+    if (key === '' || key === '/') {
+      return { title: 'Beranda', products: [] }
+    }
+    
+    // Check if key exists in dropdownData
+    if (dropdownData[key]) {
+      return dropdownData[key]
+    }
+    
+    // Fallback for any unmatched routes
+    return { title: 'Koleksi Kami', products: [] }
+  }
+
   return (
     <nav className="sticky top-0 z-50 bg-white/60 dark:bg-gray-900/60 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,13 +159,13 @@ export default function Navigation() {
                 </Link>
 
                 {/* Full Screen Dropdown */}
-                {item.hasDropdown && (
+                {item.hasDropdown && getDropdownData(item.href).products.length > 0 && (
                   <div className="fixed left-1/2 top-16 transform -translate-x-1/2 w-[90vw] max-w-6xl bg-white dark:bg-neutral-900 rounded-2xl shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-500 ease-out z-50 border border-gray-100 dark:border-gray-800 translate-y-4 group-hover:translate-y-0 scale-95 group-hover:scale-100">
                     <div className="p-8">
                       {/* Header */}
                       <div className="mb-8 text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700 delay-100">
                         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                          {dropdownData[item.href.replace('/', '') as keyof typeof dropdownData]?.title || 'Koleksi Kami'}
+                          {getDropdownData(item.href).title}
                         </h3>
                         <p className="text-gray-600 dark:text-gray-400">
                           Pilih dari koleksi terbaik kami
@@ -155,7 +174,7 @@ export default function Navigation() {
 
                       {/* Products Grid */}
                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-                        {(dropdownData[item.href.replace('/', '') as keyof typeof dropdownData]?.products || []).map((product, index) => (
+                        {getDropdownData(item.href).products.map((product, index) => (
                           <div
                             key={index}
                             className="transform translate-y-8 group-hover:translate-y-0 transition-all duration-700 ease-out opacity-0 group-hover:opacity-100"
