@@ -251,65 +251,21 @@ export default function Navigation() {
           >
             <div className="px-2 pt-2 pb-3 space-y-2">
               {navItems.map((item) => (
-                <div key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-between px-4 py-3 rounded-full text-base font-medium transition-all duration-300 ${
-                      pathname === item.href
-                        ? "text-white bg-gradient-to-r from-pink-500 to-pink-600 shadow-lg"
-                        : "text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 hover:shadow-lg hover:scale-105"
-                    }`}
-                  >
-                    <span>{item.label}</span>
-                    {item.hasDropdown && (
-                      <ChevronDown className="w-4 h-4 transition-colors duration-300" />
-                    )}
-                  </Link>
-                  
-                  {/* Mobile Dropdown Content */}
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center justify-between px-3 py-3 rounded-md text-base font-medium transition-colors ${
+                    pathname === item.href
+                      ? "text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-900/20"
+                      : "text-gray-700 dark:text-gray-300 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-gray-50 dark:hover:bg-gray-800"
+                  }`}
+                >
+                  <span>{item.label}</span>
                   {item.hasDropdown && (
-                    <div className="mt-2 ml-4 bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
-                      {/* Mobile Products Grid */}
-                      <div className="grid grid-cols-2 gap-3 mb-4">
-                        {dropdownData[item.href.replace('/', '') as keyof typeof dropdownData]?.products.slice(0, 6).map((product, index) => (
-                          <Link
-                            key={index}
-                            href={item.href}
-                            onClick={() => setIsOpen(false)}
-                            className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-                          >
-                            <Image
-                              src={product.image}
-                              alt={product.name}
-                              width={200}
-                              height={120}
-                              className="w-full h-20 object-cover"
-                            />
-                            <div className="p-2">
-                              <h4 className="text-xs font-medium text-gray-900 dark:text-white line-clamp-1">
-                                {product.name}
-                              </h4>
-                              <p className="text-xs text-gray-500 dark:text-gray-400">
-                                {product.category}
-                              </p>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                      
-                      <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-600">
-                        <Link
-                          href={item.href}
-                          onClick={() => setIsOpen(false)}
-                          className="block w-full text-center py-3 px-6 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-full hover:from-pink-600 hover:to-pink-700 transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105"
-                        >
-                          Lihat Semua {dropdownData[item.href.replace('/', '') as keyof typeof dropdownData]?.title}
-                        </Link>
-                      </div>
-                    </div>
+                    <ChevronDown className="w-4 h-4" />
                   )}
-                </div>
+                </Link>
               ))}
             </div>
           </motion.div>
