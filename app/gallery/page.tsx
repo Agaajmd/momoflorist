@@ -315,7 +315,7 @@ export default function GalleryPage() {
 
       {/* Contact Section */}
       <section className="relative py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan5.jpg')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan.jpg')" }}></div>
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -437,7 +437,7 @@ export default function GalleryPage() {
 
       {/* CTA Section */}
       <section className="relative py-20 bg-gradient-to-r from-pink-600 to-purple-600">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan6.jpg')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan2.jpg')" }}></div>
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div

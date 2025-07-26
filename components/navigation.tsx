@@ -97,6 +97,11 @@ export default function Navigation() {
     return { title: 'Koleksi Kami', products: [] }
   }
 
+  // Helper function to properly encode image URLs
+  const getImageSrc = (imagePath: string) => {
+    return encodeURI(imagePath)
+  }
+
   return (
     <nav className="sticky top-0 z-50 bg-white/60 dark:bg-gray-900/60 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -188,11 +193,12 @@ export default function Navigation() {
                             >
                               <div className="relative overflow-hidden">
                                 <Image
-                                  src={product.image}
+                                  src={getImageSrc(product.image)}
                                   alt={product.name}
                                   width={400}
                                   height={240}
                                   className="w-full h-48 object-cover group-hover/card:scale-125 transition-transform duration-700 ease-out"
+                                  unoptimized
                                 />
                                 <div className="absolute top-3 left-3 transform -translate-x-8 group-hover/card:translate-x-0 transition-transform duration-500 delay-200">
                                   <span className="bg-gradient-to-r from-pink-500 to-pink-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">

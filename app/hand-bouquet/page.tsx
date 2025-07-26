@@ -383,7 +383,7 @@ export default function HandBouquetPage() {
 
       {/* CTA Section */}
       <section className="relative py-20 bg-gradient-to-r from-green-600 to-teal-600">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/bunga papan/bunga tangan2.jpg')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan2.jpg')" }}></div>
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
