@@ -1,0 +1,152 @@
+.socialSidebar {
+  position: fixed;
+  left: 1.5rem;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .socialSidebar {
+    display: block;
+  }
+}
+
+/* Single Unified Card with Background Blur */
+.unifiedCard {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  border-radius: 2rem;
+  padding: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.socialGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.socialIcon {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: #db2777;
+}
+
+.socialIcon:hover {
+  background: white;
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.socialIcon svg {
+  width: 1rem;
+  height: 1rem;
+  transition: color 0.3s ease;
+}
+
+.socialIcon:hover svg {
+  color: white;
+}
+
+/* Specific hover colors */
+.instagram:hover {
+  background: linear-gradient(135deg, #833ab4, #fd1d1d);
+}
+
+.whatsapp:hover {
+  background: #25d366;
+}
+
+.phone:hover {
+  background: #3b82f6;
+}
+
+.tooltip {
+  position: absolute;
+  left: 100%;
+  margin-left: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  background: #1f2937;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 0.375rem;
+  height: 0.375rem;
+  background: #1f2937;
+}
+
+.socialIcon:hover .tooltip {
+  opacity: 1;
+}
+
+/* Separator Line */
+.separator {
+  width: 1.5rem;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.orderButtonContent {
+  background: linear-gradient(to right, #ec4899, #db2777);
+  color: white;
+  font-weight: bold;
+  border-radius: 9999px;
+  padding: 1rem 0.5rem;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  box-shadow: 0 10px 15px -3px rgba(236, 72, 153, 0.25);
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  width: 2rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.orderButtonContent:hover {
+  background: linear-gradient(to right, #db2777, #be185d);
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px -3px rgba(236, 72, 153, 0.4);
+}
+
+.orderText {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.6rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}

@@ -7,6 +7,7 @@ import Image from "next/image"
 import { ArrowRight, Clock, Truck, Heart, Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
+import SocialSidebar from "@/components/social-sidebar"
 
 const categories = [
   {
@@ -95,19 +96,21 @@ export default function HomePage() {
   }
   return (
     <div className="min-h-screen">
+      {/* Social Sidebar */}
+      <SocialSidebar />
+      
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-pink-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900 py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10"></div>
+      <section className="relative bg-[#CDB6BD] dark:bg-[#2F3134] py-12 lg:py-16 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
+              className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6"
             >
-              <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                Popo Florist
+              <span className="bg-gradient-to-r from-[#8B5A9F] to-[#A67FA3] bg-clip-text text-transparent">
+                Momo Florist
               </span>
             </motion.h1>
 
@@ -115,11 +118,11 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
+              className="text-xl md:text-2xl text-gray-800 dark:text-[#C6BBAE] mb-8 max-w-4xl mx-auto leading-relaxed"
             >
-              Kenalkan kami dari Popo Florist, toko bunga online di Surabaya yang melayani pengiriman ke seluruh
+              Kenalkan kami dari Momo Florist, toko bunga online di Surabaya yang melayani pengiriman ke seluruh
               Indonesia,
-              <span className="font-semibold text-green-600 dark:text-green-400"> buka 24 jam</span>
+              <span className="font-semibold text-[#BFA2DB] dark:text-[#BFA2DB]"> buka 24 jam</span>
             </motion.p>
 
             <motion.div
@@ -129,8 +132,8 @@ export default function HomePage() {
               className="flex flex-col items-center gap-4"
             >
               <WhatsAppButton 
-                message="Halo, saya ingin memesan bunga dari Popo Florist" 
-                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                message="Halo, saya ingin memesan bunga dari Momo Florist" 
+                className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
                 hideIcon
               >
                 Pesan Sekarang
@@ -139,7 +142,7 @@ export default function HomePage() {
                 variant="ghost" 
                 size="lg" 
                 asChild 
-                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                className="border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
               >
                 <Link href="/gallery" className="flex items-center justify-center space-x-2">
                   <span>Lihat Gallery</span>
@@ -152,9 +155,7 @@ export default function HomePage() {
       </section>
 
       {/* Categories Section */}
-      <section className="relative py-20 bg-white dark:bg-gray-900 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan.jpg')" }}></div>
-        <div className="absolute inset-0 bg-black opacity-20"></div>
+      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -163,8 +164,8 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Kategori Produk Kami</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Kategori Produk Kami</h2>
+            <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto">
               Pilih dari berbagai kategori bunga berkualitas untuk setiap momen spesial Anda
             </p>
           </motion.div>
@@ -190,7 +191,7 @@ export default function HomePage() {
                       viewport={{ once: true }}
                       className="group h-full"
                     >
-                      <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
+                      <div className="relative overflow-hidden rounded-2xl bg-white/20 dark:bg-[#2F3134] shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col border border-white/30 dark:border-[#C6BBAE]/20">
                         <div className="relative h-64 overflow-hidden flex-shrink-0">
                           <Image
                             src={category.image || "/placeholder.svg"}
@@ -204,15 +205,15 @@ export default function HomePage() {
                         </div>
 
                         <div className="p-6 flex-1 flex flex-col">
-                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 min-h-[2.5rem] flex items-center">{category.title}</h3>
-                          <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1 min-h-[3rem] flex items-start">{category.description}</p>
+                          <h3 className="text-xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-2 min-h-[2.5rem] flex items-center">{category.title}</h3>
+                          <p className="text-gray-800 dark:text-[#C6BBAE] mb-4 flex-1 min-h-[3rem] flex items-start">{category.description}</p>
                           <div className="flex space-x-3 mt-auto">
-                            <Button asChild variant="ghost" className="flex-1 border-2 border-[#E19CAF] text-[#E19CAF] hover:text-[#D4A574] hover:border-[#D4A574] hover:bg-[#E19CAF]/5 bg-transparent rounded-full px-6 py-2 font-medium transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 text-sm">
+                            <Button asChild variant="ghost" className="flex-1 border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-6 py-2 font-medium transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 text-sm">
                               <Link href={category.href}>Lihat Produk</Link>
                             </Button>
                             <WhatsAppButton
-                              message={`Halo, saya tertarik dengan ${category.title} dari Popo Florist`}
-                              className="flex-1 bg-[#D4A574] hover:bg-[#C19A68] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10"
+                              message={`Halo, saya tertarik dengan ${category.title} dari Momo Florist`}
+                              className="flex-1 bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10"
                               hideIcon
                             >
                               Pesan
@@ -229,7 +230,7 @@ export default function HomePage() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-900/80 hover:bg-white dark:hover:bg-gray-900 shadow-lg z-10"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-[#2F3134]/80 hover:bg-white dark:hover:bg-[#2F3134] shadow-lg z-10"
                 onClick={prevSlide}
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -237,7 +238,7 @@ export default function HomePage() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-900/80 hover:bg-white dark:hover:bg-gray-900 shadow-lg z-10"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-[#2F3134]/80 hover:bg-white dark:hover:bg-[#2F3134] shadow-lg z-10"
                 onClick={nextSlide}
               >
                 <ChevronRight className="h-4 w-4" />
@@ -252,8 +253,8 @@ export default function HomePage() {
                   onClick={() => goToSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide
-                      ? 'bg-pink-600 scale-110'
-                      : 'bg-gray-300 dark:bg-gray-600 hover:bg-pink-400'
+                      ? 'bg-[#BFA2DB] scale-110'
+                      : 'bg-[#C6BBAE] dark:bg-[#C6BBAE] hover:bg-[#BFA2DB]'
                   }`}
                 />
               ))}
@@ -272,7 +273,7 @@ export default function HomePage() {
                 whileHover={{ y: -10 }}
                 className="group h-full"
               >
-                <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
+                <div className="relative overflow-hidden rounded-2xl bg-white/20 dark:bg-[#2F3134] shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col border border-white/30 dark:border-[#C6BBAE]/20">
                   <div className="relative h-64 overflow-hidden flex-shrink-0">
                     <Image
                       src={category.image || "/placeholder.svg"}
@@ -286,15 +287,15 @@ export default function HomePage() {
                   </div>
 
                   <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 min-h-[2.5rem] flex items-center">{category.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1 min-h-[3rem] flex items-start">{category.description}</p>
+                    <h3 className="text-xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-2 min-h-[2.5rem] flex items-center">{category.title}</h3>
+                    <p className="text-gray-800 dark:text-[#C6BBAE] mb-4 flex-1 min-h-[3rem] flex items-start">{category.description}</p>
                     <div className="flex space-x-3 mt-auto">
-                      <Button asChild variant="ghost" className="flex-1 border-2 border-[#E19CAF] text-[#E19CAF] hover:text-[#D4A574] hover:border-[#D4A574] hover:bg-[#E19CAF]/5 bg-transparent rounded-full px-6 py-2 font-medium transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 text-sm">
+                      <Button asChild variant="ghost" className="flex-1 border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-6 py-2 font-medium transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 text-sm">
                         <Link href={category.href}>Lihat Produk</Link>
                       </Button>
                       <WhatsAppButton
-                        message={`Halo, saya tertarik dengan ${category.title} dari Popo Florist`}
-                        className="flex-1 bg-[#D4A574] hover:bg-[#C19A68] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10"
+                        message={`Halo, saya tertarik dengan ${category.title} dari Momo Florist`}
+                        className="flex-1 bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10"
                         hideIcon
                       >
                         Pesan
@@ -309,7 +310,7 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section className="py-12 bg-[#CDB6BD] dark:bg-[#2F3134]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -318,10 +319,10 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Mengapa Pilih Popo Florist?
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">
+              Mengapa Pilih Momo Florist?
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto">
               Kami berkomitmen memberikan pelayanan terbaik dengan kualitas premium
             </p>
           </motion.div>
@@ -335,13 +336,13 @@ export default function HomePage() {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05 }}
-                className="text-center p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="text-center p-6 bg-white/20 dark:bg-[#2F3134] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/30 dark:border-[#C6BBAE]/20"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-pink-100 dark:bg-pink-900/30 rounded-full mb-4">
-                  <feature.icon className="h-8 w-8 text-pink-600 dark:text-pink-400" />
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#BFA2DB]/20 dark:bg-[#BFA2DB]/30 rounded-full mb-4">
+                  <feature.icon className="h-8 w-8 text-[#BFA2DB] dark:text-[#BFA2DB]" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{feature.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-[#EDE6DE] mb-2">{feature.title}</h3>
+                <p className="text-gray-800 dark:text-[#C6BBAE]">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -349,9 +350,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 bg-gradient-to-r from-pink-600 to-purple-600 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan2.jpg')" }}></div>
-        <div className="absolute inset-0 bg-black opacity-20"></div>
+      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem]">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -359,14 +358,14 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Siap Memesan Bunga Impian Anda?</h2>
-            <p className="text-xl text-pink-100 mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Siap Memesan Bunga Impian Anda?</h2>
+            <p className="text-xl text-gray-700 dark:text-[#C6BBAE] mb-8">
               Hubungi kami sekarang untuk konsultasi gratis dan dapatkan penawaran terbaik
             </p>
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
-                message="Halo, saya ingin konsultasi dan memesan bunga dari Popo Florist"
-                className="bg-white text-[#E5A96E] hover:bg-gray-50 hover:text-[#D4A574] font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                message="Halo, saya ingin konsultasi dan memesan bunga dari Momo Florist"
+                className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
                 hideIcon
               >
                 Konsultasi Gratis
@@ -374,7 +373,7 @@ export default function HomePage() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="border-2 border-white text-white hover:text-gray-200 hover:border-gray-200 hover:bg-white/10 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                className="border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
                 asChild
               >
                 <a href="tel:081213142558" className="flex items-center justify-center space-x-2">

@@ -246,9 +246,7 @@ export default function GalleryPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-pink-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-pink-900 py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan3.jpg')" }}></div>
-        <div className="absolute inset-0 bg-black opacity-20"></div>
+      <section className="relative bg-[#CDB6BD] dark:bg-[#2F3134] py-12 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -256,20 +254,20 @@ export default function GalleryPage() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">
+              <span className="bg-gradient-to-r from-[#8B5A9F] to-[#A67FA3] bg-clip-text text-transparent">
                 Gallery Kami
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-800 dark:text-[#C6BBAE] mb-8 max-w-4xl mx-auto leading-relaxed">
               Lihat koleksi karya terbaik kami - dari bunga papan, standing flower, hand bouquet, hingga dekorasi bunga
               yang memukau
             </p>
 
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
-                message="Halo, saya tertarik dengan karya-karya di gallery Popo Florist"
-                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                message="Halo, saya tertarik dengan karya-karya di gallery Momo Florist"
+                className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
                 hideIcon
               >
                 Konsultasi Design
@@ -277,7 +275,7 @@ export default function GalleryPage() {
               <Button 
                 variant="ghost" 
                 size="lg" 
-                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                className="border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
                 asChild
               >
                 <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
@@ -291,9 +289,7 @@ export default function GalleryPage() {
       </section>
 
       {/* Gallery Section */}
-      <section className="relative py-20 bg-white dark:bg-gray-900">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan4.jpg')" }}></div>
-        <div className="absolute inset-0 bg-black opacity-20"></div>
+      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134]">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -302,8 +298,8 @@ export default function GalleryPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Karya Terbaik Kami</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Karya Terbaik Kami</h2>
+            <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto mb-8">
               Setiap karya dibuat dengan penuh dedikasi dan perhatian terhadap detail untuk memberikan hasil yang
               sempurna
             </p>
@@ -313,132 +309,8 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="relative py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan.jpg')" }}></div>
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">Hubungi Kami</h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-pink-600 dark:text-pink-400 mt-1" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Alamat Lengkap</h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      Jl. Kayoon, Komplek Pasar Bunga Stand C-22, Surabaya
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <Clock className="h-6 w-6 text-green-600 dark:text-green-400 mt-1" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Jam Operasional</h3>
-                    <p className="text-green-600 dark:text-green-400 font-semibold text-lg">Buka 24 Jam</p>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">Melayani pesanan kapan saja</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Contact Actions */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <motion.div whileHover={{ scale: 1.02 }} className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <MessageCircle className="h-6 w-6 text-green-600" />
-                    <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">WhatsApp</h3>
-                      <p className="text-gray-600 dark:text-gray-300">{phoneNumber}</p>
-                    </div>
-                  </div>
-                  <WhatsAppButton 
-                    message="Halo, saya ingin bertanya tentang layanan Popo Florist" 
-                    className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10"
-                    hideIcon
-                  >
-                    Chat
-                  </WhatsAppButton>
-                </div>
-              </motion.div>
-
-              <motion.div whileHover={{ scale: 1.02 }} className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <Phone className="h-6 w-6 text-blue-600" />
-                    <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Telepon</h3>
-                      <p className="text-gray-600 dark:text-gray-300">{phoneNumber}</p>
-                    </div>
-                  </div>
-                  <Button 
-                    className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10" 
-                    asChild
-                  >
-                    <a href={`tel:${phoneNumber}`}>Call</a>
-                  </Button>
-                </div>
-              </motion.div>
-
-              <motion.div whileHover={{ scale: 1.02 }} className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <Instagram className="h-6 w-6 text-pink-600" />
-                    <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Instagram</h3>
-                      <p className="text-gray-600 dark:text-gray-300">@Popoflorist01</p>
-                    </div>
-                  </div>
-                  <Button 
-                    variant="ghost" 
-                    className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-6 py-2 font-medium transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10" 
-                    asChild
-                  >
-                    <a href="https://instagram.com/popoflorist01" target="_blank" rel="noopener noreferrer">
-                      Follow
-                    </a>
-                  </Button>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="relative py-20 bg-gradient-to-r from-pink-600 to-purple-600">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan2.jpg')" }}></div>
-        <div className="absolute inset-0 bg-black opacity-20"></div>
+      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem]">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -446,14 +318,14 @@ export default function GalleryPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Tertarik dengan Karya Kami?</h2>
-            <p className="text-xl text-pink-100 mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Tertarik dengan Karya Kami?</h2>
+            <p className="text-xl text-gray-800 dark:text-[#C6BBAE] mb-8">
               Konsultasikan kebutuhan bunga Anda dengan tim ahli kami. Gratis konsultasi, hasil memuaskan!
             </p>
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
-                message="Halo, saya tertarik dengan karya di gallery dan ingin konsultasi dengan Popo Florist"
-                className="bg-white text-[#E5A96E] hover:bg-gray-50 hover:text-[#D4A574] font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                message="Halo, saya tertarik dengan karya di gallery dan ingin konsultasi dengan Momo Florist"
+                className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
                 hideIcon
               >
                 Konsultasi Gratis
@@ -461,7 +333,7 @@ export default function GalleryPage() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="border-2 border-white text-white hover:text-gray-200 hover:border-gray-200 hover:bg-white/10 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                className="border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
                 asChild
               >
                 <a href="tel:081213142558" className="flex items-center justify-center space-x-2">

@@ -8,156 +8,156 @@ import { Button } from "@/components/ui/button"
 
 const categories = [
   {
-    title: "Duka Cita",
-    description: "Bunga papan untuk menyampaikan belasungkawa",
+    title: "Duka Cita Mini",
+    description: "Bunga papan mini untuk menyampaikan belasungkawa",
     images: [
       {
         src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Duka Cita 1",
-        title: "Papan Duka Cita Elegant",
-        description: "Bunga papan duka cita dengan rangkaian bunga putih yang elegan",
+        alt: "Bunga Papan Mini Duka Cita 1",
+        title: "Papan Mini Duka Cita Elegant",
+        description: "Bunga papan mini duka cita dengan rangkaian bunga putih yang elegan",
       },
       {
         src: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Duka Cita 2",
-        title: "Papan Duka Cita Premium",
-        description: "Rangkaian bunga duka cita dengan bunga lily putih premium",
+        alt: "Bunga Papan Mini Duka Cita 2",
+        title: "Papan Mini Duka Cita Premium",
+        description: "Rangkaian bunga mini duka cita dengan bunga lily putih premium",
       },
       {
         src: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Duka Cita 3",
-        title: "Papan Duka Cita Klasik",
-        description: "Desain klasik dengan bunga krisan putih dan hijau",
+        alt: "Bunga Papan Mini Duka Cita 3",
+        title: "Papan Mini Duka Cita Klasik",
+        description: "Desain klasik mini dengan bunga krisan putih dan hijau",
       },
       {
         src: "https://images.unsplash.com/photo-1487070183336-b863922373d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Duka Cita 4",
-        title: "Papan Duka Cita Modern",
-        description: "Rangkaian modern dengan bunga mawar putih",
+        alt: "Bunga Papan Mini Duka Cita 4",
+        title: "Papan Mini Duka Cita Modern",
+        description: "Rangkaian modern mini dengan bunga mawar putih",
       },
       {
         src: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Duka Cita 5",
-        title: "Papan Duka Cita Sederhana",
-        description: "Desain sederhana namun bermakna",
+        alt: "Bunga Papan Mini Duka Cita 5",
+        title: "Papan Mini Duka Cita Sederhana",
+        description: "Desain sederhana namun bermakna dalam ukuran mini",
       },
       {
         src: "/bunga papan/bunga papan.jpg",
-        alt: "Bunga Papan Duka Cita 6",
-        title: "Papan Duka Cita Spesial",
-        description: "Rangkaian duka cita dengan bunga segar pilihan",
+        alt: "Bunga Papan Mini Duka Cita 6",
+        title: "Papan Mini Duka Cita Spesial",
+        description: "Rangkaian mini duka cita dengan bunga segar pilihan",
       },
     ],
   },
   {
-    title: "Selamat & Sukses",
-    description: "Bunga papan untuk ucapan selamat dan sukses",
+    title: "Selamat & Sukses Mini",
+    description: "Bunga papan mini untuk ucapan selamat dan sukses",
     images: [
       {
         src: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Selamat 1",
-        title: "Papan Selamat Colorful",
-        description: "Rangkaian warna-warni untuk ucapan selamat",
+        alt: "Bunga Papan Mini Selamat 1",
+        title: "Papan Mini Selamat Colorful",
+        description: "Rangkaian mini warna-warni untuk ucapan selamat",
       },
       {
         src: "https://images.unsplash.com/photo-1487070183336-b863922373d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Selamat 2",
-        title: "Papan Sukses Premium",
-        description: "Desain premium untuk merayakan kesuksesan",
+        alt: "Bunga Papan Mini Selamat 2",
+        title: "Papan Mini Sukses Premium",
+        description: "Desain mini premium untuk merayakan kesuksesan",
       },
       {
         src: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Selamat 3",
-        title: "Papan Selamat Elegant",
-        description: "Rangkaian elegan dengan bunga mawar merah",
+        alt: "Bunga Papan Mini Selamat 3",
+        title: "Papan Mini Selamat Elegant",
+        description: "Rangkaian mini elegan dengan bunga mawar merah",
       },
       {
         src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Selamat 5",
-        title: "Papan Selamat Festive",
-        description: "Rangkaian meriah untuk perayaan",
+        alt: "Bunga Papan Mini Selamat 5",
+        title: "Papan Mini Selamat Festive",
+        description: "Rangkaian mini meriah untuk perayaan",
       },
       {
         src: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Selamat 6",
-        title: "Papan Sukses Luxury",
-        description: "Rangkaian mewah untuk momen bersejarah",
+        alt: "Bunga Papan Mini Selamat 6",
+        title: "Papan Mini Sukses Luxury",
+        description: "Rangkaian mini mewah untuk momen bersejarah",
       },
       {
         src: "/bunga papan/bunga papan2.jpg",
-        alt: "Bunga Papan Selamat 7",
-        title: "Papan Selamat Istimewa",
-        description: "Rangkaian istimewa untuk ucapan selamat",
+        alt: "Bunga Papan Mini Selamat 7",
+        title: "Papan Mini Selamat Istimewa",
+        description: "Rangkaian mini istimewa untuk ucapan selamat",
       },
     ],
   },
   {
-    title: "Pernikahan",
-    description: "Bunga papan untuk acara pernikahan",
+    title: "Pernikahan Mini",
+    description: "Bunga papan mini untuk acara pernikahan",
     images: [
       {
         src: "https://images.unsplash.com/photo-1487070183336-b863922373d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Pernikahan 1",
-        title: "Papan Wedding Romantic",
-        description: "Rangkaian romantis dengan mawar pink dan putih",
+        alt: "Bunga Papan Mini Pernikahan 1",
+        title: "Papan Mini Wedding Romantic",
+        description: "Rangkaian romantis mini dengan mawar pink dan putih",
       },
       {
         src: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Pernikahan 2",
-        title: "Papan Wedding Classic",
-        description: "Desain klasik untuk pernikahan tradisional",
+        alt: "Bunga Papan Mini Pernikahan 2",
+        title: "Papan Mini Wedding Classic",
+        description: "Desain klasik mini untuk pernikahan tradisional",
       },
       {
         src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Pernikahan 4",
-        title: "Papan Wedding Modern",
-        description: "Desain modern untuk pasangan milenial",
+        alt: "Bunga Papan Mini Pernikahan 4",
+        title: "Papan Mini Wedding Modern",
+        description: "Desain modern mini untuk pasangan milenial",
       },
       {
         src: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Pernikahan 5",
-        title: "Papan Wedding Luxury",
-        description: "Rangkaian mewah untuk pernikahan istimewa",
+        alt: "Bunga Papan Mini Pernikahan 5",
+        title: "Papan Mini Wedding Luxury",
+        description: "Rangkaian mewah mini untuk pernikahan istimewa",
       },
       {
         src: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Pernikahan 6",
-        title: "Papan Wedding Garden",
-        description: "Tema garden dengan bunga warna-warni",
+        alt: "Bunga Papan Mini Pernikahan 6",
+        title: "Papan Mini Wedding Garden",
+        description: "Tema garden mini dengan bunga warna-warni",
       },
       {
         src: "/bunga papan/bunga papan3.jpg",
-        alt: "Bunga Papan Pernikahan 7",
-        title: "Papan Wedding Premium",
-        description: "Rangkaian premium untuk pernikahan impian",
+        alt: "Bunga Papan Mini Pernikahan 7",
+        title: "Papan Mini Wedding Premium",
+        description: "Rangkaian premium mini untuk pernikahan impian",
       },
     ],
   },
   {
-    title: "Mini",
-    description: "Bunga papan ukuran mini untuk ruang terbatas",
+    title: "Mini Compact",
+    description: "Bunga papan mini ultra kompak untuk ruang terbatas",
     images: [
       {
         src: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Mini 1",
+        alt: "Bunga Papan Mini Compact 1",
         title: "Mini Papan Cute",
         description: "Papan mini dengan desain yang menggemaskan",
       },
       {
         src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Mini 3",
+        alt: "Bunga Papan Mini Compact 3",
         title: "Mini Papan Colorful",
         description: "Mini papan dengan warna cerah",
       },
       {
         src: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Bunga Papan Mini 4",
+        alt: "Bunga Papan Mini Compact 4",
         title: "Mini Papan Premium",
         description: "Mini papan dengan kualitas premium",
       },
       {
         src: "/bunga papan/bunga papan4.jpg",
-        alt: "Bunga Papan Mini 5",
+        alt: "Bunga Papan Mini Compact 5",
         title: "Mini Papan Spesial",
         description: "Mini papan dengan desain spesial",
       },
@@ -183,7 +183,7 @@ const features = [
   },
 ]
 
-export default function BungaPapanPage() {
+export default function BungaPapanMiniPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -197,22 +197,22 @@ export default function BungaPapanPage() {
           >
             <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">
               <span className="bg-gradient-to-r from-[#8B5A9F] to-[#A67FA3] bg-clip-text text-transparent">
-                Bunga Papan
+                Bunga Papan Mini
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-800 dark:text-[#C6BBAE] mb-8 max-w-4xl mx-auto leading-relaxed">
-              Kami spesialis dalam pembuatan segala jenis bunga papan & karangan bunga, termasuk papan dukacita, selamat
+              Kami spesialis dalam pembuatan segala jenis bunga papan mini & karangan bunga, termasuk papan mini dukacita, selamat
               & sukses, pernikahan.{" "}
               <span className="font-semibold text-[#BFA2DB]">Pengerjaan hanya 2 jam, gratis ongkir.</span>
             </p>
 
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
-                message="Halo, saya ingin memesan bunga papan dari Momo Florist"
+                message="Halo, saya ingin memesan bunga papan mini dari Momo Florist"
                 className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
                 hideIcon
               >
-                Pesan Bunga Papan
+                Pesan Bunga Papan Mini
               </WhatsAppButton>
               <Button 
                 variant="ghost" 
@@ -307,13 +307,13 @@ export default function BungaPapanPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Butuh Bunga Papan Segera?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Butuh Bunga Papan Mini Segera?</h2>
             <p className="text-xl text-gray-800 dark:text-[#C6BBAE] mb-8">
               Proses cepat 2 jam, kualitas terjamin, gratis ongkir area Surabaya
             </p>
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
-                message="Halo, saya butuh bunga papan segera dari Momo Florist"
+                message="Halo, saya butuh bunga papan mini segera dari Momo Florist"
                 className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
                 hideIcon
               >

@@ -9,16 +9,16 @@ import Footer from "@/components/footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Popo Florist - Toko Bunga Online Surabaya | Bunga Papan, Standing Flower, Hand Bouquet",
+  title: "Momo Florist - Toko Bunga Online Surabaya | Bunga Papan, Standing Flower, Hand Bouquet",
   description:
-    "Popo Florist adalah toko bunga online di Surabaya yang melayani pengiriman ke seluruh Indonesia. Spesialis bunga papan, standing flower, dan hand bouquet. Buka 24 jam, gratis ongkir, pengerjaan cepat 2 jam.",
+    "Momo Florist adalah toko bunga online di Surabaya yang melayani pengiriman ke seluruh Indonesia. Spesialis bunga papan, standing flower, dan hand bouquet. Buka 24 jam, gratis ongkir, pengerjaan cepat 2 jam.",
   keywords:
     "bunga, bunga papan, karangan bunga, standing flower, bouquet, toko bunga surabaya, florist, bunga duka cita, bunga pernikahan",
     generator: 'Aga',
   icons: {
-    icon: "/logo popo florist.jpg",
-    shortcut: "/logo popo florist.jpg",
-    apple: "/logo popo florist.jpg",
+    icon: "/logo MomoFlorist.png",
+    shortcut: "/logo MomoFlorist.png",
+    apple: "/logo MomoFlorist.png",
   },
 }
 

@@ -14,7 +14,7 @@ interface WhatsAppButtonProps {
 }
 
 export default function WhatsAppButton({
-  message = "Halo, saya tertarik dengan layanan Popo Florist",
+  message = "Halo, saya tertarik dengan layanan Momo Florist",
   className = "",
   children,
   hideIcon = false,

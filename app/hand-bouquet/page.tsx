@@ -12,112 +12,96 @@ const bouquetImages = [
     alt: "Hand Bouquet 1",
     title: "Bouquet Romantic Rose",
     description: "Rangkaian mawar merah romantis untuk orang terkasih",
-    price: "Rp 250.000",
   },
   {
     src: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 2",
     title: "Bouquet Spring Garden",
     description: "Buket warna-warni dengan tema taman musim semi",
-    price: "Rp 200.000",
   },
   {
     src: "/hand bouquet/hand bouquet3.jpg",
     alt: "Hand Bouquet 3",
     title: "Bouquet White Elegance",
     description: "Rangkaian putih elegan untuk acara formal",
-    price: "Rp 275.000",
   },
   {
     src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 4",
     title: "Bouquet Pink Delight",
     description: "Buket pink manis yang menggemaskan",
-    price: "Rp 225.000",
   },
   {
     src: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 5",
     title: "Bouquet Luxury Mix",
     description: "Campuran bunga premium untuk momen istimewa",
-    price: "Rp 350.000",
   },
   {
     src: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 6",
     title: "Bouquet Sunflower Joy",
     description: "Buket bunga matahari yang ceria",
-    price: "Rp 180.000",
   },
   {
     src: "https://images.unsplash.com/photo-1487070183336-b863922373d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 7",
     title: "Bouquet Purple Dream",
     description: "Rangkaian ungu yang memukau",
-    price: "Rp 240.000",
   },
   {
     src: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 8",
     title: "Bouquet Pastel Sweet",
     description: "Warna pastel lembut yang manis",
-    price: "Rp 210.000",
   },
   {
     src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 10",
     title: "Bouquet Modern Mix",
     description: "Kombinasi modern dengan berbagai jenis bunga",
-    price: "Rp 290.000",
   },
   {
     src: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 11",
     title: "Bouquet Tropical Vibes",
     description: "Nuansa tropis yang eksotis",
-    price: "Rp 220.000",
   },
   {
     src: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 12",
     title: "Bouquet Vintage Charm",
     description: "Pesona vintage dengan sentuhan klasik",
-    price: "Rp 270.000",
   },
   {
     src: "https://images.unsplash.com/photo-1487070183336-b863922373d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 13",
     title: "Bouquet Baby Breath",
     description: "Rangkaian dengan baby breath yang lembut",
-    price: "Rp 190.000",
   },
   {
     src: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Hand Bouquet 14",
     title: "Bouquet Premium Luxury",
     description: "Buket premium dengan bunga import",
-    price: "Rp 400.000",
   },
   {
     src: "/hand bouquet/hand bouquet.jpg",
     alt: "Hand Bouquet 15",
     title: "Bouquet Spesial",
     description: "Rangkaian hand bouquet dengan bunga segar pilihan",
-    price: "Rp 275.000",
   },
   {
     src: "/hand bouquet/hand bouquet2.jpg",
     alt: "Hand Bouquet 16",
     title: "Bouquet Elegant Premium",
     description: "Desain elegant premium untuk momen istimewa",
-    price: "Rp 325.000",
   },
   {
     src: "/hand bouquet/hand bouquet4.jpg",
     alt: "Hand Bouquet 17",
     title: "Bouquet Terbaru",
     description: "Koleksi terbaru dengan bunga berkualitas tinggi",
-    price: "Rp 300.000",
   },
 ]
 
@@ -148,9 +132,7 @@ export default function HandBouquetPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-green-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-green-900 py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/background/bunga%20papan,%20bunga%20tangan4.jpg')] bg-cover bg-center bg-no-repeat opacity-30 dark:opacity-20"></div>
-        <div className="absolute inset-0 bg-white/40 dark:bg-gray-900/50"></div>
+      <section className="relative bg-[#CDB6BD] dark:bg-[#2F3134] py-12 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -158,20 +140,20 @@ export default function HandBouquetPage() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              <span className="bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">
+              <span className="bg-gradient-to-r from-[#8B5A9F] to-[#A67FA3] bg-clip-text text-transparent">
                 Hand Bouquet
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-800 dark:text-[#C6BBAE] mb-8 max-w-4xl mx-auto leading-relaxed">
               Dengan kualitas bunga yang terbaik, rangkaian hand bouquet kami adalah hadiah yang sempurna bagi
               pasangan/keluarga Anda!
             </p>
 
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
-                message="Halo, saya ingin memesan hand bouquet dari Popo Florist"
-                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                message="Halo, saya ingin memesan hand bouquet dari Momo Florist"
+                className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
                 hideIcon
               >
                 Pesan Hand Bouquet
@@ -179,7 +161,7 @@ export default function HandBouquetPage() {
               <Button 
                 variant="ghost" 
                 size="lg" 
-                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                className="border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
                 asChild
               >
                 <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
@@ -193,7 +175,7 @@ export default function HandBouquetPage() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-12 bg-[#CDB6BD] dark:bg-[#2F3134]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -202,28 +184,20 @@ export default function HandBouquetPage() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                Tentang Popo Florist
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">
+                Tentang Momo Florist
               </h2>
-              <div className="space-y-4 text-lg text-gray-600 dark:text-gray-300">
-                <p>
-                  Popo Florist adalah solusi utama untuk kebutuhan bunga dan dekorasi Anda.
-                  <span className="font-semibold text-green-600 dark:text-green-400">
-                    {" "}
-                    Berdiri sejak 2012 di Surabaya
-                  </span>
-                  , kami telah berpengalaman melayani ratusan pelanggan dengan menjamin kualitas terbaik dan harga
-                  bersahabat.
-                </p>
-                <p>
-                  Setiap hand bouquet kami dibuat dengan penuh perhatian menggunakan bunga-bunga segar pilihan terbaik.
-                  Kami memahami bahwa setiap momen spesial membutuhkan sentuhan yang istimewa.
-                </p>
-              </div>
+              <p className="text-lg text-gray-800 dark:text-[#C6BBAE] mb-8">
+                Momo Florist adalah solusi utama untuk kebutuhan bunga dan dekorasi Anda.
+              </p>
+              <p className="text-gray-800 dark:text-[#C6BBAE]">
+                Setiap hand bouquet kami dibuat dengan penuh perhatian menggunakan bunga-bunga segar pilihan terbaik.
+                Kami memahami bahwa setiap momen spesial membutuhkan sentuhan yang istimewa.
+              </p>
               <div className="mt-8">
                 <WhatsAppButton
-                  message="Halo, saya ingin tahu lebih lanjut tentang hand bouquet Popo Florist"
-                  className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                  message="Halo, saya ingin tahu lebih lanjut tentang hand bouquet Momo Florist"
+                  className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
                   hideIcon
                 >
                   Pelajari Lebih Lanjut
@@ -255,7 +229,7 @@ export default function HandBouquetPage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-green-50 dark:bg-green-900/10">
+      <section className="py-12 bg-[#CDB6BD] dark:bg-[#2F3134]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -264,8 +238,8 @@ export default function HandBouquetPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Mengapa Popo Florist?</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Mengapa Momo Florist?</h2>
+            <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto">
               Kami berkomitmen memberikan pelayanan terbaik dengan keunggulan yang tidak akan Anda temukan di tempat
               lain
             </p>
@@ -280,13 +254,13 @@ export default function HandBouquetPage() {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05 }}
-                className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="text-center p-6 bg-white/20 dark:bg-[#2F3134] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/30 dark:border-[#C6BBAE]/20"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full mb-4">
-                  <item.icon className="h-8 w-8 text-green-600 dark:text-green-400" />
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#BFA2DB]/20 dark:bg-[#BFA2DB]/30 rounded-full mb-4">
+                  <item.icon className="h-8 w-8 text-[#BFA2DB] dark:text-[#BFA2DB]" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-[#EDE6DE] mb-2">{item.title}</h3>
+                <p className="text-gray-800 dark:text-[#C6BBAE]">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -294,7 +268,7 @@ export default function HandBouquetPage() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-12 bg-[#CDB6BD] dark:bg-[#2F3134]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -303,16 +277,16 @@ export default function HandBouquetPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">
               Pilihan Hand Bouquet Kami
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto mb-8">
               Dari yang romantis hingga elegan, temukan hand bouquet yang sempurna untuk momen spesial Anda
             </p>
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
-                message="Halo, saya ingin melihat pilihan hand bouquet yang tersedia di Popo Florist"
-                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                message="Halo, saya ingin melihat pilihan hand bouquet yang tersedia di Momo Florist"
+                className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
                 hideIcon
               >
                 Konsultasi Design
@@ -320,7 +294,7 @@ export default function HandBouquetPage() {
               <Button 
                 variant="ghost" 
                 size="lg" 
-                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                className="border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
                 asChild
               >
                 <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
@@ -335,56 +309,8 @@ export default function HandBouquetPage() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="relative py-20 bg-gray-50 dark:bg-gray-800 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/background/bunga%20papan,%20bunga%20tangan.jpg')] bg-cover bg-center bg-no-repeat opacity-30 dark:opacity-20"></div>
-        <div className="absolute inset-0 bg-gray-50/40 dark:bg-gray-800/50"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Hubungi Kami</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-              <strong>Alamat:</strong> Jl. Kayoon, Komplek Pasar Bunga Stand C-22, Surabaya
-              <br />
-              <strong>Telepon/WA:</strong> 081213142558
-              <br />
-              <strong>Instagram:</strong> @Popoflorist01
-              <br />
-              <strong>Jam Buka:</strong>{" "}
-              <span className="font-semibold text-green-600 dark:text-green-400">24 Jam</span>
-            </p>
-            <div className="flex flex-col items-center gap-4">
-              <WhatsAppButton
-                message="Halo, saya ingin memesan hand bouquet dari Popo Florist"
-                className="bg-[#E5A96E] hover:bg-[#D4A574] text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
-                hideIcon
-              >
-                Pesan Sekarang
-              </WhatsAppButton>
-              <Button 
-                variant="ghost" 
-                size="lg" 
-                className="border-2 border-[#EDB7C6] text-[#EDB7C6] hover:text-[#E5A96E] hover:border-[#E5A96E] hover:bg-[#EDB7C6]/5 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
-                asChild
-              >
-                <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
-                  <span>081213142558</span>
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="relative py-20 bg-gradient-to-r from-green-600 to-teal-600">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/background/bunga papan, bunga tangan2.jpg')" }}></div>
-        <div className="absolute inset-0 bg-black opacity-20"></div>
+      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem]">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -392,14 +318,14 @@ export default function HandBouquetPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Hadiah Sempurna Menanti</h2>
-            <p className="text-xl text-green-100 mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Hadiah Sempurna Menanti</h2>
+            <p className="text-xl text-gray-800 dark:text-[#C6BBAE] mb-8">
               Hand bouquet berkualitas premium untuk orang terkasih. Pesan sekarang dan buat momen jadi tak terlupakan!
             </p>
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
-                message="Halo, saya ingin memesan hand bouquet spesial dari Popo Florist"
-                className="bg-white text-[#E5A96E] hover:bg-gray-50 hover:text-[#D4A574] font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                message="Halo, saya ingin memesan hand bouquet spesial dari Momo Florist"
+                className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
                 hideIcon
               >
                 Pesan Hand Bouquet
@@ -407,7 +333,7 @@ export default function HandBouquetPage() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="border-2 border-white text-white hover:text-gray-200 hover:border-gray-200 hover:bg-white/10 bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                className="border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
                 asChild
               >
                 <a href="tel:081213142558" className="flex items-center justify-center space-x-2">

@@ -50,7 +50,7 @@ export default function ProductDetailModal({
       try {
         await navigator.share({
           title: product.title,
-          text: `Lihat ${product.title} dari Popo Florist`,
+          text: `Lihat ${product.title} dari Momo Florist`,
           url: window.location.href,
         })
       } catch (error) {
@@ -140,19 +140,13 @@ export default function ProductDetailModal({
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">{product.title}</h3>
                   <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
                     {product.description ||
-                      "Bunga berkualitas premium dari Popo Florist dengan desain yang elegan dan menarik. Dibuat dengan bunga segar pilihan terbaik untuk momen spesial Anda."}
+                      "Bunga berkualitas premium dari Momo Florist dengan desain yang elegan dan menarik. Dibuat dengan bunga segar pilihan terbaik untuk momen spesial Anda."}
                   </p>
-
-                  {product.price && (
-                    <div className="mb-4 sm:mb-6">
-                      <span className="text-xl sm:text-2xl font-bold text-pink-600 dark:text-pink-400">{product.price}</span>
-                    </div>
-                  )}
 
                   <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                     <div className="flex items-center space-x-2">
                       <span className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></span>
-                      <span>Pengerjaan cepat 2 jam</span>
+                      <span>Pengerjaan ≈ 2 jam sesuai antrian</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <span className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></span>
@@ -171,7 +165,7 @@ export default function ProductDetailModal({
 
                 <div className="space-y-3 mt-4 sm:mt-6 flex-shrink-0">
                   <WhatsAppButton
-                    message={`Halo, saya tertarik dengan ${product.title} dari Popo Florist. Bisa tolong berikan informasi lebih lanjut?`}
+                    message={`Halo, saya tertarik dengan ${product.title} dari Momo Florist. Bisa tolong berikan informasi lebih lanjut?`}
                     className="w-full bg-[#D4A574] hover:bg-[#C19A68] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl h-10"
                     hideIcon
                   >
