@@ -151,34 +151,39 @@ export default function Navigation() {
           : 'bg-[#CDB6BD]/95 dark:bg-[#2F3134]/95 border-[#CDB6BD]/50 dark:border-[#2F3134]/50 sticky top-0 rounded-t-[2rem] w-full'
       }`}>
         <div className={`mx-auto ${
-          isScrolled ? 'px-4 md:px-6 lg:px-8 max-w-none' : 'px-3 sm:px-6 lg:px-8 max-w-7xl'
+          isScrolled ? 'px-3 md:px-4 lg:px-6 xl:px-8 max-w-none' : 'px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl'
         }`}>
           <div className={`flex justify-between items-center ${
-            isScrolled ? 'h-12 md:h-14 lg:h-16' : 'h-12 md:h-14 lg:h-16'
+            isScrolled ? 'h-10 sm:h-11 md:h-12 lg:h-14 xl:h-16' : 'h-11 sm:h-12 md:h-14 lg:h-16'
           }`}>
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 md:space-x-3 group">
+          <Link href="/" className="flex items-center space-x-1.5 md:space-x-2 lg:space-x-3 group">
             <motion.div 
               whileHover={{ 
                 scale: 1.05
               }} 
               whileTap={{ scale: 0.95 }}
-              className={`relative rounded-full overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-300 ease-out ${
-                isScrolled ? 'w-10 h-10' : 'w-8 h-8 md:w-10 lg:w-12 md:h-10 lg:h-12'
+              className={`relative overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-300 ease-out ${
+                isScrolled ? 'w-9 h-9 md:w-10 md:h-10' : 'w-8 h-8 md:w-9 md:h-9 lg:w-11 lg:h-11 xl:w-12 xl:h-12'
               }`}
-              style={{ borderRadius: '50%', aspectRatio: '1/1' }}
+              style={{ 
+                borderRadius: '50%', 
+                aspectRatio: '1/1',
+                minWidth: isScrolled ? '2.25rem' : '2rem',
+                minHeight: isScrolled ? '2.25rem' : '2rem'
+              }}
             >
               <Image
                 src="/logo MomoFlorist.png"
                 alt="Momo Florist Logo"
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
-                style={{ borderRadius: '50%', objectFit: 'cover' }}
+                className="object-cover transition-transform duration-300 group-hover:scale-110 rounded-full"
+                style={{ objectFit: 'cover' }}
                 priority
               />
             </motion.div>
             <span className={`font-bold text-gray-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-all duration-300 ease-out ${
-              isScrolled ? 'text-sm md:text-base' : 'text-sm md:text-base lg:text-lg'
+              isScrolled ? 'text-xs md:text-sm lg:text-base' : 'text-xs md:text-sm lg:text-base xl:text-lg'
             }`}>
               Momo Florist
             </span>
@@ -186,7 +191,7 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className={`hidden md:flex items-center ${
-            isScrolled ? 'space-x-4 lg:space-x-6' : 'space-x-4 lg:space-x-6'
+            isScrolled ? 'space-x-1 md:space-x-2 lg:space-x-3' : 'space-x-1 md:space-x-2 lg:space-x-3 xl:space-x-4'
           }`}>
             {navItems.map((item) => (
               <div
@@ -195,8 +200,8 @@ export default function Navigation() {
               >
                 <Link
                   href={item.href}
-                  className={`relative flex items-center gap-1 md:gap-2 font-medium transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 rounded-full hover:shadow-lg hover:scale-105 hover:text-white ${
-                    isScrolled ? 'px-3 py-1.5 md:px-4 md:py-2 text-sm' : 'px-3 py-1.5 md:px-4 md:py-2 text-sm'
+                  className={`relative flex items-center justify-center gap-1 font-medium transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 rounded-full hover:shadow-lg hover:scale-105 hover:text-white ${
+                    isScrolled ? 'px-1.5 py-1 md:px-2 md:py-1.5 lg:px-2.5 lg:py-1.5 text-xs md:text-xs lg:text-sm' : 'px-1.5 py-1 md:px-2 md:py-1.5 lg:px-3 lg:py-2 xl:px-4 xl:py-2 text-xs md:text-xs lg:text-sm xl:text-sm'
                   } ${
                     pathname === item.href
                       ? "text-pink-600 dark:text-pink-400 bg-pink-100 dark:bg-pink-900/30"
@@ -205,7 +210,7 @@ export default function Navigation() {
                   aria-haspopup={item.hasDropdown ? "true" : "false"}
                   aria-expanded={item.hasDropdown ? "false" : undefined}
                 >
-                  <span className="whitespace-nowrap text-center leading-tight">
+                  <span className="whitespace-nowrap text-center leading-tight min-w-0 truncate">
                     {item.label}
                   </span>
                 </Link>
@@ -228,16 +233,16 @@ export default function Navigation() {
                               transitionDelay: `200ms`,
                             }}
                           >
-                            <div className="h-full flex flex-col justify-center space-y-4 px-2">
-                              <h4 className="text-xl font-bold text-gray-900 dark:text-white text-left mb-2">
+                            <div className="h-full flex flex-col justify-center space-y-2 px-2">
+                              <h4 className="text-lg font-bold text-gray-900 dark:text-white text-left mb-1">
                                 Kategori
                               </h4>
-                              <div className="space-y-3">
+                              <div className="space-y-2">
                                 {getDropdownData(item.href).categories?.map((category, catIndex) => (
                                   <Link
                                     key={catIndex}
                                     href={category.href}
-                                    className="block text-gray-700 dark:text-gray-300 hover:text-pink-600 dark:hover:text-pink-400 text-base font-medium transition-all duration-300 text-left hover:scale-105 py-2 px-3 rounded-md hover:bg-white/20 dark:hover:bg-neutral-700/20 underline hover:no-underline"
+                                    className="block text-gray-900 dark:text-white hover:text-white dark:hover:text-white text-sm font-semibold transition-all duration-300 text-left hover:scale-110 py-2.5 px-4 rounded-full hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 bg-white/25 dark:bg-neutral-800/40 shadow-md hover:shadow-xl border border-white/40 dark:border-neutral-600/40 hover:border-pink-300/60 dark:hover:border-pink-600/60 backdrop-blur-sm transform active:scale-105"
                                   >
                                     {category.name}
                                   </Link>
@@ -302,14 +307,14 @@ export default function Navigation() {
               size="sm"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className={`hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg rounded-full hover:text-white ${
-                isScrolled ? 'p-2 h-9 w-9' : 'p-2 h-9 w-9'
+                isScrolled ? 'p-1 h-7 w-7 md:p-1.5 md:h-8 md:w-8 lg:p-2 lg:h-9 lg:w-9' : 'p-1 h-7 w-7 md:p-1.5 md:h-8 md:w-8 lg:p-2 lg:h-9 lg:w-9 xl:p-2 xl:h-10 xl:w-10'
               }`}
             >
               <Sun className={`rotate-0 scale-100 transition-all duration-500 dark:-rotate-90 dark:scale-0 ${
-                isScrolled ? 'h-4 w-4' : 'h-4 w-4'
+                isScrolled ? 'h-3 w-3 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4' : 'h-3 w-3 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4 xl:h-5 xl:w-5'
               }`} />
               <Moon className={`absolute rotate-90 scale-0 transition-all duration-500 dark:rotate-0 dark:scale-100 ${
-                isScrolled ? 'h-4 w-4' : 'h-4 w-4'
+                isScrolled ? 'h-3 w-3 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4' : 'h-3 w-3 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4 xl:h-5 xl:w-5'
               }`} />
             </Button>
           </div>
@@ -321,20 +326,20 @@ export default function Navigation() {
               size="sm"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className={`hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg rounded-full hover:text-white ${
-                isScrolled ? 'p-2 h-8 w-8' : 'p-2 h-8 w-8'
+                isScrolled ? 'p-1.5 h-7 w-7' : 'p-1.5 h-7 w-7 sm:p-2 sm:h-8 sm:w-8'
               }`}
             >
               <Sun className={`rotate-0 scale-100 transition-all duration-500 dark:-rotate-90 dark:scale-0 ${
-                isScrolled ? 'h-3 w-3' : 'h-3 w-3'
+                isScrolled ? 'h-3 w-3' : 'h-3 w-3 sm:h-3.5 sm:w-3.5'
               }`} />
               <Moon className={`absolute rotate-90 scale-0 transition-all duration-500 dark:rotate-0 dark:scale-100 ${
-                isScrolled ? 'h-3 w-3' : 'h-3 w-3'
+                isScrolled ? 'h-3 w-3' : 'h-3 w-3 sm:h-3.5 sm:w-3.5'
               }`} />
             </Button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`rounded-full text-gray-900 dark:text-white hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg flex items-center justify-center hover:text-white ${
-                isScrolled ? 'p-2 h-8 w-8' : 'p-2 h-8 w-8'
+                isScrolled ? 'p-1.5 h-7 w-7' : 'p-1.5 h-7 w-7 sm:p-2 sm:h-8 sm:w-8'
               }`}
               aria-label={isOpen ? "Close menu" : "Open menu"}
             >
@@ -346,7 +351,7 @@ export default function Navigation() {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {isOpen ? <X className={`${isScrolled ? 'h-4 w-4' : 'h-4 w-4'}`} /> : <Menu className={`${isScrolled ? 'h-4 w-4' : 'h-4 w-4'}`} />}
+                  {isOpen ? <X className={`${isScrolled ? 'h-3.5 w-3.5' : 'h-3.5 w-3.5 sm:h-4 sm:w-4'}`} /> : <Menu className={`${isScrolled ? 'h-3.5 w-3.5' : 'h-3.5 w-3.5 sm:h-4 sm:w-4'}`} />}
                 </motion.div>
               </AnimatePresence>
             </button>
