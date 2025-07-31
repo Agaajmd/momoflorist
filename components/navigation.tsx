@@ -217,7 +217,7 @@ export default function Navigation() {
 
                 {/* Full Screen Dropdown */}
                 {item.hasDropdown && getDropdownData(item.href).products.length > 0 && (
-                  <div className={`fixed left-1/2 transform -translate-x-1/2 bg-white/80 backdrop-blur-md dark:bg-neutral-900/85 dark:backdrop-blur-md rounded-[1.5rem] shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 ease-out z-50 border border-white/30 dark:border-gray-800/30 translate-y-4 group-hover:translate-y-0 scale-95 group-hover:scale-100 max-w-7xl w-full px-4 sm:px-6 lg:px-8 ${
+                  <div className={`fixed left-1/2 transform -translate-x-1/2 bg-[#CDB6BD]/95 backdrop-blur-md dark:bg-[#2F3134]/90 dark:backdrop-blur-md rounded-[1.5rem] shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 ease-out z-50 border border-white/30 dark:border-gray-800/30 translate-y-4 group-hover:translate-y-0 scale-95 group-hover:scale-100 max-w-7xl w-full px-4 sm:px-6 lg:px-8 ${
                     isScrolled 
                       ? 'top-[calc(1rem+3rem+1rem)] md:top-[calc(1rem+3.5rem+1rem)] lg:top-[calc(1rem+4rem+1rem)]' 
                       : 'top-12 md:top-14 lg:top-16'
@@ -233,19 +233,20 @@ export default function Navigation() {
                               transitionDelay: `200ms`,
                             }}
                           >
-                            <div className="h-full flex flex-col justify-center space-y-2 px-2">
+                            <div className="h-full flex flex-col justify-center px-2">
                               <h4 className="text-lg font-bold text-gray-900 dark:text-white text-left mb-1">
                                 Kategori
                               </h4>
-                              <div className="space-y-2">
+                              <div className="flex flex-col gap-1">
                                 {getDropdownData(item.href).categories?.map((category, catIndex) => (
-                              <Link
-                                key={catIndex}
-                                href={category.href}
-                                className="block text-gray-900 dark:text-white hover:text-white dark:hover:text-white text-sm font-semibold transition-all duration-300 text-left hover:scale-110 py-2.5 px-4 rounded-full hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 bg-white/90 dark:bg-neutral-800/90 shadow-md hover:shadow-xl border border-white/40 dark:border-neutral-600/40 hover:border-pink-300/60 dark:hover:border-pink-600/60 backdrop-blur-sm transform active:scale-105"
-                              >
-                                {category.name}
-                              </Link>
+                                  <Link
+                                    key={catIndex}
+                                    href={category.href}
+                                    className="text-sm font-semibold text-gray-900 dark:text-white hover:text-pink-600 dark:hover:text-pink-400 transition-colors duration-200 text-left px-1 py-1 rounded w-fit max-w-full underline underline-offset-4 hover:decoration-2"
+                                    style={{ wordBreak: 'break-word' }}
+                                  >
+                                    {category.name}
+                                  </Link>
                                 ))}
                               </div>
                             </div>
@@ -366,18 +367,19 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={`md:hidden bg-white/90 backdrop-blur-md dark:bg-neutral-900/95 dark:backdrop-blur-md border border-white/20 border-t-0 shadow-lg ${
+            transition={{ duration: 0.15, ease: "easeInOut" }}
+            className={`md:hidden bg-[#CDB6BD]/95 backdrop-blur-md dark:bg-[#2F3134]/90 dark:backdrop-blur-md border border-white/30 dark:border-gray-800/30 border-t-0 shadow-lg ${
               isScrolled ? 'rounded-b-[2rem] fixed left-1/2 transform -translate-x-1/2 w-[calc(100%-1rem)] max-w-lg' : 'rounded-b-[2rem]'
             }`}
           >
-            <div className={`pt-4 pb-4 space-y-2 ${isScrolled ? 'px-6' : 'px-6'}`} style={{ willChange: isScrolled ? undefined : 'auto', transition: isScrolled ? undefined : 'none' }}>
+            <div className={`pt-4 pb-4 space-y-2 ${isScrolled ? 'px-6' : 'px-6'}`}>
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.href}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.3 }}
+                  exit={{ opacity: 0, x: -10 }}
+                  transition={{ duration: 0.15 }}
                 >
                   <Link
                     href={item.href}
