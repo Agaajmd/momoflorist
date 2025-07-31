@@ -264,15 +264,16 @@ export default function Navigation() {
                           >
                             <Link
                               href={item.href}
-                              className="block group/card bg-white/90 backdrop-blur-md dark:bg-neutral-800/90 dark:backdrop-blur-md rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border border-white/40 dark:border-gray-700/40 hover:border-pink-200/60 dark:hover:border-pink-700/60"
+                              className="block group/card bg-white/90 backdrop-blur-md dark:bg-neutral-800/90 dark:backdrop-blur-md rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border border-white/40 dark:border-gray-700/40 hover:border-pink-200/60 dark:hover:border-pink-700/60 h-full"
+                              style={{ minHeight: '340px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
                             >
-                              <div className="relative overflow-hidden">
+                              <div className="relative overflow-hidden w-full" style={{ height: '180px' }}>
                                 <Image
                                   src={getImageSrc(product.image)}
                                   alt={product.name}
-                                  width={400}
-                                  height={240}
-                                  className="w-full h-48 object-cover group-hover/card:scale-125 transition-transform duration-700 ease-out"
+                                  fill
+                                  className="object-cover w-full h-full group-hover/card:scale-110 transition-transform duration-700 ease-out"
+                                  style={{ objectFit: 'cover' }}
                                   unoptimized
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
@@ -284,11 +285,11 @@ export default function Navigation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="p-4 transform translate-y-2 group-hover/card:translate-y-0 transition-transform duration-300">
-                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover/card:text-pink-600 dark:group-hover/card:text-pink-400 transition-colors duration-300">
+                              <div className="flex-1 flex flex-col justify-between p-4">
+                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover/card:text-pink-600 dark:group-hover/card:text-pink-400 transition-colors duration-300 text-center">
                                   {product.name}
                                 </h4>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 group-hover/card:text-gray-600 dark:group-hover/card:text-gray-300 transition-colors duration-300">
+                                <p className="text-xs text-gray-500 dark:text-gray-400 group-hover/card:text-gray-600 dark:group-hover/card:text-gray-300 transition-colors duration-300 text-center">
                                   Lihat detail produk
                                 </p>
                               </div>
