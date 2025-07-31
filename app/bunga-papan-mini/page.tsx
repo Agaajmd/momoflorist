@@ -241,13 +241,16 @@ export default function BungaPapanMiniPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="text-center p-6 bg-white/20 dark:bg-[#2F3134] rounded-xl border border-white/30 dark:border-[#C6BBAE]/20"
+                className="relative text-center p-8 bg-gradient-to-br from-white/60 via-[#EDE6DE]/60 to-[#BFA2DB]/30 dark:from-[#232325]/60 dark:via-[#2F3134]/60 dark:to-[#BFA2DB]/20 rounded-2xl shadow-2xl hover:shadow-2xl transition-all duration-300 border border-white/40 dark:border-[#C6BBAE]/30 group overflow-hidden"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#BFA2DB]/20 dark:bg-[#BFA2DB]/30 rounded-full mb-4">
-                  <feature.icon className="h-8 w-8 text-[#BFA2DB] dark:text-[#BFA2DB]" />
+                <div className="absolute -top-8 -right-8 w-24 h-24 bg-[#BFA2DB]/20 dark:bg-[#BFA2DB]/30 rounded-full blur-2xl opacity-60 group-hover:scale-110 transition-transform duration-300 z-0" />
+                <div className="relative z-10 flex flex-col items-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-[#BFA2DB]/30 dark:bg-[#BFA2DB]/40 rounded-full mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="h-9 w-9 text-[#8B5A9F] dark:text-[#BFA2DB]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-2 drop-shadow">{feature.title}</h3>
+                  <p className="text-base text-gray-700 dark:text-[#C6BBAE] leading-relaxed">{feature.description}</p>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-[#EDE6DE] mb-2">{feature.title}</h3>
-                <p className="text-gray-800 dark:text-[#C6BBAE]">{feature.description}</p>
               </motion.div>
             ))}
           </div>

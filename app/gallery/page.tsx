@@ -243,6 +243,55 @@ export default function GalleryPage() {
   const whatsappNumber = "6281213142558"
   const phoneNumber = "081213142558"
 
+  // Dummy data for each section (replace with real data as needed)
+  const bungaSalib = [
+    {
+      src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+      alt: "Bunga Salib 1",
+      title: "Bunga Salib Premium",
+      description: "Rangkaian bunga salib untuk duka cita dan peringatan",
+      price: "Rp 700.000",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80",
+      alt: "Bunga Salib 2",
+      title: "Bunga Salib Elegant",
+      description: "Desain elegan dan penuh makna",
+      price: "Rp 850.000",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80",
+      alt: "Bunga Salib 3",
+      title: "Bunga Salib Classic",
+      description: "Pilihan klasik untuk penghormatan",
+      price: "Rp 650.000",
+    },
+  ];
+
+  const bungaPotongPita = [
+    {
+      src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
+      alt: "Bunga Potong Pita 1",
+      title: "Bunga Potong Pita Premium",
+      description: "Rangkaian bunga untuk acara peresmian dan grand opening",
+      price: "Rp 900.000",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80",
+      alt: "Bunga Potong Pita 2",
+      title: "Bunga Potong Pita Elegant",
+      description: "Desain elegan untuk momen spesial",
+      price: "Rp 1.100.000",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1468421870903-4df1664ac249?auto=format&fit=crop&w=800&q=80",
+      alt: "Bunga Potong Pita 3",
+      title: "Bunga Potong Pita Classic",
+      description: "Pilihan klasik untuk acara penting",
+      price: "Rp 950.000",
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -263,7 +312,6 @@ export default function GalleryPage() {
               Lihat koleksi karya terbaik kami - dari bunga papan, standing flower, hand bouquet, hingga dekorasi bunga
               yang memukau
             </p>
-
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya tertarik dengan karya-karya di gallery Momo Florist"
@@ -288,9 +336,9 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134]">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Section: Bunga Salib */}
+      <section className="py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -298,19 +346,55 @@ export default function GalleryPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Karya Terbaik Kami</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Bunga Salib</h2>
             <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto mb-8">
-              Setiap karya dibuat dengan penuh dedikasi dan perhatian terhadap detail untuk memberikan hasil yang
-              sempurna
+              Rangkaian bunga salib untuk duka cita, peringatan, dan penghormatan dengan desain premium dan penuh makna.
             </p>
           </motion.div>
+          <MobileProductGrid products={bungaSalib} columns={3} />
+        </div>
+      </section>
 
+      {/* Section: Bunga Potong Pita */}
+      <section className="py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Bunga Potong Pita</h2>
+            <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto mb-8">
+              Pilihan bunga potong pita untuk acara peresmian, grand opening, dan momen spesial lainnya.
+            </p>
+          </motion.div>
+          <MobileProductGrid products={bungaPotongPita} columns={3} />
+        </div>
+      </section>
+
+      {/* Section: Gallery */}
+      <section className="py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Gallery</h2>
+            <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto mb-8">
+              Lihat koleksi karya terbaik kami dari berbagai kategori bunga dan dekorasi.
+            </p>
+          </motion.div>
           <MobileProductGrid products={galleryImages} columns={3} />
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem]">
+      <section className="relative py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem]">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -18,6 +18,13 @@ const categories = [
     color: "from-pink-500 to-rose-500",
   },
   {
+    title: "Bunga Papan Mini",
+    description: "Pilihan bunga papan mini yang elegan dan praktis",
+    image: "/bunga papan/bunga papan2.jpg",
+    href: "/bunga-papan-mini",
+    color: "from-yellow-400 to-pink-400",
+  },
+  {
     title: "Bunga Standing",
     description: "Standing flower untuk acara spesial",
     image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -31,6 +38,20 @@ const categories = [
       "https://images.unsplash.com/photo-1487070183336-b863922373d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     href: "/hand-bouquet",
     color: "from-green-500 to-teal-500",
+  },
+  {
+    title: "Bunga Salib",
+    description: "Rangkaian bunga salib untuk duka cita dan penghormatan",
+    image: "/gallery/gallery toko bunga4.jpg",
+    href: "/gallery#bunga-salib",
+    color: "from-blue-400 to-indigo-400",
+  },
+  {
+    title: "Bunga Potong Pita",
+    description: "Bunga potong pita untuk peresmian dan acara spesial",
+    image: "/gallery/gallery toko bunga5.jpg",
+    href: "/gallery#bunga-potong-pita",
+    color: "from-pink-400 to-yellow-400",
   },
 ]
 
@@ -108,11 +129,11 @@ export default function HomePage() {
       <SocialSidebar />
       
       {/* Hero Section with Responsive Image Slider (swipe only) */}
-      <section className="relative w-full overflow-hidden px-2 md:px-8">
+      <section className="relative w-full overflow-hidden px-2 md:px-8 pt-4 md:pt-8 pb-8 md:pb-12">
         {/* Purple background for side padding */}
         <div className="absolute inset-0 -mx-2 md:-mx-8 bg-[#CDB6BD] dark:bg-[#2F3134] z-0" aria-hidden="true" />
         <div
-          className="relative w-full h-[90vw] max-h-[650px] md:h-[48vw] md:max-h-[600px] rounded-3xl mx-auto shadow-xl bg-white/10 dark:bg-[#232325]/10 z-10"
+          className="relative w-full h-[130vw] max-h-[500px] md:h-[48vw] md:max-h-[600px] rounded-3xl mx-auto shadow-xl bg-white/10 dark:bg-[#232325]/10 z-10"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -162,7 +183,7 @@ export default function HomePage() {
             >
               <WhatsAppButton 
                 message="Halo, saya ingin memesan bunga dari Momo Florist" 
-                className="bg-[#8B5A9F] hover:bg-[#BFA2DB] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[180px] h-12"
+                className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[180px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
                 hideIcon
               >
                 Pesan Sekarang
@@ -171,10 +192,10 @@ export default function HomePage() {
                 variant="ghost"
                 size="lg"
                 asChild
-                className="border-2 border-[#8B5A9F] text-white font-bold drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] hover:text-white hover:border-[#BFA2DB] hover:bg-[#BFA2DB] bg-transparent rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 min-w-[180px] h-12"
+                className="border-2 border-white text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 min-w-[180px] h-12 bg-transparent shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] hover:bg-[#BFA2DB] hover:text-white hover:border-[#BFA2DB]"
               >
                 <Link href="/gallery" className="flex items-center justify-center space-x-2">
-                  <span className="text-white font-bold drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)]">Lihat Gallery</span>
+                  <span className="text-white font-bold drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] group-hover:text-white">Lihat Gallery</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
@@ -222,7 +243,7 @@ export default function HomePage() {
       </section>
 
       {/* Categories Section */}
-      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
+      <section className="relative py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -273,12 +294,12 @@ export default function HomePage() {
                           <h3 className="text-xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-2 min-h-[2.5rem] flex items-center">{category.title}</h3>
                           <p className="text-gray-800 dark:text-[#EDE6DE] mb-4 flex-1 min-h-[3rem] flex items-start">{category.description}</p>
                           <div className="flex space-x-3 mt-auto">
-                            <Button asChild variant="ghost" className="flex-1 border-2 border-[#8B5A9F] text-[#8B5A9F] hover:text-white hover:border-[#BFA2DB] hover:bg-[#BFA2DB] bg-transparent rounded-full px-6 py-2 font-medium transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 text-sm">
+                            <Button asChild variant="ghost" className="flex-1 border-2 border-white text-white font-bold rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 bg-transparent shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] hover:bg-[#BFA2DB] hover:text-white hover:border-[#BFA2DB] text-sm">
                               <Link href={category.href}>Lihat Produk</Link>
                             </Button>
                             <WhatsAppButton
                               message={`Halo, saya tertarik dengan ${category.title} dari Momo Florist`}
-                              className="flex-1 bg-[#8B5A9F] hover:bg-[#BFA2DB] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10"
+                              className="flex-1 bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[120px] h-10 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
                               hideIcon
                             >
                               Pesan
@@ -356,12 +377,12 @@ export default function HomePage() {
                     <h3 className="text-xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-2 min-h-[2.5rem] flex items-center">{category.title}</h3>
                     <p className="text-gray-800 dark:text-[#EDE6DE] mb-4 flex-1 min-h-[3rem] flex items-start">{category.description}</p>
                     <div className="flex space-x-3 mt-auto">
-                      <Button asChild variant="ghost" className="flex-1 border-2 border-[#8B5A9F] text-[#8B5A9F] hover:text-white hover:border-[#BFA2DB] hover:bg-[#BFA2DB] bg-transparent rounded-full px-6 py-2 font-medium transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 text-sm">
+                      <Button asChild variant="ghost" className="flex-1 border-2 border-white text-white font-bold rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 bg-transparent shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] hover:bg-[#BFA2DB] hover:text-white hover:border-[#BFA2DB] text-sm">
                         <Link href={category.href}>Lihat Produk</Link>
                       </Button>
                       <WhatsAppButton
                         message={`Halo, saya tertarik dengan ${category.title} dari Momo Florist`}
-                        className="flex-1 bg-[#8B5A9F] hover:bg-[#BFA2DB] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg hover:shadow-xl min-w-[120px] h-10"
+                        className="flex-1 bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[120px] h-10 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
                         hideIcon
                       >
                         Pesan
@@ -376,7 +397,7 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-12 bg-[#CDB6BD] dark:bg-[#2F3134]">
+      <section className="py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -401,14 +422,17 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                className="text-center p-6 bg-white/20 dark:bg-[#2F3134] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/30 dark:border-[#C6BBAE]/20"
+                whileHover={{ scale: 1.07 }}
+                className="relative text-center p-8 bg-gradient-to-br from-white/60 via-[#EDE6DE]/60 to-[#BFA2DB]/30 dark:from-[#232325]/60 dark:via-[#2F3134]/60 dark:to-[#BFA2DB]/20 rounded-2xl shadow-2xl hover:shadow-2xl transition-all duration-300 border border-white/40 dark:border-[#C6BBAE]/30 group overflow-hidden"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#BFA2DB]/20 dark:bg-[#BFA2DB]/30 rounded-full mb-4">
-                  <feature.icon className="h-8 w-8 text-[#BFA2DB] dark:text-[#BFA2DB]" />
+                <div className="absolute -top-8 -right-8 w-24 h-24 bg-[#BFA2DB]/20 dark:bg-[#BFA2DB]/30 rounded-full blur-2xl opacity-60 group-hover:scale-110 transition-transform duration-300 z-0" />
+                <div className="relative z-10 flex flex-col items-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-[#BFA2DB]/30 dark:bg-[#BFA2DB]/40 rounded-full mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="h-9 w-9 text-[#8B5A9F] dark:text-[#BFA2DB]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-2 drop-shadow">{feature.title}</h3>
+                  <p className="text-base text-gray-700 dark:text-[#C6BBAE] leading-relaxed">{feature.description}</p>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-[#EDE6DE] mb-2">{feature.title}</h3>
-                <p className="text-gray-800 dark:text-[#C6BBAE]">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -416,7 +440,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem]">
+      <section className="relative py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem] mt-0">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -431,7 +455,7 @@ export default function HomePage() {
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya ingin konsultasi dan memesan bunga dari Momo Florist"
-                className="bg-[#8B5A9F] hover:bg-[#BFA2DB] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
                 hideIcon
               >
                 Konsultasi Gratis
@@ -439,7 +463,7 @@ export default function HomePage() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="border-2 border-[#8B5A9F] text-[#8B5A9F] hover:text-white hover:border-[#BFA2DB] hover:bg-[#BFA2DB] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                className="border-2 border-white text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12 bg-transparent shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] hover:bg-[#BFA2DB] hover:text-white hover:border-[#BFA2DB]"
                 asChild
               >
                 <a href="tel:081213142558" className="flex items-center justify-center space-x-2">

@@ -217,12 +217,15 @@ export default function Navigation() {
 
                 {/* Full Screen Dropdown */}
                 {item.hasDropdown && getDropdownData(item.href).products.length > 0 && (
-                  <div className={`fixed left-1/2 transform -translate-x-1/2 bg-[#CDB6BD]/95 backdrop-blur-md dark:bg-[#2F3134]/90 dark:backdrop-blur-md rounded-[1.5rem] shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 ease-out z-50 border border-white/30 dark:border-gray-800/30 translate-y-4 group-hover:translate-y-0 scale-95 group-hover:scale-100 max-w-7xl w-full px-4 sm:px-6 lg:px-8 ${
-                    isScrolled 
-                      ? 'top-[calc(1rem+3rem+1rem)] md:top-[calc(1rem+3.5rem+1rem)] lg:top-[calc(1rem+4rem+1rem)]' 
-                      : 'top-12 md:top-14 lg:top-16'
-                  }`}>
-                    <div className="p-6">
+                  <div
+                    className={`fixed bg-[#CDB6BD]/95 backdrop-blur-md dark:bg-[#2F3134]/90 dark:backdrop-blur-md rounded-[1.5rem] shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 ease-out z-50 border border-white/30 dark:border-gray-800/30 translate-y-4 group-hover:translate-y-0 scale-95 group-hover:scale-100 ${
+                      isScrolled
+                        ? 'left-1/2 transform -translate-x-1/2 max-w-7xl w-full px-4 sm:px-6 lg:px-8 top-[calc(1rem+3rem+1rem)] md:top-[calc(1rem+3.5rem+1rem)] lg:top-[calc(1rem+4rem+1rem)]'
+                        : 'left-0 right-0 w-screen max-w-none px-0 sm:px-0 lg:px-0 top-12 md:top-14 lg:top-16'
+                    }`}
+                    style={!isScrolled ? { left: 0, right: 0 } : {}}
+                  >
+                    <div className="p-6 max-w-7xl mx-auto">
                       {/* Products Grid */}
                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
                         {/* First Card - Categories for Bunga Papan and Bunga Standing */}
@@ -265,9 +268,9 @@ export default function Navigation() {
                             <Link
                               href={item.href}
                               className="block group/card bg-white/90 backdrop-blur-md dark:bg-neutral-800/90 dark:backdrop-blur-md rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border border-white/40 dark:border-gray-700/40 hover:border-pink-200/60 dark:hover:border-pink-700/60 h-full"
-                              style={{ minHeight: '340px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+                              style={{ minHeight: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
                             >
-                              <div className="relative overflow-hidden w-full" style={{ height: '180px' }}>
+                              <div className="relative overflow-hidden w-full" style={{ height: '250px' }}>
                                 <Image
                                   src={getImageSrc(product.image)}
                                   alt={product.name}
@@ -366,12 +369,13 @@ export default function Navigation() {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.15, ease: "easeInOut" }}
+            transition={{ duration: 0.18, ease: [0.4, 0, 0.2, 1] }}
             className={`md:hidden bg-[#CDB6BD]/95 backdrop-blur-md dark:bg-[#2F3134]/90 dark:backdrop-blur-md border border-white/30 dark:border-gray-800/30 border-t-0 shadow-lg ${
               isScrolled ? 'rounded-b-[2rem] fixed left-1/2 transform -translate-x-1/2 w-[calc(100%-1rem)] max-w-lg' : 'rounded-b-[2rem]'
             }`}
+            style={{ willChange: 'opacity, height', WebkitOverflowScrolling: 'touch' }}
           >
             <div className={`pt-4 pb-4 space-y-2 ${isScrolled ? 'px-6' : 'px-6'}`}>
               {navItems.map((item, index) => (
@@ -380,7 +384,7 @@ export default function Navigation() {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.15 }}
+                  transition={{ duration: 0.13, delay: 0.03 * index, ease: [0.4, 0, 0.2, 1] }}
                 >
                   <Link
                     href={item.href}
