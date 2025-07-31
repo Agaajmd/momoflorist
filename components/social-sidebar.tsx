@@ -15,7 +15,7 @@ const socialLinks = [
     name: 'Instagram',
     icon: FaInstagram,
     url: 'https://www.instagram.com/Momoflorist01/',
-    color: 'hover:bg-pink-600'
+    color: 'hover:bg-[#8B5A9F]'
   },
   {
     name: 'TikTok',
@@ -70,7 +70,7 @@ export default function SocialSidebar() {
                 className={`group relative w-8 h-8 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl ${social.color}`}
                 title={social.name}
               >
-                <social.icon className="w-4 h-4 text-pink-600 group-hover:text-white transition-colors duration-300" />
+                <social.icon className="w-4 h-4 text-[#8B5A9F] group-hover:text-white transition-colors duration-300" />
                 
                 {/* Tooltip */}
                 <div className="absolute left-full ml-2 px-2 py-0.5 bg-gray-900 text-white text-xs rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
@@ -110,7 +110,7 @@ export default function SocialSidebar() {
         >
           <WhatsAppButton
             message="Halo, saya ingin memesan bunga dari Momo Florist"
-            className="group bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold rounded-full px-2 py-4 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pink-500/25 border-none flex flex-col items-center justify-center min-h-[80px] w-8"
+            className="group bg-gradient-to-r from-[#8B5A9F] to-[#A67FA3] hover:from-[#8B5A9F] hover:to-[#BFA2DB] text-white font-bold rounded-full px-2 py-4 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#8B5A9F]/25 border-none flex flex-col items-center justify-center min-h-[80px] w-8"
             hideIcon
           >
             <div className="flex flex-col items-center justify-center space-y-0.5 transform -rotate-0">

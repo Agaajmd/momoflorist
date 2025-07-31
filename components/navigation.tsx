@@ -182,7 +182,7 @@ export default function Navigation() {
                 priority
               />
             </motion.div>
-            <span className={`font-bold text-gray-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-all duration-300 ease-out ${
+            <span className={`font-bold text-gray-900 dark:text-white group-hover:text-[#8B5A9F] dark:group-hover:text-[#BFA2DB] transition-all duration-300 ease-out ${
               isScrolled ? 'text-xs md:text-sm lg:text-base' : 'text-xs md:text-sm lg:text-base xl:text-lg'
             }`}>
               Momo Florist
@@ -200,11 +200,11 @@ export default function Navigation() {
               >
                 <Link
                   href={item.href}
-                  className={`relative flex items-center justify-center gap-1 font-medium transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 rounded-full hover:shadow-lg hover:scale-105 hover:text-white ${
+                  className={`relative flex items-center justify-center gap-1 font-medium transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-[#8B5A9F] hover:to-[#A67FA3] dark:hover:from-[#8B5A9F] dark:hover:to-[#A67FA3] rounded-full hover:shadow-lg hover:scale-105 hover:text-white ${
                     isScrolled ? 'px-1.5 py-1 md:px-2 md:py-1.5 lg:px-2.5 lg:py-1.5 text-xs md:text-xs lg:text-sm' : 'px-1.5 py-1 md:px-2 md:py-1.5 lg:px-3 lg:py-2 xl:px-4 xl:py-2 text-xs md:text-xs lg:text-sm xl:text-sm'
                   } ${
                     pathname === item.href
-                      ? "text-pink-600 dark:text-pink-400 bg-pink-100 dark:bg-pink-900/30"
+                      ? "text-[#8B5A9F] dark:text-[#BFA2DB] bg-[#EDE6DE] dark:bg-[#2F3134]/30"
                       : "text-gray-700 dark:text-gray-300"
                   }`}
                   aria-haspopup={item.hasDropdown ? "true" : "false"}
@@ -245,7 +245,7 @@ export default function Navigation() {
                                   <Link
                                     key={catIndex}
                                     href={category.href}
-                                    className="text-sm font-semibold text-gray-900 dark:text-white hover:text-pink-600 dark:hover:text-pink-400 transition-colors duration-200 text-left px-1 py-1 rounded w-fit max-w-full underline underline-offset-4 hover:decoration-2"
+                                    className="text-sm font-semibold text-gray-900 dark:text-white hover:text-[#8B5A9F] dark:hover:text-[#BFA2DB] transition-colors duration-200 text-left px-1 py-1 rounded w-fit max-w-full underline underline-offset-4 hover:decoration-2"
                                     style={{ wordBreak: 'break-word' }}
                                   >
                                     {category.name}
@@ -267,10 +267,10 @@ export default function Navigation() {
                           >
                             <Link
                               href={item.href}
-                              className="block group/card bg-white/90 backdrop-blur-md dark:bg-neutral-800/90 dark:backdrop-blur-md rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border border-white/40 dark:border-gray-700/40 hover:border-pink-200/60 dark:hover:border-pink-700/60 h-full"
-                              style={{ minHeight: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+                              className="block group/card bg-white/90 backdrop-blur-md dark:bg-neutral-800/90 dark:backdrop-blur-md rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border border-white/40 dark:border-gray-700/40 hover:border-[#BFA2DB]/60 dark:hover:border-[#BFA2DB]/60"
+                              style={{ width: '100%', maxWidth: 220, minWidth: 0 }}
                             >
-                              <div className="relative overflow-hidden w-full" style={{ height: '250px' }}>
+                              <div className="relative overflow-hidden w-full" style={{ height: '140px' }}>
                                 <Image
                                   src={getImageSrc(product.image)}
                                   alt={product.name}
@@ -279,22 +279,17 @@ export default function Navigation() {
                                   style={{ objectFit: 'cover' }}
                                   unoptimized
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
-                                <div className="absolute bottom-3 right-3 transform translate-x-8 group-hover/card:translate-x-0 transition-transform duration-500 delay-300">
-                                  <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                  </div>
+                                {/* Button overlay at bottom */}
+                                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[85%] flex justify-center">
+                                  <button
+                                    className="bg-[#EDE6DE]/80 border border-[#8B5A9F] text-[#8B5A9F] text-xs font-semibold rounded-full px-4 py-1 shadow-md hover:bg-[#BFA2DB]/30 hover:text-[#A67FA3] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#BFA2DB]/60"
+                                    type="button"
+                                    tabIndex={-1}
+                                    style={{ pointerEvents: 'none', backdropFilter: 'blur(1px)' }}
+                                  >
+                                    Lihat detail produk
+                                  </button>
                                 </div>
-                              </div>
-                              <div className="flex-1 flex flex-col justify-between p-4">
-                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover/card:text-pink-600 dark:group-hover/card:text-pink-400 transition-colors duration-300 text-center">
-                                  {product.name}
-                                </h4>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 group-hover/card:text-gray-600 dark:group-hover/card:text-gray-300 transition-colors duration-300 text-center">
-                                  Lihat detail produk
-                                </p>
                               </div>
                             </Link>
                           </div>
@@ -311,7 +306,7 @@ export default function Navigation() {
               variant="ghost"
               size="sm"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className={`hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg rounded-full hover:text-white ${
+              className={`hover:bg-gradient-to-r hover:from-[#8B5A9F] hover:to-[#A67FA3] dark:hover:from-[#8B5A9F] dark:hover:to-[#A67FA3] transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg rounded-full hover:text-white ${
                 isScrolled ? 'p-1 h-7 w-7 md:p-1.5 md:h-8 md:w-8 lg:p-2 lg:h-9 lg:w-9' : 'p-1 h-7 w-7 md:p-1.5 md:h-8 md:w-8 lg:p-2 lg:h-9 lg:w-9 xl:p-2 xl:h-10 xl:w-10'
               }`}
             >
@@ -330,7 +325,7 @@ export default function Navigation() {
               variant="ghost"
               size="sm"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className={`hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg rounded-full hover:text-white ${
+              className={`hover:bg-gradient-to-r hover:from-[#8B5A9F] hover:to-[#A67FA3] dark:hover:from-[#8B5A9F] dark:hover:to-[#A67FA3] transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg rounded-full hover:text-white ${
                 isScrolled ? 'p-1.5 h-7 w-7' : 'p-1.5 h-7 w-7 sm:p-2 sm:h-8 sm:w-8'
               }`}
             >
@@ -391,8 +386,8 @@ export default function Navigation() {
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
                       pathname === item.href
-                        ? "text-pink-600 dark:text-pink-400 bg-white/20 backdrop-blur-sm shadow-sm"
-                        : "text-gray-700 dark:text-gray-300 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-sm"
+                        ? "text-[#8B5A9F] dark:text-[#BFA2DB] bg-white/20 backdrop-blur-sm shadow-sm"
+                        : "text-gray-700 dark:text-gray-300 hover:text-[#8B5A9F] dark:hover:text-[#BFA2DB] hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-sm"
                     }`}
                   >
                     <span>{item.label}</span>
