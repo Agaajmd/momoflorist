@@ -209,15 +209,15 @@ export default function BungaPapanPage() {
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya ingin memesan bunga papan dari Momo Florist"
-                className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
                 hideIcon
               >
                 Pesan Bunga Papan
               </WhatsAppButton>
-              <Button 
-                variant="ghost" 
-                size="lg" 
-                className="border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+              <Button
+                variant="ghost"
+                size="lg"
+                className="border-2 border-white text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12 bg-transparent shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] hover:bg-[#BFA2DB] hover:text-white hover:border-[#BFA2DB]"
                 asChild
               >
                 <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
@@ -274,14 +274,14 @@ export default function BungaPapanPage() {
                 <div className="flex flex-col items-center gap-4">
                   <WhatsAppButton
                     message={`Halo, saya ingin memesan bunga papan ${category.title} dari Momo Florist`}
-                    className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                    className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
                     hideIcon
                   >
                     Pesan {category.title}
                   </WhatsAppButton>
-                  <Button 
-                    variant="ghost" 
-                    className="border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12" 
+                  <Button
+                    variant="ghost"
+                    className="border-2 border-white text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12 bg-transparent shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] hover:bg-[#BFA2DB] hover:text-white hover:border-[#BFA2DB]"
                     asChild
                   >
                     <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
@@ -314,7 +314,7 @@ export default function BungaPapanPage() {
             <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya butuh bunga papan segera dari Momo Florist"
-                className="bg-[#D4C3A6] hover:bg-[#C4B396] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg hover:shadow-xl min-w-[200px] h-12"
+                className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
                 hideIcon
               >
                 Order Sekarang
@@ -322,7 +322,7 @@ export default function BungaPapanPage() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="border-2 border-[#D4C3A6] text-[#D4C3A6] hover:text-white hover:border-[#C4B396] hover:bg-[#D4C3A6] bg-transparent rounded-full px-8 py-3 font-medium transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12"
+                className="border-2 border-white text-white font-bold rounded-full px-8 py-3 transition-all duration-200 transform hover:scale-105 min-w-[200px] h-12 bg-transparent shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] hover:bg-[#BFA2DB] hover:text-white hover:border-[#BFA2DB]"
                 asChild
               >
                 <a href="tel:081213142558" className="flex items-center justify-center space-x-2">
