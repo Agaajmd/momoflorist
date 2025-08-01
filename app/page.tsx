@@ -97,7 +97,7 @@ export default function HomePage() {
     if (!isPaused) {
       const interval = setInterval(() => {
         setCurrentHeroSlide((prev) => (prev + 1) % heroImages.length)
-      }, 4000) // 4 seconds interval
+      }, 5000) // 5 seconds interval untuk smooth experience
       
       return () => clearInterval(interval)
     }
@@ -128,19 +128,22 @@ export default function HomePage() {
       }
     }
     
-    setTimeout(() => setIsPaused(false), 3000) // Resume after 3 seconds
+    // Reset touch values
+    setTouchStart(0)
+    setTouchEnd(0)
+    setTimeout(() => setIsPaused(false), 1000) // Resume setelah 1 detik untuk responsivitas
   }
 
   const nextHeroSlide = () => {
     setCurrentHeroSlide((prev) => (prev + 1) % heroImages.length)
     setIsPaused(true)
-    setTimeout(() => setIsPaused(false), 5000)
+    setTimeout(() => setIsPaused(false), 1500) // Resume setelah 1.5 detik
   }
 
   const prevHeroSlide = () => {
     setCurrentHeroSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
     setIsPaused(true)
-    setTimeout(() => setIsPaused(false), 5000)
+    setTimeout(() => setIsPaused(false), 1500) // Resume setelah 1.5 detik
   }
 
   const nextSlide = () => {
@@ -158,7 +161,7 @@ export default function HomePage() {
   const goToHeroSlide = (index: number) => {
     setCurrentHeroSlide(index)
     setIsPaused(true)
-    setTimeout(() => setIsPaused(false), 5000) // Resume after 5 seconds when manually clicked
+    setTimeout(() => setIsPaused(false), 1500) // Resume setelah 1.5 detik
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -199,18 +202,15 @@ export default function HomePage() {
           onTouchEnd={handleTouchEndHero}
         >
           {/* Slider Container */}
-          <div 
-            className="flex w-full h-full transition-transform duration-1000 ease-in-out"
-            style={{ 
-              transform: `translateX(-${currentHeroSlide * 100}%)`,
-              width: `${heroImages.length * 100}%`
-            }}
-          >
+          <div className="relative w-full h-full overflow-hidden">
             {heroImages.map((img, idx) => (
               <div
-                key={img.src}
-                className="relative w-full h-full flex-shrink-0"
-                style={{ width: `${100 / heroImages.length}%` }}
+                key={`${img.src}-${idx}`}
+                className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${
+                  idx === currentHeroSlide 
+                    ? 'opacity-100 scale-100 z-10' 
+                    : 'opacity-0 scale-105 z-0'
+                }`}
               >
                 <Image
                   src={img.src}
@@ -218,6 +218,7 @@ export default function HomePage() {
                   fill
                   className="object-cover w-full h-full"
                   priority={idx === 0}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                 />
               </div>
             ))}
