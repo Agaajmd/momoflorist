@@ -575,43 +575,14 @@ export default function Navigation() {
                       <div className="flex items-center mb-6">
                         <button
                           onClick={handleBackToMainMenu}
-                          className="text-white dark:text-white hover:text-white/80 dark:hover:text-white/80 transition-colors duration-200 font-medium text-sm mr-3"
+                          className="text-white dark:text-white hover:text-white/80 dark:hover:text-white/80 transition-all duration-200 p-2 rounded-full hover:bg-white/15 dark:hover:bg-white/15 mr-3"
                         >
-                          ← Kembali
+                          <ArrowLeft className="h-6 w-6" />
                         </button>
-                        <h2 className="text-lg font-bold text-white dark:text-white ml-3">
+                        <h2 className="text-lg font-bold text-white dark:text-white ml-1">
                           {getDropdownData(activeSubmenu).title}
                         </h2>
                       </div>
-                      
-                      {/* Categories (jika ada) */}
-                      {getDropdownData(activeSubmenu).categories && (
-                        <div className="mb-6">
-                          <h3 className="text-sm font-semibold text-white/80 dark:text-white/80 mb-3 uppercase tracking-wide">
-                            Kategori
-                          </h3>
-                          <div className="space-y-2">
-                            {getDropdownData(activeSubmenu).categories?.map((category, index) => (
-                              <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.2, delay: index * 0.05 }}
-                              >
-                                <Link
-                                  href={category.href}
-                                  onClick={closeMobileDrawer}
-                                  className="block px-4 py-3 rounded-xl hover:bg-white/15 dark:hover:bg-white/15 transition-colors duration-200 active:scale-95"
-                                >
-                                  <span className="text-white dark:text-white font-medium text-sm">
-                                    {category.name}
-                                  </span>
-                                </Link>
-                              </motion.div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
                       
                       {/* Products Grid */}
                       <div>
