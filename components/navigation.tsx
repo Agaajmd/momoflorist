@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react"
+import { Menu, X, Sun, Moon, ChevronDown, ChevronRight, ArrowLeft } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 
@@ -89,6 +89,7 @@ const dropdownData: Record<string, { title: string; products: Array<{ name: stri
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null)
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
 
@@ -135,6 +136,25 @@ export default function Navigation() {
     return encodeURI(imagePath)
   }
 
+  // Handle mobile drawer navigation
+  const handleMobileNavigation = (item: any) => {
+    if (item.hasDropdown && getDropdownData(item.href).products.length > 0) {
+      setActiveSubmenu(item.href)
+    } else {
+      setIsOpen(false)
+      setActiveSubmenu(null)
+    }
+  }
+
+  const handleBackToMainMenu = () => {
+    setActiveSubmenu(null)
+  }
+
+  const closeMobileDrawer = () => {
+    setIsOpen(false)
+    setActiveSubmenu(null)
+  }
+
   return (
     <>
       {/* Information Text */}
@@ -145,7 +165,7 @@ export default function Navigation() {
       </div>
       
       {/* Main Navigation */}
-      <nav className={`z-50 backdrop-blur-xl border ${
+      <nav className={`z-40 backdrop-blur-xl border ${
         isScrolled 
           ? 'bg-white/10 dark:bg-black/10 border-white/20 dark:border-white/20 fixed top-4 left-1/2 transform -translate-x-1/2 rounded-full shadow-2xl w-[calc(100%-1rem)] md:w-[calc(100%-2rem)] lg:w-[calc(100%-3rem)] max-w-7xl' 
           : 'bg-[#CDB6BD]/95 dark:bg-[#2F3134]/95 border-[#CDB6BD]/50 dark:border-[#2F3134]/50 sticky top-0 rounded-t-[2rem] w-full'
@@ -255,19 +275,19 @@ export default function Navigation() {
                 {item.hasDropdown && getDropdownData(item.href).products.length > 0 && (
                   <>
                     {/* Invisible bridge area to prevent dropdown from disappearing - much larger area for scroll state */}
-                    <div className={`absolute z-40 pointer-events-auto opacity-0 ${
+                    <div className={`absolute z-[90] pointer-events-auto opacity-0 ${
                       isScrolled 
                         ? 'top-full left-[-2rem] right-[-2rem] h-12' 
                         : 'top-full left-0 right-0 h-6'
                     }`}></div>
                     
                     {/* Extended side bridges for better mouse tolerance in scroll state */}
-                    <div className={`absolute z-40 pointer-events-auto opacity-0 ${
+                    <div className={`absolute z-[90] pointer-events-auto opacity-0 ${
                       isScrolled 
                         ? 'top-[-1rem] -left-8 bottom-0 w-8' 
                         : 'top-0 -left-4 bottom-0 w-4'
                     }`}></div>
-                    <div className={`absolute z-40 pointer-events-auto opacity-0 ${
+                    <div className={`absolute z-[90] pointer-events-auto opacity-0 ${
                       isScrolled 
                         ? 'top-[-1rem] -right-8 bottom-0 w-8' 
                         : 'top-0 -right-4 bottom-0 w-4'
@@ -275,11 +295,11 @@ export default function Navigation() {
                     
                     {/* Top bridge for scroll state to cover gap above navbar */}
                     {isScrolled && (
-                      <div className="absolute top-[-1rem] left-[-2rem] right-[-2rem] h-4 z-40 pointer-events-auto opacity-0"></div>
+                      <div className="absolute top-[-1rem] left-[-2rem] right-[-2rem] h-4 z-[90] pointer-events-auto opacity-0"></div>
                     )}
                     
                     <div
-                      className={`fixed bg-[#CDB6BD]/95 backdrop-blur-md dark:bg-[#2F3134]/90 dark:backdrop-blur-md rounded-[1.5rem] shadow-xl opacity-0 group-hover/dropdown:opacity-100 pointer-events-none group-hover/dropdown:pointer-events-auto transition-all duration-500 ease-out z-50 border border-white/30 dark:border-gray-800/30 translate-y-4 group-hover/dropdown:translate-y-0 scale-95 group-hover/dropdown:scale-100 ${
+                      className={`fixed bg-[#CDB6BD]/95 backdrop-blur-md dark:bg-[#2F3134]/90 dark:backdrop-blur-md rounded-[1.5rem] shadow-xl opacity-0 group-hover/dropdown:opacity-100 pointer-events-none group-hover/dropdown:pointer-events-auto transition-all duration-500 ease-out z-[100] border border-white/30 dark:border-gray-800/30 translate-y-4 group-hover/dropdown:translate-y-0 scale-95 group-hover/dropdown:scale-100 ${
                         isScrolled
                           ? 'left-1/2 transform -translate-x-1/2 max-w-7xl w-full px-4 sm:px-6 lg:px-8 top-[calc(1rem+3.5rem)]'
                           : 'left-0 right-0 w-screen max-w-none px-0 sm:px-0 lg:px-0 top-12 md:top-14 lg:top-16'
@@ -435,50 +455,217 @@ export default function Navigation() {
           </div>
         </div>
       </div>
+      </nav>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Bottom Drawer - MOVED OUTSIDE OF NAV */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.18, ease: [0.4, 0, 0.2, 1] }}
-            className={`md:hidden bg-[#CDB6BD]/95 backdrop-blur-md dark:bg-[#2F3134]/90 dark:backdrop-blur-md border border-white/30 dark:border-gray-800/30 border-t-0 shadow-lg ${
-              isScrolled ? 'rounded-b-[2rem] fixed left-1/2 transform -translate-x-1/2 w-[calc(100%-1rem)] max-w-lg' : 'rounded-b-[2rem]'
-            }`}
-            style={{ willChange: 'opacity, height', WebkitOverflowScrolling: 'touch' }}
-          >
-            <div className={`pt-4 pb-4 space-y-2 ${isScrolled ? 'px-6' : 'px-6'}`}>
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.13, delay: 0.03 * index, ease: [0.4, 0, 0.2, 1] }}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="bottom-drawer-backdrop bg-black/60 dark:bg-black/80 backdrop-blur-md md:hidden"
+              onClick={closeMobileDrawer}
+            />
+            
+            {/* Bottom Drawer */}
+            <motion.div
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "100%", opacity: 0 }}
+              transition={{ 
+                type: "spring", 
+                damping: 30, 
+                stiffness: 400,
+                duration: 0.6,
+                opacity: { duration: 0.3 }
+              }}
+              className="bottom-drawer bg-[#CDB6BD]/75 dark:bg-[#2F3134]/80 md:hidden rounded-t-3xl shadow-2xl max-h-[85vh] overflow-hidden border-t-2 border-white/40 dark:border-white/20 backdrop-blur-2xl"
+            >
+              {/* Header dengan Handle Bar dan Close Button */}
+              <div className="flex items-center justify-between px-6 py-4 bg-transparent border-b border-white/20 dark:border-white/10">
+                {/* Left spacer untuk center handle bar */}
+                <div className="w-16"></div>
+                
+                {/* Handle Bar - Center */}
+                <div className="w-12 h-1.5 bg-white/60 dark:bg-white/40 rounded-full"></div>
+                
+                {/* Close Button - Right */}
+                <button
+                  onClick={closeMobileDrawer}
+                  className="text-white dark:text-white hover:text-white/80 dark:hover:text-white/80 transition-colors duration-200 font-medium text-sm"
+                  aria-label="Close menu"
                 >
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                      pathname === item.href
-                        ? "text-[#8B5A9F] dark:text-[#BFA2DB] bg-white/20 backdrop-blur-sm shadow-sm"
-                        : "text-gray-700 dark:text-gray-300 hover:text-[#8B5A9F] dark:hover:text-[#BFA2DB] hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-sm"
-                    }`}
-                  >
-                    <span>{item.label}</span>
-                    {item.hasDropdown && (
-                      <ChevronDown className="h-4 w-4 opacity-50" />
-                    )}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+                  Tutup
+                </button>
+              </div>
+              
+              {/* Drawer Content */}
+              <div className="px-6 pb-8 pt-2 overflow-y-auto max-h-[calc(85vh-5rem)]">
+                <AnimatePresence mode="wait">
+                  {!activeSubmenu ? (
+                    /* Main Menu */
+                    <motion.div
+                      key="main-menu"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="space-y-3"
+                    >
+                      <h2 className="text-lg font-bold text-white dark:text-white mb-5 text-center">
+                        🌸 Menu Momo Florist
+                      </h2>
+                      
+                      {navItems.map((item, index) => (
+                        <motion.div
+                          key={item.href}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ 
+                            duration: 0.3, 
+                            delay: index * 0.1,
+                            ease: "easeOut" 
+                          }}
+                        >
+                          {item.hasDropdown && getDropdownData(item.href).products.length > 0 ? (
+                            <button
+                              onClick={() => handleMobileNavigation(item)}
+                              className="w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-300 hover:bg-white/15 dark:hover:bg-white/15 group active:scale-95"
+                            >
+                              <span className="text-white dark:text-white font-medium text-left">
+                                {item.label}
+                              </span>
+                              <ChevronRight className="h-5 w-5 text-white/70 dark:text-white/70 group-hover:text-white dark:group-hover:text-white transition-colors duration-300" />
+                            </button>
+                          ) : (
+                            <Link
+                              href={item.href}
+                              onClick={closeMobileDrawer}
+                              className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-300 active:scale-95 ${
+                                pathname === item.href
+                                  ? "bg-white/25 dark:bg-white/25 text-white dark:text-white font-semibold"
+                                  : "hover:bg-white/15 dark:hover:bg-white/15 text-white dark:text-white"
+                              }`}
+                            >
+                              <span className="font-medium text-left">
+                                {item.label}
+                              </span>
+                              {pathname === item.href && (
+                                <div className="w-2 h-2 bg-white dark:bg-white rounded-full"></div>
+                              )}
+                            </Link>
+                          )}
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  ) : (
+                    /* Submenu */
+                    <motion.div
+                      key="submenu"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    >
+                      {/* Header dengan tombol kembali */}
+                      <div className="flex items-center mb-6">
+                        <button
+                          onClick={handleBackToMainMenu}
+                          className="text-white dark:text-white hover:text-white/80 dark:hover:text-white/80 transition-colors duration-200 font-medium text-sm mr-3"
+                        >
+                          ← Kembali
+                        </button>
+                        <h2 className="text-lg font-bold text-white dark:text-white ml-3">
+                          {getDropdownData(activeSubmenu).title}
+                        </h2>
+                      </div>
+                      
+                      {/* Categories (jika ada) */}
+                      {getDropdownData(activeSubmenu).categories && (
+                        <div className="mb-6">
+                          <h3 className="text-sm font-semibold text-white/80 dark:text-white/80 mb-3 uppercase tracking-wide">
+                            Kategori
+                          </h3>
+                          <div className="space-y-2">
+                            {getDropdownData(activeSubmenu).categories?.map((category, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.2, delay: index * 0.05 }}
+                              >
+                                <Link
+                                  href={category.href}
+                                  onClick={closeMobileDrawer}
+                                  className="block px-4 py-3 rounded-xl hover:bg-white/15 dark:hover:bg-white/15 transition-colors duration-200 active:scale-95"
+                                >
+                                  <span className="text-white dark:text-white font-medium text-sm">
+                                    {category.name}
+                                  </span>
+                                </Link>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* Products Grid */}
+                      <div>
+                        <h3 className="text-sm font-semibold text-white/80 dark:text-white/80 mb-3 uppercase tracking-wide">
+                          Produk Pilihan
+                        </h3>
+                        <div className="grid grid-cols-2 gap-4">
+                          {getDropdownData(activeSubmenu).products.map((product, index) => (
+                            <motion.div
+                              key={index}
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ 
+                                duration: 0.3, 
+                                delay: index * 0.1,
+                                ease: "easeOut" 
+                              }}
+                            >
+                              <Link
+                                href={activeSubmenu || '/'}
+                                onClick={closeMobileDrawer}
+                                className="block bg-white/20 dark:bg-white/15 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm"
+                              >
+                                <div className="relative h-28 overflow-hidden">
+                                  <Image
+                                    src={getImageSrc(product.image)}
+                                    alt={product.name}
+                                    fill
+                                    className="object-cover transition-transform duration-300 hover:scale-110"
+                                    unoptimized
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+                                <div className="p-3">
+                                  <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-800 mb-1 line-clamp-2">
+                                    {product.name}
+                                  </h4>
+                                  <p className="text-xs text-gray-600 dark:text-gray-600">
+                                    {product.category}
+                                  </p>
+                                </div>
+                              </Link>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-      </nav>
     </>
   )
 }
