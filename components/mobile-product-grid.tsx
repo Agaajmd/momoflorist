@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { Eye } from "lucide-react"
 import ProductDetailModal from "./product-detail-modal"
 
 interface Product {
@@ -54,7 +55,7 @@ export default function MobileProductGrid({ products, columns = 3 }: MobileProdu
             className="group cursor-pointer"
             onClick={() => handleProductClick(product, index)}
           >
-            <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div className="relative aspect-square overflow-hidden rounded-3xl bg-gray-100 dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300">
               <Image
                 src={product.src || "/placeholder.svg"}
                 alt={product.alt}
@@ -62,6 +63,12 @@ export default function MobileProductGrid({ products, columns = 3 }: MobileProdu
                 className="object-cover transition-transform duration-300 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              
+              {/* Eye icon di pojok kanan atas */}
+              <div className="absolute top-2 right-2 bg-white/80 hover:bg-white/95 rounded-full p-1.5 md:p-2 transition-all duration-300 shadow-sm">
+                <Eye className="w-3 h-3 md:w-4 md:h-4 text-gray-700" />
+              </div>
+              
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2 md:p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <h3 className="text-white text-xs md:text-sm font-semibold truncate">{product.title}</h3>
               </div>
