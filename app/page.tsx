@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
@@ -82,6 +82,7 @@ export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
   // Hero slider images (local, from public/background)
   const heroImages: { src: string; alt: string }[] = [
@@ -91,36 +92,60 @@ export default function HomePage() {
     { src: "/background/bunga papan, bunga tangan4.jpg", alt: "Bunga papan dan tangan 4" },
   ];
 
+  // Auto-slide functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const autoSlideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(autoSlideInterval);
+  }, [isAutoPlaying, heroImages.length]);
+
+  // Pause auto-slide when user interacts
+  const pauseAutoSlide = () => {
+    setIsAutoPlaying(false);
+    // Resume auto-slide after 10 seconds of inactivity
+    setTimeout(() => {
+      setIsAutoPlaying(true);
+    }, 10000);
+  };
+
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % categories.length)
+    pauseAutoSlide();
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
   }
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + categories.length) % categories.length)
+    pauseAutoSlide();
+    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
   }
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index)
+    pauseAutoSlide();
+    setCurrentSlide(index);
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX)
+    pauseAutoSlide();
+    setTouchStart(e.targetTouches[0].clientX);
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
+    setTouchEnd(e.targetTouches[0].clientX);
   }
 
   const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
+    if (!touchStart || !touchEnd) return;
     
-    const distance = touchStart - touchEnd
-    const minSwipeDistance = 50
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 50;
 
     if (distance > minSwipeDistance) {
-      nextSlide()
+      nextSlide();
     } else if (distance < -minSwipeDistance) {
-      prevSlide()
+      prevSlide();
     }
   }
   return (
@@ -129,7 +154,7 @@ export default function HomePage() {
       <SocialSidebar />
       
       {/* Hero Section with Responsive Image Slider (swipe only) */}
-      <section className="relative w-full overflow-hidden px-2 md:px-8 pt-4 md:pt-8 pb-8 md:pb-12">
+      <section className="relative w-full overflow-hidden px-2 md:px-8 pt-6 md:pt-12 pb-12 md:pb-16">
         {/* Purple background for side padding */}
         <div className="absolute inset-0 -mx-2 md:-mx-8 bg-[#CDB6BD] dark:bg-[#2F3134] z-0" aria-hidden="true" />
         <div
@@ -137,16 +162,23 @@ export default function HomePage() {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          onMouseEnter={() => setIsAutoPlaying(false)}
+          onMouseLeave={() => setIsAutoPlaying(true)}
         >
           {/* Slider Images */}
           {heroImages.map((img, idx) => (
             <motion.div
               key={img.src}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: currentSlide === idx ? 1 : 0 }}
-              transition={{ duration: 0.7 }}
-              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${currentSlide === idx ? 'z-10' : 'z-0 pointer-events-none'} rounded-3xl`}
-              style={{ objectFit: 'cover' }}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ 
+                opacity: currentSlide === idx ? 1 : 0,
+                scale: currentSlide === idx ? 1 : 1.05
+              }}
+              transition={{ 
+                duration: 0.8,
+                ease: "easeInOut"
+              }}
+              className={`absolute inset-0 w-full h-full ${currentSlide === idx ? 'z-10' : 'z-0 pointer-events-none'} rounded-3xl`}
             >
               <Image
                 src={img.src}
@@ -243,16 +275,16 @@ export default function HomePage() {
       </section>
 
       {/* Categories Section */}
-      <section className="relative py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Kategori Produk Kami</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">Kategori Produk Kami</h2>
             <p className="text-lg text-gray-800 dark:text-[#EDE6DE] max-w-2xl mx-auto">
               Pilih dari berbagai kategori bunga berkualitas untuk setiap momen spesial Anda
             </p>
@@ -332,7 +364,7 @@ export default function HomePage() {
               </button>
             </div>
             {/* Dots Indicator */}
-            <div className="flex justify-center mt-6 space-x-2">
+            <div className="flex justify-center mt-8 space-x-2">
               {categories.map((_, index) => (
                 <button
                   key={index}
@@ -397,16 +429,16 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134]">
+      <section className="py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">
               Mengapa Pilih Momo Florist?
             </h2>
             <p className="text-lg text-gray-800 dark:text-[#EDE6DE] max-w-2xl mx-auto">
@@ -414,7 +446,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -440,7 +472,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem] mt-0">
+      <section className="relative py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem] mt-0">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -448,11 +480,11 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Siap Memesan Bunga Impian Anda?</h2>
-            <p className="text-xl text-gray-700 dark:text-[#EDE6DE] mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">Siap Memesan Bunga Impian Anda?</h2>
+            <p className="text-xl text-gray-700 dark:text-[#EDE6DE] mb-10">
               Hubungi kami sekarang untuk konsultasi gratis dan dapatkan penawaran terbaik
             </p>
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-6">
               <WhatsAppButton
                 message="Halo, saya ingin konsultasi dan memesan bunga dari Momo Florist"
                 className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"

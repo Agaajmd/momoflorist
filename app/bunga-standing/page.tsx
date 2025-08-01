@@ -115,7 +115,7 @@ export default function BungaStandingPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-[#CDB6BD] dark:bg-[#2F3134] py-12 overflow-hidden">
+      <section className="relative bg-[#CDB6BD] dark:bg-[#2F3134] py-20 md:py-28 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -123,16 +123,16 @@ export default function BungaStandingPage() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-8">
               <span className="bg-gradient-to-r from-[#8B5A9F] to-[#A67FA3] bg-clip-text text-transparent">
                 Bunga Standing
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-800 dark:text-[#C6BBAE] mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-800 dark:text-[#C6BBAE] mb-12 max-w-4xl mx-auto leading-relaxed">
               Spesialis Bunga Standing (Standing Flower) untuk acara Pernikahan, Selamat, Duka Cita, dll.
             </p>
 
-            <div className="flex flex-col items-center gap-4 mb-8">
+            <div className="flex flex-col items-center gap-6 mb-12">
               <WhatsAppButton
                 message="Halo, saya ingin memesan bunga standing dari Momo Florist"
                 className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
@@ -157,9 +157,9 @@ export default function BungaStandingPage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] -mt-16 md:-mt-24">
+      <section className="py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134] -mt-20 md:-mt-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {[
               { icon: Heart, title: 'Kualitas Premium', description: 'Bunga segar dan rangkaian terbaik untuk setiap acara' },
               { icon: Gift, title: 'Gratis Ongkir Surabaya', description: 'Pengiriman gratis area Surabaya & sekitarnya' },
@@ -189,22 +189,22 @@ export default function BungaStandingPage() {
       </section>
 
       {/* Gallery Section */}
-      <section className="relative py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">
               Koleksi Standing Flower Eksklusif
             </h2>
-            <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto mb-10">
               Lihat koleksi standing flower terbaik kami yang telah dipercaya oleh ratusan pelanggan
             </p>
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-6">
               <WhatsAppButton
                 message="Halo, saya tertarik dengan standing flower di gallery Momo Florist"
                 className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
@@ -231,7 +231,7 @@ export default function BungaStandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem] mt-0">
+      <section className="relative py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem] mt-0">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -239,11 +239,11 @@ export default function BungaStandingPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Siap Mempercantik Acara Anda?</h2>
-            <p className="text-xl text-gray-800 dark:text-[#C6BBAE] mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">Siap Mempercantik Acara Anda?</h2>
+            <p className="text-xl text-gray-800 dark:text-[#C6BBAE] mb-10">
               Standing flower berkualitas premium. Konsultasi gratis sekarang!
             </p>
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-6">
               <WhatsAppButton
                 message="Halo, saya ingin konsultasi dan memesan standing flower dari Momo Florist"
                 className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"

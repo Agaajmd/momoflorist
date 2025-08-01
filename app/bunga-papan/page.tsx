@@ -187,7 +187,7 @@ export default function BungaPapanPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-[#CDB6BD] dark:bg-[#2F3134] py-12 overflow-hidden">
+      <section className="relative bg-[#CDB6BD] dark:bg-[#2F3134] py-20 md:py-28 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -195,18 +195,18 @@ export default function BungaPapanPage() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-8">
               <span className="bg-gradient-to-r from-[#8B5A9F] to-[#A67FA3] bg-clip-text text-transparent">
                 Bunga Papan
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-800 dark:text-[#C6BBAE] mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-800 dark:text-[#C6BBAE] mb-12 max-w-4xl mx-auto leading-relaxed">
               Kami spesialis dalam pembuatan segala jenis bunga papan & karangan bunga, termasuk papan dukacita, selamat
               & sukses, pernikahan.{" "}
               <span className="font-semibold text-[#BFA2DB]">Pengerjaan hanya 2 jam, gratis ongkir.</span>
             </p>
 
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-6">
               <WhatsAppButton
                 message="Halo, saya ingin memesan bunga papan dari Momo Florist"
                 className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
@@ -231,9 +231,9 @@ export default function BungaPapanPage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-12 bg-[#CDB6BD] dark:bg-[#2F3134]">
+      <section className="py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -258,7 +258,7 @@ export default function BungaPapanPage() {
       </section>
 
       {/* Categories Section */}
-      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {categories.map((category, categoryIndex) => (
             <motion.div
@@ -267,14 +267,14 @@ export default function BungaPapanPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: categoryIndex * 0.2 }}
               viewport={{ once: true }}
-              className="mb-20 last:mb-0"
+              className="mb-24 last:mb-0"
             >
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">{category.title}</h2>
-                <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto mb-6">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">{category.title}</h2>
+                <p className="text-lg text-gray-800 dark:text-[#C6BBAE] max-w-2xl mx-auto mb-8">
                   {category.description}
                 </p>
-                <div className="flex flex-col items-center gap-4">
+                <div className="flex flex-col items-center gap-6">
                   <WhatsAppButton
                     message={`Halo, saya ingin memesan bunga papan ${category.title} dari Momo Florist`}
                     className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
@@ -302,7 +302,7 @@ export default function BungaPapanPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-12 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem]">
+      <section className="relative py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem]">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -310,11 +310,11 @@ export default function BungaPapanPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Butuh Bunga Papan Segera?</h2>
-            <p className="text-xl text-gray-800 dark:text-[#C6BBAE] mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">Butuh Bunga Papan Segera?</h2>
+            <p className="text-xl text-gray-800 dark:text-[#C6BBAE] mb-10">
               Proses cepat 2 jam, kualitas terjamin, gratis ongkir area Surabaya
             </p>
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-6">
               <WhatsAppButton
                 message="Halo, saya butuh bunga papan segera dari Momo Florist"
                 className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
