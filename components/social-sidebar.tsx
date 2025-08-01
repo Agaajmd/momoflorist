@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { 
   FaInstagram, 
   FaWhatsapp, 
-  FaPhone,
+  FaMapMarkerAlt,
   FaTiktok,
   FaFacebook
 } from "react-icons/fa"
@@ -36,10 +36,10 @@ const socialLinks = [
     color: 'hover:bg-green-500'
   },
   {
-    name: 'Telepon',
-    icon: FaPhone,
-    url: 'tel:081213142558',
-    color: 'hover:bg-blue-600'
+    name: 'Lokasi',
+    icon: FaMapMarkerAlt,
+    url: 'https://maps.app.goo.gl/LYxRUo8Jbx2QfcFt7',
+    color: 'hover:bg-red-500'
   }
 ]
 

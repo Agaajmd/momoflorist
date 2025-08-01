@@ -196,7 +196,43 @@ export default function Navigation() {
             {navItems.map((item) => (
               <div
                 key={item.href}
-                className="relative group"
+                className="relative group/dropdown"
+                onMouseEnter={() => {
+                  // Clear any existing timeout
+                  const timeoutId = (window as any)[`dropdown-timeout-${item.href}`];
+                  if (timeoutId) clearTimeout(timeoutId);
+                }}
+                onMouseLeave={(e) => {
+                  // Much more generous tolerance for scroll state
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const mouseY = e.clientY;
+                  const mouseX = e.clientX;
+                  
+                  if (isScrolled) {
+                    // In scroll state, check if mouse is in extended safe zone
+                    const safeZoneHeight = rect.bottom + 48; // 48px bridge height
+                    const safeZoneLeft = rect.left - 32; // 32px left tolerance  
+                    const safeZoneRight = rect.right + 32; // 32px right tolerance
+                    
+                    const inSafeZone = mouseY < safeZoneHeight && 
+                                     mouseX >= safeZoneLeft && 
+                                     mouseX <= safeZoneRight;
+                    
+                    const delay = inSafeZone ? 400 : 150; // Much longer delay in safe zone
+                    
+                    (window as any)[`dropdown-timeout-${item.href}`] = setTimeout(() => {
+                      // Trigger CSS :hover state to end
+                    }, delay);
+                  } else {
+                    // Normal state logic
+                    const dropdownThreshold = rect.bottom + 24;
+                    const delay = mouseY < dropdownThreshold ? 200 : 100;
+                    
+                    (window as any)[`dropdown-timeout-${item.href}`] = setTimeout(() => {
+                      // Trigger CSS :hover state to end
+                    }, delay);
+                  }
+                }}
               >
                 <Link
                   href={item.href}
@@ -217,86 +253,127 @@ export default function Navigation() {
 
                 {/* Full Screen Dropdown */}
                 {item.hasDropdown && getDropdownData(item.href).products.length > 0 && (
-                  <div
-                    className={`fixed bg-[#CDB6BD]/95 backdrop-blur-md dark:bg-[#2F3134]/90 dark:backdrop-blur-md rounded-[1.5rem] shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 ease-out z-50 border border-white/30 dark:border-gray-800/30 translate-y-4 group-hover:translate-y-0 scale-95 group-hover:scale-100 ${
-                      isScrolled
-                        ? 'left-1/2 transform -translate-x-1/2 max-w-7xl w-full px-4 sm:px-6 lg:px-8 top-[calc(1rem+3rem+1rem)] md:top-[calc(1rem+3.5rem+1rem)] lg:top-[calc(1rem+4rem+1rem)]'
-                        : 'left-0 right-0 w-screen max-w-none px-0 sm:px-0 lg:px-0 top-12 md:top-14 lg:top-16'
-                    }`}
-                    style={!isScrolled ? { left: 0, right: 0 } : {}}
-                  >
-                    <div className="p-6 max-w-7xl mx-auto">
-                      {/* Products Grid */}
-                      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-                        {/* First Card - Categories for Bunga Papan and Bunga Standing */}
-                        {(item.href === '/bunga-papan' || item.href === '/bunga-papan-mini' || item.href === '/bunga-standing' || item.href === '/gallery') && getDropdownData(item.href).categories && (
-                          <div
-                            className="transform translate-y-8 group-hover:translate-y-0 transition-all duration-700 ease-out opacity-0 group-hover:opacity-100 flex flex-col justify-center"
-                            style={{ 
-                              transitionDelay: `200ms`,
-                            }}
-                          >
-                            <div className="h-full flex flex-col justify-center px-2">
-                              <h4 className="text-lg font-bold text-gray-900 dark:text-white text-left mb-1">
-                                Kategori
-                              </h4>
-                              <div className="flex flex-col gap-1">
-                                {getDropdownData(item.href).categories?.map((category, catIndex) => (
-                                  <Link
-                                    key={catIndex}
-                                    href={category.href}
-                                    className="text-sm font-semibold text-gray-900 dark:text-white hover:text-[#8B5A9F] dark:hover:text-[#BFA2DB] transition-colors duration-200 text-left px-1 py-1 rounded w-fit max-w-full underline underline-offset-4 hover:decoration-2"
-                                    style={{ wordBreak: 'break-word' }}
-                                  >
-                                    {category.name}
-                                  </Link>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                        
-                        {/* Regular Product Cards */}
-                        {getDropdownData(item.href).products.slice(0, (item.href === '/bunga-papan' || item.href === '/bunga-papan-mini' || item.href === '/bunga-standing' || item.href === '/gallery') ? 3 : 4).map((product, index) => (
-                          <div
-                            key={index}
-                            className="transform translate-y-8 group-hover:translate-y-0 transition-all duration-700 ease-out opacity-0 group-hover:opacity-100"
-                            style={{ 
-                              transitionDelay: `${200 + ((item.href === '/bunga-papan' || item.href === '/bunga-papan-mini' || item.href === '/bunga-standing' || item.href === '/gallery') ? (index + 1) : index) * 100}ms`,
-                            }}
-                          >
-                            <Link
-                              href={item.href}
-                              className="block group/card bg-white/90 backdrop-blur-md dark:bg-neutral-800/90 dark:backdrop-blur-md rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border border-white/40 dark:border-gray-700/40 hover:border-[#BFA2DB]/60 dark:hover:border-[#BFA2DB]/60"
-                              style={{ width: '100%', maxWidth: 220, minWidth: 0 }}
+                  <>
+                    {/* Invisible bridge area to prevent dropdown from disappearing - much larger area for scroll state */}
+                    <div className={`absolute z-40 pointer-events-auto opacity-0 ${
+                      isScrolled 
+                        ? 'top-full left-[-2rem] right-[-2rem] h-12' 
+                        : 'top-full left-0 right-0 h-6'
+                    }`}></div>
+                    
+                    {/* Extended side bridges for better mouse tolerance in scroll state */}
+                    <div className={`absolute z-40 pointer-events-auto opacity-0 ${
+                      isScrolled 
+                        ? 'top-[-1rem] -left-8 bottom-0 w-8' 
+                        : 'top-0 -left-4 bottom-0 w-4'
+                    }`}></div>
+                    <div className={`absolute z-40 pointer-events-auto opacity-0 ${
+                      isScrolled 
+                        ? 'top-[-1rem] -right-8 bottom-0 w-8' 
+                        : 'top-0 -right-4 bottom-0 w-4'
+                    }`}></div>
+                    
+                    {/* Top bridge for scroll state to cover gap above navbar */}
+                    {isScrolled && (
+                      <div className="absolute top-[-1rem] left-[-2rem] right-[-2rem] h-4 z-40 pointer-events-auto opacity-0"></div>
+                    )}
+                    
+                    <div
+                      className={`fixed bg-[#CDB6BD]/95 backdrop-blur-md dark:bg-[#2F3134]/90 dark:backdrop-blur-md rounded-[1.5rem] shadow-xl opacity-0 group-hover/dropdown:opacity-100 pointer-events-none group-hover/dropdown:pointer-events-auto transition-all duration-500 ease-out z-50 border border-white/30 dark:border-gray-800/30 translate-y-4 group-hover/dropdown:translate-y-0 scale-95 group-hover/dropdown:scale-100 ${
+                        isScrolled
+                          ? 'left-1/2 transform -translate-x-1/2 max-w-7xl w-full px-4 sm:px-6 lg:px-8 top-[calc(1rem+3.5rem)]'
+                          : 'left-0 right-0 w-screen max-w-none px-0 sm:px-0 lg:px-0 top-12 md:top-14 lg:top-16'
+                      }`}
+                      style={{
+                        ...((!isScrolled ? { left: 0, right: 0 } : {})),
+                        transitionDelay: isScrolled ? '100ms' : '0ms',
+                        transitionProperty: 'opacity, transform, visibility'
+                      }}
+                      onMouseEnter={() => {
+                        // Clear any existing timeout when mouse enters dropdown
+                        const timeoutId = (window as any)[`dropdown-timeout-${item.href}`];
+                        if (timeoutId) clearTimeout(timeoutId);
+                      }}
+                      onMouseLeave={() => {
+                        // Add longer delay before hiding dropdown in scroll state
+                        (window as any)[`dropdown-timeout-${item.href}`] = setTimeout(() => {
+                          // This will trigger the CSS :hover state to end
+                        }, isScrolled ? 300 : 150);
+                      }}
+                    >
+                      <div className="p-6 max-w-7xl mx-auto">
+                        {/* Products Grid */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+                          {/* First Card - Categories for Bunga Papan and Bunga Standing */}
+                          {(item.href === '/bunga-papan' || item.href === '/bunga-papan-mini' || item.href === '/bunga-standing' || item.href === '/gallery') && getDropdownData(item.href).categories && (
+                            <div
+                              className="transform translate-y-8 group-hover/dropdown:translate-y-0 transition-all duration-700 ease-out opacity-0 group-hover/dropdown:opacity-100 flex flex-col justify-center"
+                              style={{ 
+                                transitionDelay: `200ms`,
+                              }}
                             >
-                              <div className="relative overflow-hidden w-full" style={{ height: '140px' }}>
-                                <Image
-                                  src={getImageSrc(product.image)}
-                                  alt={product.name}
-                                  fill
-                                  className="object-cover w-full h-full group-hover/card:scale-110 transition-transform duration-700 ease-out"
-                                  style={{ objectFit: 'cover' }}
-                                  unoptimized
-                                />
-                                {/* Button overlay at bottom */}
-                                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[85%] flex justify-center">
-                                  <button
-                                    className="bg-[#EDE6DE]/80 border border-[#8B5A9F] text-[#8B5A9F] text-xs font-semibold rounded-full px-4 py-1 shadow-md hover:bg-[#BFA2DB]/30 hover:text-[#A67FA3] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#BFA2DB]/60"
-                                    type="button"
-                                    tabIndex={-1}
-                                    style={{ pointerEvents: 'none', backdropFilter: 'blur(1px)' }}
-                                  >
-                                    Lihat detail produk
-                                  </button>
+                              <div className="h-full flex flex-col justify-center px-2">
+                                <h4 className="text-lg font-bold text-gray-900 dark:text-white text-left mb-1">
+                                  Kategori
+                                </h4>
+                                <div className="flex flex-col gap-1">
+                                  {getDropdownData(item.href).categories?.map((category, catIndex) => (
+                                    <Link
+                                      key={catIndex}
+                                      href={category.href}
+                                      className="text-sm font-semibold text-gray-900 dark:text-white hover:text-[#8B5A9F] dark:hover:text-[#BFA2DB] transition-colors duration-200 text-left px-1 py-1 rounded w-fit max-w-full underline underline-offset-4 hover:decoration-2"
+                                      style={{ wordBreak: 'break-word' }}
+                                    >
+                                      {category.name}
+                                    </Link>
+                                  ))}
                                 </div>
                               </div>
-                            </Link>
-                          </div>
-                        ))}
+                            </div>
+                          )}
+                          
+                          {/* Regular Product Cards */}
+                          {getDropdownData(item.href).products.slice(0, (item.href === '/bunga-papan' || item.href === '/bunga-papan-mini' || item.href === '/bunga-standing' || item.href === '/gallery') ? 3 : 4).map((product, index) => (
+                            <div
+                              key={index}
+                              className="transform translate-y-8 group-hover/dropdown:translate-y-0 transition-all duration-700 ease-out opacity-0 group-hover/dropdown:opacity-100"
+                              style={{ 
+                                transitionDelay: `${200 + ((item.href === '/bunga-papan' || item.href === '/bunga-papan-mini' || item.href === '/bunga-standing' || item.href === '/gallery') ? (index + 1) : index) * 100}ms`,
+                              }}
+                            >
+                              <Link
+                                href={item.href}
+                                className="block group/card bg-white/90 backdrop-blur-md dark:bg-neutral-800/90 dark:backdrop-blur-md rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border border-white/40 dark:border-gray-700/40 hover:border-[#BFA2DB]/60 dark:hover:border-[#BFA2DB]/60"
+                                style={{ width: '100%', maxWidth: 220, minWidth: 0 }}
+                              >
+                                <div className="relative overflow-hidden w-full" style={{ height: '140px' }}>
+                                  <Image
+                                    src={getImageSrc(product.image)}
+                                    alt={product.name}
+                                    fill
+                                    className="object-cover w-full h-full group-hover/card:scale-110 transition-transform duration-700 ease-out"
+                                    style={{ objectFit: 'cover' }}
+                                    unoptimized
+                                  />
+                                  {/* Button overlay at bottom */}
+                                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[85%] flex justify-center">
+                                    <button
+                                      className="bg-[#EDE6DE]/80 border border-[#8B5A9F] text-[#8B5A9F] text-xs font-semibold rounded-full px-4 py-1 shadow-md hover:bg-[#BFA2DB]/30 hover:text-[#A67FA3] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#BFA2DB]/60"
+                                      type="button"
+                                      tabIndex={-1}
+                                      style={{ pointerEvents: 'none', backdropFilter: 'blur(1px)' }}
+                                    >
+                                      Lihat detail produk
+                                    </button>
+                                  </div>
+                                </div>
+                              </Link>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </>
                 )}
               </div>
             ))}
@@ -338,7 +415,7 @@ export default function Navigation() {
             </Button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`rounded-full text-gray-900 dark:text-white hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-600 dark:hover:from-pink-500 dark:hover:to-pink-600 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg flex items-center justify-center hover:text-white ${
+              className={`rounded-full text-gray-900 dark:text-white hover:bg-gradient-to-r hover:from-[#8B5A9F] hover:to-[#A67FA3] dark:hover:from-[#8B5A9F] dark:hover:to-[#A67FA3] transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg flex items-center justify-center hover:text-white ${
                 isScrolled ? 'p-1.5 h-7 w-7' : 'p-1.5 h-7 w-7 sm:p-2 sm:h-8 sm:w-8'
               }`}
               aria-label={isOpen ? "Close menu" : "Open menu"}
