@@ -19,8 +19,7 @@ export default function Footer() {
               <span className="text-xl font-bold">Momo Florist</span>
             </div>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Toko bunga online terpercaya di Surabaya sejak 2012. Melayani pengiriman ke seluruh Indonesia dengan
-              kualitas terbaik.
+              <span className="font-semibold text-[#8B5A9F] dark:text-[#BFA2DB]">Popo Florist</span> adalah solusi utama untuk kebutuhan bunga di Surabaya. Berdiri sejak 2012, kami melayani <span className="font-semibold">pembuatan hanya 2 jam</span> dengan <span className="font-semibold">free biaya pengiriman</span> area Surabaya.
             </p>
           </div>
 
@@ -28,11 +27,13 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-[#BFA2DB]">Layanan Kami</h3>
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-              <li>Bunga Papan</li>
-              <li>Bunga Standing</li>
+              <li>Bunga Papan & Bunga Papan Mini</li>
+              <li>Standing Flower</li>
               <li>Hand Bouquet</li>
-              <li>Karangan Bunga</li>
-              <li>Dekorasi Bunga</li>
+              <li>Bunga Salib</li>
+              <li>Bunga Potong Pita</li>
+              <li>Karangan Bunga Wedding</li>
+              <li>Dekorasi Grand Opening</li>
             </ul>
           </div>
 
@@ -91,22 +92,24 @@ export default function Footer() {
         <div className="mt-12 mb-8">
           <div className="text-center mb-6">
             <h3 className="text-2xl font-bold text-[#BFA2DB] mb-2">Temukan Kami</h3>
-            <p className="text-gray-600 dark:text-gray-300">Kunjungi toko kami langsung di Jl. Manyar Sambongan No.30, Kertajaya, Kec. Gubeng, Surabaya, Jawa Timur 60282</p>
+            <p className="text-gray-600 dark:text-gray-300">Kunjungi <span className="font-semibold text-[#8B5A9F] dark:text-[#BFA2DB]">Popo Florist</span> langsung di Jl. Manyar Sambongan No.30, Kertajaya, Gubeng, Surabaya. Gratis konsultasi dan pembuatan cepat hanya 2 jam!</p>
           </div>
           <MapsEmbed />
         </div>
 
         <div className="border-t border-gray-300 dark:border-gray-600 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-gray-600 dark:text-gray-300">© 2024 Momo Florist. All rights reserved.</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">© 2024 Popo Florist - Momo Florist Surabaya. All rights reserved.</p>
             <div className="flex flex-wrap gap-4 text-xs text-gray-600 dark:text-gray-300">
               <span>Bunga Papan Surabaya</span>
               <span>•</span>
-              <span>Standing Flower</span>
+              <span>Standing Flower Wedding</span>
               <span>•</span>
               <span>Hand Bouquet</span>
               <span>•</span>
-              <span>Karangan Bunga</span>
+              <span>Bunga Salib</span>
+              <span>•</span>
+              <span>Grand Opening</span>
             </div>
           </div>
         </div>

@@ -27,15 +27,14 @@ const categories = [
   {
     title: "Bunga Standing",
     description: "Standing flower untuk acara spesial",
-    image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/bunga standing/bunga standing.jpg",
     href: "/bunga-standing",
     color: "from-purple-500 to-indigo-500",
   },
   {
     title: "Hand Bouquet",
     description: "Rangkaian bunga tangan yang indah",
-    image:
-      "https://images.unsplash.com/photo-1487070183336-b863922373d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/hand bouquet/hand bouquet.jpg",
     href: "/hand-bouquet",
     color: "from-green-500 to-teal-500",
   },
@@ -80,72 +79,106 @@ const features = [
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [isPaused, setIsPaused] = useState(false)
 
-  // Hero slider images (local, from public/background)
+  // Hero slider images (local, using working image paths)
   const heroImages: { src: string; alt: string }[] = [
-    { src: "/background/bunga papan, bunga tangan.jpg", alt: "Bunga papan dan tangan 1" },
-    { src: "/background/bunga papan, bunga tangan2.jpg", alt: "Bunga papan dan tangan 2" },
-    { src: "/background/bunga papan, bunga tangan3.jpg", alt: "Bunga papan dan tangan 3" },
-    { src: "/background/bunga papan, bunga tangan4.jpg", alt: "Bunga papan dan tangan 4" },
+    { src: "/bunga papan/bunga papan.jpg", alt: "Bunga Papan Momo Florist" },
+    { src: "/bunga standing/bunga standing.jpg", alt: "Standing Flower Momo Florist" },
+    { src: "/hand bouquet/hand bouquet.jpg", alt: "Hand Bouquet Momo Florist" },
+    { src: "/bunga papan/bunga papan2.jpg", alt: "Bunga Papan Premium Momo Florist" },
   ];
 
-  // Auto-slide functionality
+  // Auto-slide effect for hero images
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    if (!isPaused) {
+      const interval = setInterval(() => {
+        setCurrentHeroSlide((prev) => (prev + 1) % heroImages.length)
+      }, 4000) // 4 seconds interval
+      
+      return () => clearInterval(interval)
+    }
+  }, [heroImages.length, isPaused])
 
-    const autoSlideInterval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-    }, 4000); // Change slide every 4 seconds
+  // Pause auto-slide on hover or touch
+  const handleMouseEnter = () => setIsPaused(true)
+  const handleMouseLeave = () => setIsPaused(false)
+  const handleTouchStartHero = (e: React.TouchEvent) => {
+    setIsPaused(true)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+  const handleTouchMoveHero = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+  const handleTouchEndHero = () => {
+    // Handle swipe gestures for hero slider
+    if (touchStart && touchEnd) {
+      const distance = touchStart - touchEnd
+      const minSwipeDistance = 50
 
-    return () => clearInterval(autoSlideInterval);
-  }, [isAutoPlaying, heroImages.length]);
+      if (distance > minSwipeDistance) {
+        // Swipe left - next slide
+        setCurrentHeroSlide((prev) => (prev + 1) % heroImages.length)
+      } else if (distance < -minSwipeDistance) {
+        // Swipe right - previous slide
+        setCurrentHeroSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
+      }
+    }
+    
+    setTimeout(() => setIsPaused(false), 3000) // Resume after 3 seconds
+  }
 
-  // Pause auto-slide when user interacts
-  const pauseAutoSlide = () => {
-    setIsAutoPlaying(false);
-    // Resume auto-slide after 10 seconds of inactivity
-    setTimeout(() => {
-      setIsAutoPlaying(true);
-    }, 10000);
-  };
+  const nextHeroSlide = () => {
+    setCurrentHeroSlide((prev) => (prev + 1) % heroImages.length)
+    setIsPaused(true)
+    setTimeout(() => setIsPaused(false), 5000)
+  }
+
+  const prevHeroSlide = () => {
+    setCurrentHeroSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
+    setIsPaused(true)
+    setTimeout(() => setIsPaused(false), 5000)
+  }
 
   const nextSlide = () => {
-    pauseAutoSlide();
-    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    setCurrentSlide((prev) => (prev + 1) % categories.length)
   }
 
   const prevSlide = () => {
-    pauseAutoSlide();
-    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+    setCurrentSlide((prev) => (prev - 1 + categories.length) % categories.length)
   }
 
   const goToSlide = (index: number) => {
-    pauseAutoSlide();
-    setCurrentSlide(index);
+    setCurrentSlide(index)
+  }
+
+  const goToHeroSlide = (index: number) => {
+    setCurrentHeroSlide(index)
+    setIsPaused(true)
+    setTimeout(() => setIsPaused(false), 5000) // Resume after 5 seconds when manually clicked
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    pauseAutoSlide();
-    setTouchStart(e.targetTouches[0].clientX);
+    setTouchStart(e.targetTouches[0].clientX)
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    setTouchEnd(e.targetTouches[0].clientX)
   }
 
   const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    if (!touchStart || !touchEnd) return
     
-    const distance = touchStart - touchEnd;
-    const minSwipeDistance = 50;
+    const distance = touchStart - touchEnd
+    const minSwipeDistance = 50
 
     if (distance > minSwipeDistance) {
-      nextSlide();
+      nextSlide()
     } else if (distance < -minSwipeDistance) {
-      prevSlide();
+      prevSlide()
     }
   }
   return (
@@ -154,41 +187,41 @@ export default function HomePage() {
       <SocialSidebar />
       
       {/* Hero Section with Responsive Image Slider (swipe only) */}
-      <section className="relative w-full overflow-hidden px-2 md:px-8 pt-6 md:pt-12 pb-12 md:pb-16">
+      <section className="relative w-full overflow-hidden px-2 md:px-8 pt-4 md:pt-8 pb-8 md:pb-12">
         {/* Purple background for side padding */}
         <div className="absolute inset-0 -mx-2 md:-mx-8 bg-[#CDB6BD] dark:bg-[#2F3134] z-0" aria-hidden="true" />
         <div
-          className="relative w-full h-[130vw] max-h-[500px] md:h-[48vw] md:max-h-[600px] rounded-3xl mx-auto shadow-xl bg-white/10 dark:bg-[#232325]/10 z-10"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          onMouseEnter={() => setIsAutoPlaying(false)}
-          onMouseLeave={() => setIsAutoPlaying(true)}
+          className="relative w-full h-[130vw] max-h-[500px] md:h-[48vw] md:max-h-[600px] rounded-3xl mx-auto shadow-xl bg-white/10 dark:bg-[#232325]/10 z-10 overflow-hidden"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStartHero}
+          onTouchMove={handleTouchMoveHero}
+          onTouchEnd={handleTouchEndHero}
         >
-          {/* Slider Images */}
-          {heroImages.map((img, idx) => (
-            <motion.div
-              key={img.src}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ 
-                opacity: currentSlide === idx ? 1 : 0,
-                scale: currentSlide === idx ? 1 : 1.05
-              }}
-              transition={{ 
-                duration: 0.8,
-                ease: "easeInOut"
-              }}
-              className={`absolute inset-0 w-full h-full ${currentSlide === idx ? 'z-10' : 'z-0 pointer-events-none'} rounded-3xl`}
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover w-full h-full rounded-3xl"
-                priority={idx === 0}
-              />
-            </motion.div>
-          ))}
+          {/* Slider Container */}
+          <div 
+            className="flex w-full h-full transition-transform duration-1000 ease-in-out"
+            style={{ 
+              transform: `translateX(-${currentHeroSlide * 100}%)`,
+              width: `${heroImages.length * 100}%`
+            }}
+          >
+            {heroImages.map((img, idx) => (
+              <div
+                key={img.src}
+                className="relative w-full h-full flex-shrink-0"
+                style={{ width: `${100 / heroImages.length}%` }}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover w-full h-full"
+                  priority={idx === 0}
+                />
+              </div>
+            ))}
+          </div>
           {/* Overlay content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/30 dark:bg-black/40 z-20 px-4 rounded-3xl">
             <motion.h1
@@ -233,24 +266,22 @@ export default function HomePage() {
               </Button>
             </motion.div>
           </div>
-          {/* Desktop Arrows */}
+          {/* Desktop Navigation Arrows */}
           <div className="hidden md:block">
             <div className="absolute left-4 top-1/2 -translate-y-1/2 z-30">
               <button
-                onClick={prevSlide}
-                aria-label="Sebelumnya"
-                className="rounded-full bg-[#8B5A9F] hover:bg-[#BFA2DB] text-white shadow-lg w-12 h-12 flex items-center justify-center transition-colors duration-200 border-4 border-white/40"
-                style={{ outline: 'none', borderWidth: 0 }}
+                onClick={prevHeroSlide}
+                aria-label="Slide Sebelumnya"
+                className="rounded-full bg-[#8B5A9F] hover:bg-[#BFA2DB] text-white shadow-lg w-12 h-12 flex items-center justify-center transition-all duration-300 border-2 border-white/40 hover:scale-110"
               >
                 <ChevronLeft className="h-7 w-7" />
               </button>
             </div>
             <div className="absolute right-4 top-1/2 -translate-y-1/2 z-30">
               <button
-                onClick={nextSlide}
-                aria-label="Selanjutnya"
-                className="rounded-full bg-[#8B5A9F] hover:bg-[#BFA2DB] text-white shadow-lg w-12 h-12 flex items-center justify-center transition-colors duration-200 border-4 border-white/40"
-                style={{ outline: 'none', borderWidth: 0 }}
+                onClick={nextHeroSlide}
+                aria-label="Slide Selanjutnya"
+                className="rounded-full bg-[#8B5A9F] hover:bg-[#BFA2DB] text-white shadow-lg w-12 h-12 flex items-center justify-center transition-all duration-300 border-2 border-white/40 hover:scale-110"
               >
                 <ChevronRight className="h-7 w-7" />
               </button>
@@ -261,9 +292,9 @@ export default function HomePage() {
             {heroImages.map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => goToSlide(idx)}
+                onClick={() => goToHeroSlide(idx)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  idx === currentSlide
+                  idx === currentHeroSlide
                     ? 'bg-[#BFA2DB] scale-110'
                     : 'bg-white/70 dark:bg-[#C6BBAE] hover:bg-[#BFA2DB]'
                 }`}
@@ -275,16 +306,16 @@ export default function HomePage() {
       </section>
 
       {/* Categories Section */}
-      <section className="relative py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
+      <section className="relative py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">Kategori Produk Kami</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Kategori Produk Kami</h2>
             <p className="text-lg text-gray-800 dark:text-[#EDE6DE] max-w-2xl mx-auto">
               Pilih dari berbagai kategori bunga berkualitas untuk setiap momen spesial Anda
             </p>
@@ -364,7 +395,7 @@ export default function HomePage() {
               </button>
             </div>
             {/* Dots Indicator */}
-            <div className="flex justify-center mt-8 space-x-2">
+            <div className="flex justify-center mt-6 space-x-2">
               {categories.map((_, index) => (
                 <button
                   key={index}
@@ -429,16 +460,16 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134]">
+      <section className="py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">
               Mengapa Pilih Momo Florist?
             </h2>
             <p className="text-lg text-gray-800 dark:text-[#EDE6DE] max-w-2xl mx-auto">
@@ -446,7 +477,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -472,7 +503,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 md:py-28 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem] mt-0">
+      <section className="relative py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden rounded-b-[3rem] mt-0">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -480,11 +511,11 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">Siap Memesan Bunga Impian Anda?</h2>
-            <p className="text-xl text-gray-700 dark:text-[#EDE6DE] mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Siap Memesan Bunga Impian Anda?</h2>
+            <p className="text-xl text-gray-700 dark:text-[#EDE6DE] mb-8">
               Hubungi kami sekarang untuk konsultasi gratis dan dapatkan penawaran terbaik
             </p>
-            <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-4">
               <WhatsAppButton
                 message="Halo, saya ingin konsultasi dan memesan bunga dari Momo Florist"
                 className="bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-bold rounded-full px-8 py-4 transition-all duration-200 transform hover:scale-105 text-base border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[200px] h-12 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
