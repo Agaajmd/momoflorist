@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ChevronLeft, ChevronRight, Share2, ZoomIn, ZoomOut } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, Share2, Maximize, Minimize } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 
@@ -31,7 +31,10 @@ export default function ProductDetailModal({
   currentIndex,
   onNavigate,
 }: ProductDetailModalProps) {
-  const [isZoomed, setIsZoomed] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [imageLoading, setImageLoading] = useState(false)
 
   if (!product) return null
 
@@ -63,10 +66,53 @@ export default function ProductDetailModal({
     }
   }
 
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen)
+    setImageLoading(true)
+    // Prevent body scroll when fullscreen is open
+    if (!isFullscreen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+  }
+
+  // Close fullscreen with Escape key
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape' && isFullscreen) {
+      toggleFullscreen()
+    }
+  }
+
+  // Touch handlers for swipe gestures in fullscreen
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      handleNext()
+    } else if (isRightSwipe) {
+      handlePrevious()
+    }
+  }
+
   return (
-    <AnimatePresence>
-      {isOpen && (
+    <AnimatePresence mode="wait">
+      {isOpen && !isFullscreen && (
         <motion.div
+          key="product-modal"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -98,10 +144,10 @@ export default function ProductDetailModal({
                   <Button 
                     variant="ghost" 
                     size="sm" 
-                    onClick={() => setIsZoomed(!isZoomed)} 
+                    onClick={toggleFullscreen} 
                     className="h-9 w-9 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-[#BFA2DB]/20 text-[#8B5A9F] hover:text-[#BFA2DB] transition-colors duration-150"
                   >
-                    {isZoomed ? <ZoomOut className="h-4 w-4" /> : <ZoomIn className="h-4 w-4" />}
+                    <Maximize className="h-4 w-4" />
                   </Button>
                   <Button 
                     variant="ghost" 
@@ -122,10 +168,8 @@ export default function ProductDetailModal({
                   <img
                     src={product.src}
                     alt={product.alt}
-                    className={`w-full h-full object-cover transition-transform duration-150 rounded-lg ${
-                      isZoomed ? "scale-110 cursor-zoom-out" : "cursor-zoom-in"
-                    }`}
-                    onClick={() => setIsZoomed(!isZoomed)}
+                    className="w-full h-full object-cover transition-transform duration-150 rounded-lg cursor-pointer hover:scale-105"
+                    onClick={toggleFullscreen}
                   />
                 </div>
 
@@ -207,6 +251,86 @@ export default function ProductDetailModal({
               </div>
             </div>
           </motion.div>
+        </motion.div>
+      )}
+
+      {/* Fullscreen Image Modal */}
+      {isFullscreen && (
+        <motion.div
+          key="fullscreen-modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[60] bg-black flex items-center justify-center"
+          onClick={toggleFullscreen}
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+        >
+          <div className="relative w-full h-full flex items-center justify-center p-4">
+            {/* Close button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleFullscreen}
+              className="absolute top-4 right-4 z-10 h-10 w-10 rounded-full bg-black/50 hover:bg-black/70 text-white border border-white/20"
+            >
+              <X className="h-5 w-5" />
+            </Button>
+
+            {/* Navigation arrows for fullscreen */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white border border-white/20"
+              onClick={(e) => {
+                e.stopPropagation()
+                handlePrevious()
+              }}
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+            
+            <Button
+              variant="ghost"
+              size="sm"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white border border-white/20"
+              onClick={(e) => {
+                e.stopPropagation()
+                handleNext()
+              }}
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
+
+            {/* Fullscreen image */}
+            <div className="relative flex items-center justify-center w-full h-full">
+              {imageLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                  <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
+              <img
+                src={product.src}
+                alt={product.alt}
+                className="max-w-full max-h-full object-contain select-none"
+                onClick={(e) => e.stopPropagation()}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                onLoad={() => setImageLoading(false)}
+                onError={() => setImageLoading(false)}
+                draggable={false}
+              />
+            </div>
+
+            {/* Image info overlay */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/75 text-white px-6 py-3 rounded-full backdrop-blur-sm">
+              <div className="text-center">
+                <div className="text-sm font-medium mb-1">{product.title}</div>
+                <div className="text-xs opacity-75">{currentIndex + 1} / {products.length}</div>
+              </div>
+            </div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -1,19 +1,13 @@
 "use client"
 
-import { useState, useEffect, Suspense, lazy } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Clock, Truck, Heart, Star, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowRight, Clock, Truck, Heart, Star, ChevronLeft, ChevronRight, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { usePerformanceMonitoring } from "@/hooks/use-performance-monitoring"
-
-// Lazy load components that are not immediately visible
-const SocialSidebar = lazy(() => import("@/components/social-sidebar"))
-
-// Preload critical components
-const ImageGallery = lazy(() => import("@/components/image-gallery"))
 
 // Remove force-dynamic for better performance
 // export const dynamic = 'force-dynamic'
@@ -90,11 +84,71 @@ export default function HomePage() {
   // Initialize performance monitoring
   usePerformanceMonitoring()
   
-  const [currentSlide, setCurrentSlide] = useState(0)
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [autoSlideStates, setAutoSlideStates] = useState<{ [key: number]: boolean }>({})
+  const [userInteracting, setUserInteracting] = useState<{ [key: number]: boolean }>({})
+
+  // Auto-slide intervals storage
+  const autoSlideIntervals = useRef<{ [key: number]: NodeJS.Timeout }>({})
+  
+  // Auto-slide function for product sliders
+  const startAutoSlide = (categoryIndex: number) => {
+    // Clear existing interval if any
+    if (autoSlideIntervals.current[categoryIndex]) {
+      clearInterval(autoSlideIntervals.current[categoryIndex])
+    }
+    
+    autoSlideIntervals.current[categoryIndex] = setInterval(() => {
+      // Check if user is not interacting
+      if (!userInteracting[categoryIndex]) {
+        const container = document.getElementById(`slider-${categoryIndex}`)
+        if (container) {
+          const scrollWidth = container.scrollWidth
+          const clientWidth = container.clientWidth
+          const currentScroll = container.scrollLeft
+          
+          // If we're at the end, scroll back to start
+          if (currentScroll + clientWidth >= scrollWidth - 10) {
+            container.scrollTo({ left: 0, behavior: 'smooth' })
+          } else {
+            // Scroll to next position
+            container.scrollBy({ left: 200, behavior: 'smooth' })
+          }
+        }
+      }
+    }, 3000) // Auto-slide every 3 seconds
+  }
+  
+  const stopAutoSlide = (categoryIndex: number) => {
+    if (autoSlideIntervals.current[categoryIndex]) {
+      clearInterval(autoSlideIntervals.current[categoryIndex])
+      delete autoSlideIntervals.current[categoryIndex]
+    }
+  }
+  
+  const pauseAutoSlide = (categoryIndex: number, duration = 5000) => {
+    setUserInteracting(prev => ({ ...prev, [categoryIndex]: true }))
+    setTimeout(() => {
+      setUserInteracting(prev => ({ ...prev, [categoryIndex]: false }))
+    }, duration)
+  }
+
+  // Start auto-slide for all categories when component mounts
+  useEffect(() => {
+    categories.forEach((_, index) => {
+      startAutoSlide(index)
+    })
+    
+    // Cleanup on unmount
+    return () => {
+      Object.values(autoSlideIntervals.current).forEach(interval => {
+        clearInterval(interval)
+      })
+    }
+  }, [])
 
   // Hero slider images (local, using working image paths)
   const heroImages: { src: string; alt: string }[] = [
@@ -158,18 +212,6 @@ export default function HomePage() {
     setTimeout(() => setIsPaused(false), 1500) // Resume setelah 1.5 detik
   }
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % categories.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + categories.length) % categories.length)
-  }
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
-
   const goToHeroSlide = (index: number) => {
     setCurrentHeroSlide(index)
     setIsPaused(true)
@@ -184,25 +226,8 @@ export default function HomePage() {
     setTouchEnd(e.targetTouches[0].clientX)
   }
 
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
-    
-    const distance = touchStart - touchEnd
-    const minSwipeDistance = 50
-
-    if (distance > minSwipeDistance) {
-      nextSlide()
-    } else if (distance < -minSwipeDistance) {
-      prevSlide()
-    }
-  }
   return (
     <div className="min-h-screen">
-      {/* Social Sidebar - Lazy loaded */}
-      <Suspense fallback={<div className="hidden lg:block fixed left-4 top-1/2 transform -translate-y-1/2 z-50 w-12 h-40 bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse" />}>
-        <SocialSidebar />
-      </Suspense>
-      
       {/* Hero Section with Responsive Image Slider (swipe only) */}
       <section className="relative w-full overflow-hidden px-2 md:px-8 pt-4 md:pt-8 pb-8 md:pb-12">
         {/* Purple background for side padding */}
@@ -323,7 +348,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Categories Section */}
+      {/* Product Categories Section - Horizontal Scrollable */}
       <section className="relative py-16 md:py-24 bg-[#CDB6BD] dark:bg-[#2F3134] overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -333,143 +358,137 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Kategori Produk Kami</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">Produk Pilihan Kami</h2>
             <p className="text-lg text-gray-800 dark:text-[#EDE6DE] max-w-2xl mx-auto">
-              Pilih dari berbagai kategori bunga berkualitas untuk setiap momen spesial Anda
+              Jelajahi koleksi bunga terbaik dari setiap kategori untuk momen spesial Anda
             </p>
           </motion.div>
 
-          {/* Mobile Carousel - Custom Modern */}
-          <div className="md:hidden relative">
-            <div
-              className="relative overflow-visible"
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-            >
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          {/* Product Sliders per Category */}
+          <div className="space-y-12">
+            {categories.map((category, categoryIndex) => (
+              <motion.div
+                key={category.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: categoryIndex * 0.2 }}
+                viewport={{ once: true }}
+                className="relative"
               >
-                {categories.map((category, index) => (
-                  <div key={category.title} className="w-full flex-shrink-0 px-2">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: currentSlide === index ? 1 : 0.5, y: 0, scale: currentSlide === index ? 1 : 0.95 }}
-                      transition={{ duration: 0.7 }}
-                      className={`group h-full ${currentSlide === index ? '' : 'pointer-events-none'}`}
-                    >
-                      <div className="relative overflow-hidden rounded-2xl bg-white/20 dark:bg-[#2F3134] shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col border border-white/30 dark:border-[#C6BBAE]/20">
-                        <div className="relative h-64 overflow-hidden flex-shrink-0">
-                          <Image
-                            src={category.image || "/placeholder.svg"}
-                            alt={category.title}
-                            fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-110"
-                          />
-                          <div
-                            className={`absolute inset-0 bg-gradient-to-t ${category.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}
-                          ></div>
-                        </div>
-                        <div className="p-6 flex-1 flex flex-col">
-                          <h3 className="text-xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-2 min-h-[2.5rem] flex items-center">{category.title}</h3>
-                          <p className="text-gray-800 dark:text-[#EDE6DE] mb-4 flex-1 min-h-[3rem] flex items-start">{category.description}</p>
-                          <div className="flex space-x-3 mt-auto">
-                            <Button asChild variant="ghost" className="flex-1 border-2 border-white text-white font-bold rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 bg-transparent shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] hover:bg-[#BFA2DB] hover:text-white hover:border-[#BFA2DB] text-sm">
-                              <Link href={category.href}>Lihat Produk</Link>
-                            </Button>
+                {/* Category Header */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center space-x-4">
+                    <div className={`w-2 h-8 bg-gradient-to-b ${category.color} rounded-full`}></div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-800 dark:text-[#EDE6DE]">{category.title}</h3>
+                      <p className="text-sm text-gray-700 dark:text-[#C6BBAE]">{category.description}</p>
+                    </div>
+                  </div>
+                  <Button 
+                    asChild 
+                    variant="ghost" 
+                    className="border-2 border-[#8B5A9F] text-[#8B5A9F] hover:bg-[#8B5A9F] hover:text-white rounded-full px-6 py-2 text-sm font-medium transition-all duration-200"
+                  >
+                    <Link href={category.href} className="flex items-center space-x-2">
+                      <span>Lihat Semua</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+
+                {/* Horizontal Product Slider */}
+                <div className="relative">
+                  {/* Left Arrow Button - Positioned outside the slider area */}
+                  <button
+                    onClick={() => {
+                      const container = document.getElementById(`slider-${categoryIndex}`);
+                      if (container) {
+                        pauseAutoSlide(categoryIndex); // Pause auto-slide when user clicks
+                        container.scrollBy({ left: -200, behavior: 'smooth' });
+                      }
+                    }}
+                    className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-[#232325]/90 hover:bg-[#BFA2DB] text-[#8B5A9F] hover:text-white rounded-full shadow-lg w-8 h-8 flex items-center justify-center border-2 border-[#BFA2DB] backdrop-blur-md transition-all duration-200 transform hover:scale-110"
+                    aria-label="Slide Kiri"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+
+                  {/* Right Arrow Button - Positioned outside the slider area */}
+                  <button
+                    onClick={() => {
+                      const container = document.getElementById(`slider-${categoryIndex}`);
+                      if (container) {
+                        pauseAutoSlide(categoryIndex); // Pause auto-slide when user clicks
+                        container.scrollBy({ left: 200, behavior: 'smooth' });
+                      }
+                    }}
+                    className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-[#232325]/90 hover:bg-[#BFA2DB] text-[#8B5A9F] hover:text-white rounded-full shadow-lg w-8 h-8 flex items-center justify-center border-2 border-[#BFA2DB] backdrop-blur-md transition-all duration-200 transform hover:scale-110"
+                    aria-label="Slide Kanan"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+
+                  <div 
+                    className="overflow-x-auto scrollbar-hide" 
+                    id={`slider-${categoryIndex}`}
+                    onMouseEnter={() => pauseAutoSlide(categoryIndex, 2000)} // Pause on hover
+                    onTouchStart={() => pauseAutoSlide(categoryIndex, 3000)} // Pause on touch
+                    onScroll={() => pauseAutoSlide(categoryIndex, 2000)} // Pause on manual scroll
+                  >
+                    <div className="flex space-x-3 pb-4">
+                      {/* Sample products for each category - you can replace with real data */}
+                      {[1, 2, 3, 4, 5, 6, 7, 8].map((productIndex) => (
+                        <div
+                          key={`${category.title}-${productIndex}`}
+                          className="flex-shrink-0 w-36 sm:w-44 md:w-48 bg-white/20 dark:bg-[#2F3134] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-white/30 dark:border-[#C6BBAE]/20 group"
+                        >
+                          <div className="relative h-36 sm:h-44 md:h-48 overflow-hidden">
+                            <Image
+                              src={category.image}
+                              alt={`${category.title} ${productIndex}`}
+                              fill
+                              className="object-cover transition-transform duration-300 group-hover:scale-110"
+                            />
+                            <div className={`absolute inset-0 bg-gradient-to-t ${category.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
+                            
+                            {/* Eye Button for Details - Top right corner on mobile, center on desktop hover */}
+                            <div className="absolute top-2 right-2 md:inset-0 md:flex md:items-center md:justify-center md:opacity-0 md:group-hover:opacity-100 md:top-0 md:right-0 transition-opacity duration-300 md:bg-black/20">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => {
+                                  // Navigate to product detail - you can customize this URL
+                                  window.location.href = `${category.href}?product=${productIndex}`;
+                                }}
+                                className="bg-white/90 hover:bg-white text-[#8B5A9F] hover:text-[#8B5A9F] rounded-full w-8 h-8 md:w-10 md:h-10 p-0 shadow-lg transition-all duration-200 transform hover:scale-110"
+                                aria-label={`Lihat detail ${category.title} Premium ${productIndex}`}
+                              >
+                                <Eye className="h-4 w-4 md:h-5 md:w-5" />
+                              </Button>
+                            </div>
+                          </div>
+                          
+                          <div className="p-3">
+                            <h4 className="text-sm font-semibold text-gray-800 dark:text-[#EDE6DE] mb-3 truncate">
+                              {category.title} Premium {productIndex}
+                            </h4>
+                            
                             <WhatsAppButton
-                              message={`Halo, saya tertarik dengan ${category.title} dari Momo Florist`}
-                              className="flex-1 bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[120px] h-10 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
+                              message={`Halo, saya tertarik dengan ${category.title} Premium ${productIndex} dari Momo Florist`}
+                              className="w-full bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white rounded-lg text-xs font-medium transition-all duration-200 transform hover:scale-105 border-none h-7"
                               hideIcon
                             >
                               Pesan
                             </WhatsAppButton>
                           </div>
                         </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                ))}
-              </div>
-              {/* Custom Slide Buttons */}
-              <button
-                onClick={prevSlide}
-                aria-label="Sebelumnya"
-                className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/70 dark:bg-[#232325]/70 hover:bg-[#BFA2DB] text-[#8B5A9F] hover:text-white rounded-full shadow-lg w-10 h-10 flex items-center justify-center border-2 border-[#BFA2DB] backdrop-blur-md transition-colors duration-200"
-                style={{ outline: 'none' }}
-                disabled={currentSlide === 0}
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              <button
-                onClick={nextSlide}
-                aria-label="Selanjutnya"
-                className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/70 dark:bg-[#232325]/70 hover:bg-[#BFA2DB] text-[#8B5A9F] hover:text-white rounded-full shadow-lg w-10 h-10 flex items-center justify-center border-2 border-[#BFA2DB] backdrop-blur-md transition-colors duration-200"
-                style={{ outline: 'none' }}
-                disabled={currentSlide === categories.length - 1}
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
-            </div>
-            {/* Dots Indicator */}
-            <div className="flex justify-center mt-6 space-x-2">
-              {categories.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 border-2 border-[#BFA2DB] ${
-                    index === currentSlide
-                      ? 'bg-[#BFA2DB] scale-110'
-                      : 'bg-white dark:bg-[#C6BBAE] hover:bg-[#BFA2DB]'
-                  }`}
-                  aria-label={`Slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Desktop Grid */}
-          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((category, index) => (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-                className="group h-full"
-              >
-                <div className="relative overflow-hidden rounded-2xl bg-white/20 dark:bg-[#2F3134] shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col border border-white/30 dark:border-[#C6BBAE]/20">
-                  <div className="relative h-64 overflow-hidden flex-shrink-0">
-                    <Image
-                      src={category.image || "/placeholder.svg"}
-                      alt={category.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-t ${category.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}
-                    ></div>
-                  </div>
-
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-2 min-h-[2.5rem] flex items-center">{category.title}</h3>
-                    <p className="text-gray-800 dark:text-[#EDE6DE] mb-4 flex-1 min-h-[3rem] flex items-start">{category.description}</p>
-                    <div className="flex space-x-3 mt-auto">
-                      <Button asChild variant="ghost" className="flex-1 border-2 border-white text-white font-bold rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 min-w-[120px] h-10 bg-transparent shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] hover:bg-[#BFA2DB] hover:text-white hover:border-[#BFA2DB] text-sm">
-                        <Link href={category.href}>Lihat Produk</Link>
-                      </Button>
-                      <WhatsAppButton
-                        message={`Halo, saya tertarik dengan ${category.title} dari Momo Florist`}
-                        className="flex-1 bg-gradient-to-r from-[#BFA2DB] to-[#D4C3A6] text-white font-medium rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 text-sm border-none shadow-lg drop-shadow-[0_1px_8px_rgba(191,162,219,0.7)] min-w-[120px] h-10 ring-2 ring-[#BFA2DB]/60 hover:ring-[#D4C3A6]/80"
-                        hideIcon
-                      >
-                        Pesan
-                      </WhatsAppButton>
+                      ))}
                     </div>
                   </div>
+                  
+                  {/* Gradient overlays for scroll indication - Adjusted for new button positions */}
+                  <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-[#CDB6BD] dark:from-[#2F3134] to-transparent pointer-events-none z-10"></div>
+                  <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-[#CDB6BD] dark:from-[#2F3134] to-transparent pointer-events-none z-10"></div>
                 </div>
               </motion.div>
             ))}

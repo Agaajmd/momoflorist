@@ -6,6 +6,9 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import RoutePreloader from "@/components/route-preloader"
+import SocialSidebar from "@/components/social-sidebar"
+import FloatingWhatsAppButton from "@/components/floating-whatsapp-button"
+import { Suspense } from "react"
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -182,6 +185,17 @@ export default function RootLayout({
         </a>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange={false}>
           <RoutePreloader />
+          
+          {/* Social Sidebar - Desktop only */}
+          <Suspense fallback={<div className="hidden lg:block fixed left-4 top-1/2 transform -translate-y-1/2 z-50 w-12 h-40 bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse" />}>
+            <SocialSidebar />
+          </Suspense>
+          
+          {/* Floating WhatsApp Button - Mobile only */}
+          <Suspense fallback={<div className="lg:hidden fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full animate-pulse" />}>
+            <FloatingWhatsAppButton />
+          </Suspense>
+          
           <Navigation />
           <main id="main-content" className="min-h-screen" role="main">{children}</main>
           <Footer />

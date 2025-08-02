@@ -2,7 +2,7 @@
 import bundleAnalyzer from '@next/bundle-analyzer'
 
 const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
+  enabled: process.env.ANALYZE === 'true' || false,
 })
 
 const nextConfig = {
@@ -39,7 +39,7 @@ const nextConfig = {
   },
   // Enable bundle analyzer in production
   env: {
-    ANALYZE: process.env.ANALYZE,
+    ANALYZE: process.env.ANALYZE || 'false',
   },
   // Headers for security and caching
   async headers() {
