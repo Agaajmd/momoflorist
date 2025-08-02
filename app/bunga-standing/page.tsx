@@ -6,6 +6,8 @@ import MobileProductGrid from "@/components/mobile-product-grid"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
 
+export const dynamic = 'force-dynamic'
+
 const standingFlowerImages = [
   {
     src: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",

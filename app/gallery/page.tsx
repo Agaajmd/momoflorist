@@ -7,6 +7,8 @@ import MapsEmbed from "@/components/maps-embed"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
 
+export const dynamic = 'force-dynamic'
+
 const galleryImages = [
   // Bunga Papan
   {

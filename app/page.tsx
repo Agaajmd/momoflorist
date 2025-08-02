@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import SocialSidebar from "@/components/social-sidebar"
 
+export const dynamic = 'force-dynamic'
+
 const categories = [
   {
     title: "Bunga Papan",

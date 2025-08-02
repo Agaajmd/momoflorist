@@ -6,6 +6,8 @@ import MobileProductGrid from "@/components/mobile-product-grid"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
 
+export const dynamic = 'force-dynamic'
+
 const categories = [
   {
     title: "Duka Cita Mini",
