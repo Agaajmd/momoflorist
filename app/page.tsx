@@ -14,11 +14,25 @@ import { usePerformanceMonitoring } from "@/hooks/use-performance-monitoring"
 
 const categories = [
   {
-    title: "Bunga Papan",
-    description: "Spesialis bunga papan untuk berbagai acara",
+    title: "Bunga Papan Duka Cita",
+    description: "Bunga papan khusus untuk momen duka cita dan belasungkawa",
     image: "/bunga papan/bunga papan.jpg",
     href: "/bunga-papan",
+    color: "from-gray-500 to-gray-700",
+  },
+  {
+    title: "Bunga Papan Wedding",
+    description: "Bunga papan untuk pernikahan dan momen romantis",
+    image: "/bunga papan/bunga papan2.jpg",
+    href: "/bunga-papan",
     color: "from-pink-500 to-rose-500",
+  },
+  {
+    title: "Bunga Papan Selamat dan Sukses",
+    description: "Bunga papan untuk ucapan selamat dan pencapaian sukses",
+    image: "/bunga papan/bunga papan.jpg",
+    href: "/bunga-papan",
+    color: "from-yellow-500 to-orange-500",
   },
   {
     title: "Bunga Papan Mini",
@@ -94,12 +108,15 @@ export default function HomePage() {
   // Auto-slide intervals storage
   const autoSlideIntervals = useRef<{ [key: number]: NodeJS.Timeout }>({})
   
-  // Auto-slide function for product sliders
+  // Auto-slide function for product sliders with different directions
   const startAutoSlide = (categoryIndex: number) => {
     // Clear existing interval if any
     if (autoSlideIntervals.current[categoryIndex]) {
       clearInterval(autoSlideIntervals.current[categoryIndex])
     }
+    
+    // Determine slide direction - alternating between left and right
+    const slideDirection = categoryIndex % 2 === 0 ? 'right' : 'left'
     
     autoSlideIntervals.current[categoryIndex] = setInterval(() => {
       // Check if user is not interacting
@@ -110,16 +127,24 @@ export default function HomePage() {
           const clientWidth = container.clientWidth
           const currentScroll = container.scrollLeft
           
-          // If we're at the end, scroll back to start
-          if (currentScroll + clientWidth >= scrollWidth - 10) {
-            container.scrollTo({ left: 0, behavior: 'smooth' })
+          if (slideDirection === 'right') {
+            // Slide to right (normal direction)
+            if (currentScroll + clientWidth >= scrollWidth - 10) {
+              container.scrollTo({ left: 0, behavior: 'smooth' })
+            } else {
+              container.scrollBy({ left: 200, behavior: 'smooth' })
+            }
           } else {
-            // Scroll to next position
-            container.scrollBy({ left: 200, behavior: 'smooth' })
+            // Slide to left (reverse direction)
+            if (currentScroll <= 10) {
+              container.scrollTo({ left: scrollWidth - clientWidth, behavior: 'smooth' })
+            } else {
+              container.scrollBy({ left: -200, behavior: 'smooth' })
+            }
           }
         }
       }
-    }, 3000) // Auto-slide every 3 seconds
+    }, 3000 + (categoryIndex * 500)) // Different timing for each category
   }
   
   const stopAutoSlide = (categoryIndex: number) => {
@@ -138,12 +163,25 @@ export default function HomePage() {
 
   // Start auto-slide for all categories when component mounts
   useEffect(() => {
-    categories.forEach((_, index) => {
-      startAutoSlide(index)
-    })
+    // Small delay to ensure DOM elements are ready
+    const timer = setTimeout(() => {
+      categories.forEach((_, index) => {
+        // For categories that slide left (odd indexes), start from the end
+        if (index % 2 === 1) {
+          const container = document.getElementById(`slider-${index}`)
+          if (container) {
+            const scrollWidth = container.scrollWidth
+            const clientWidth = container.clientWidth
+            container.scrollLeft = scrollWidth - clientWidth
+          }
+        }
+        startAutoSlide(index)
+      })
+    }, 100)
     
     // Cleanup on unmount
     return () => {
+      clearTimeout(timer)
       Object.values(autoSlideIntervals.current).forEach(interval => {
         clearInterval(interval)
       })

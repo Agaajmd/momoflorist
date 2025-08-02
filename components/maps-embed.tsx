@@ -2,18 +2,17 @@
 
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { MapPin, ExternalLink } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 
 export default function MapsEmbed() {
   const [mapError, setMapError] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   
-  const address = "Jl. Manyar Sambongan No.30, Kertajaya, Kec. Gubeng, Surabaya, Jawa Timur 60282"
   const googleMapsUrl = "https://www.google.com/maps/place/Jl.+Manyar+Sambongan+No.30,+Kertajaya,+Kec.+Gubeng,+Surabaya,+Jawa+Timur+60282"
   
   console.log('MapsEmbed component rendered, isLoading:', isLoading, 'mapError:', mapError)
   
-  // Jika ada error loading map, tampilkan fallback
+  // Jika ada error loading map, tetap tampilkan iframe kosong
   if (mapError) {
     return (
       <motion.div
@@ -21,28 +20,29 @@ export default function MapsEmbed() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="w-full h-64 md:h-80 rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 flex items-center justify-center"
+        className="w-full h-64 md:h-80 rounded-xl overflow-hidden shadow-lg bg-gray-100 dark:bg-gray-800 relative"
       >
-        <div className="text-center p-6">
-          <MapPin className="h-12 w-12 text-[#BFA2DB] mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-            Lokasi Momo Florist
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 max-w-xs">
-            {address}
-          </p>
-          <motion.a
-            href={googleMapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center space-x-2 bg-[#BFA2DB] hover:bg-[#8B5A9F] text-white px-4 py-2 rounded-lg transition-colors duration-200"
-          >
-            <span>Buka di Google Maps</span>
-            <ExternalLink className="h-4 w-4" />
-          </motion.a>
+        {/* Loading fallback yang mirip map */}
+        <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 relative">
+          <div className="absolute inset-0 opacity-20">
+            {/* Pattern seperti peta */}
+            <div className="w-full h-full" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000' fill-opacity='0.05'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
+            }}></div>
+          </div>
         </div>
+        
+        {/* Button untuk buka di Google Maps */}
+        <motion.a
+          href={googleMapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.05 }}
+          className="absolute top-4 right-4 bg-white/90 hover:bg-white text-gray-900 p-2 rounded-lg shadow-md transition-all duration-200 flex items-center space-x-1 text-sm z-20"
+        >
+          <ExternalLink className="h-4 w-4" />
+          <span className="hidden sm:inline">Buka Maps</span>
+        </motion.a>
       </motion.div>
     )
   }
@@ -55,13 +55,10 @@ export default function MapsEmbed() {
       viewport={{ once: true }}
       className="w-full h-64 md:h-80 rounded-xl overflow-hidden shadow-lg relative"
     >
-      {/* Loading indicator */}
+      {/* Loading indicator - minimal */}
       {isLoading && (
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 flex items-center justify-center z-10">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-2 border-[#BFA2DB] border-t-transparent mx-auto mb-2"></div>
-            <p className="text-sm text-gray-600 dark:text-gray-300">Memuat peta...</p>
-          </div>
+        <div className="absolute inset-0 bg-gray-100 dark:bg-gray-800 flex items-center justify-center z-10">
+          <div className="animate-spin rounded-full h-6 w-6 border-2 border-[#BFA2DB] border-t-transparent"></div>
         </div>
       )}
       
