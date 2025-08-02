@@ -5,22 +5,21 @@ export function middleware(request: NextRequest) {
   // Clone the response
   const response = NextResponse.next()
 
-  // Add security headers
-  response.headers.set('X-Frame-Options', 'DENY')
+  // Add security headers - Remove X-Frame-Options to allow Google Maps embed
   response.headers.set('X-Content-Type-Options', 'nosniff')
   response.headers.set('Referrer-Policy', 'origin-when-cross-origin')
   response.headers.set('X-XSS-Protection', '1; mode=block')
   
-  // Add CSP header for security
+  // Add CSP header for security - Allow Google Maps frames
   response.headers.set(
     'Content-Security-Policy',
     "default-src 'self'; " +
     "script-src 'self' 'unsafe-eval' 'unsafe-inline'; " +
     "style-src 'self' 'unsafe-inline' fonts.googleapis.com; " +
-    "img-src 'self' data: images.unsplash.com; " +
+    "img-src 'self' data: images.unsplash.com *.googleapis.com *.gstatic.com; " +
     "font-src 'self' fonts.gstatic.com; " +
-    "connect-src 'self' api.whatsapp.com; " +
-    "frame-src 'self';"
+    "connect-src 'self' api.whatsapp.com *.googleapis.com; " +
+    "frame-src 'self' *.google.com *.googleapis.com *.gstatic.com;"
   )
 
   // Add cache headers for static assets

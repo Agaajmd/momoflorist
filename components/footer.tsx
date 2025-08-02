@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Phone, MessageCircle, MapPin, Clock, Instagram, Flower2 } from "lucide-react"
-import MapsEmbed from "./maps-embed"
+import MapsEmbed from "./maps-embed-final"
 
 export default function Footer() {
   const whatsappNumber = "6281213142558"

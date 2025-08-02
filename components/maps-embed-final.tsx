@@ -1,20 +1,32 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { MapPin, ExternalLink } from "lucide-react"
 
 export default function MapsEmbed() {
   const [mapError, setMapError] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [showFallback, setShowFallback] = useState(false)
   
   const address = "Jl. Manyar Sambongan No.30, Kertajaya, Kec. Gubeng, Surabaya, Jawa Timur 60282"
   const googleMapsUrl = "https://www.google.com/maps/place/Jl.+Manyar+Sambongan+No.30,+Kertajaya,+Kec.+Gubeng,+Surabaya,+Jawa+Timur+60282"
   
-  console.log('MapsEmbed component rendered, isLoading:', isLoading, 'mapError:', mapError)
+  // Timeout fallback jika maps tidak load dalam 8 detik
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (isLoading) {
+        console.log('Maps loading timeout, showing fallback')
+        setShowFallback(true)
+        setIsLoading(false)
+      }
+    }, 8000)
+    
+    return () => clearTimeout(timer)
+  }, [isLoading])
   
-  // Jika ada error loading map, tampilkan fallback
-  if (mapError) {
+  // Jika ada error loading map atau timeout, tampilkan fallback
+  if (mapError || showFallback) {
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -31,17 +43,35 @@ export default function MapsEmbed() {
           <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 max-w-xs">
             {address}
           </p>
-          <motion.a
-            href={googleMapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center space-x-2 bg-[#BFA2DB] hover:bg-[#8B5A9F] text-white px-4 py-2 rounded-lg transition-colors duration-200"
-          >
-            <span>Buka di Google Maps</span>
-            <ExternalLink className="h-4 w-4" />
-          </motion.a>
+          <div className="space-y-2">
+            <motion.a
+              href={googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center space-x-2 bg-[#BFA2DB] hover:bg-[#8B5A9F] text-white px-4 py-2 rounded-lg transition-colors duration-200 mr-2 mb-2"
+            >
+              <span>Google Maps</span>
+              <ExternalLink className="h-4 w-4" />
+            </motion.a>
+            <motion.a
+              href="https://waze.com/ul?ll=-7.2653,112.7508&navigate=yes"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+            >
+              <span>Waze</span>
+              <ExternalLink className="h-4 w-4" />
+            </motion.a>
+          </div>
+          {showFallback && (
+            <p className="text-xs text-gray-500 mt-3">
+              Peta sedang dimuat. Gunakan tombol di atas untuk navigasi.
+            </p>
+          )}
         </div>
       </motion.div>
     )
@@ -53,7 +83,7 @@ export default function MapsEmbed() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="w-full h-64 md:h-80 rounded-xl overflow-hidden shadow-lg relative"
+      className="w-full h-64 md:h-80 rounded-xl overflow-hidden shadow-lg relative bg-gray-100 dark:bg-gray-800"
     >
       {/* Loading indicator */}
       {isLoading && (
@@ -65,6 +95,7 @@ export default function MapsEmbed() {
         </div>
       )}
       
+      {/* Google Maps Embed */}
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.5034991678753!2d112.75078831461596!3d-7.265303192723745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7f93ed34be343%3A0x4b8ee89b5b4e0ca7!2sJl.%20Manyar%20Sambongan%20No.30%2C%20Kertajaya%2C%20Kec.%20Gubeng%2C%20Surabaya%2C%20Jawa%20Timur%2060282%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1733187234567"
         width="100%"
@@ -74,18 +105,18 @@ export default function MapsEmbed() {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         title="Lokasi Momo Florist - Jl. Manyar Sambongan No.30, Kertajaya, Gubeng, Surabaya"
-        onError={() => {
-          console.error('Map failed to load')
+        onError={(e) => {
+          console.error('Map failed to load:', e)
           setMapError(true)
           setIsLoading(false)
         }}
         onLoad={() => {
           setIsLoading(false)
-          console.log('Maps berhasil dimuat')
+          console.log('Maps berhasil dimuat!')
         }}
       />
       
-      {/* Button untuk buka di Google Maps */}
+      {/* Button overlay untuk membuka Google Maps */}
       <motion.a
         href={googleMapsUrl}
         target="_blank"
