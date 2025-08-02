@@ -1,13 +1,12 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo, memo } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Clock, Truck, Heart, Star, ChevronLeft, ChevronRight, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
-import { usePerformanceMonitoring } from "@/hooks/use-performance-monitoring"
 
 // Remove force-dynamic for better performance
 // export const dynamic = 'force-dynamic'
@@ -96,7 +95,7 @@ const features = [
 
 export default function HomePage() {
   // Initialize performance monitoring
-  usePerformanceMonitoring()
+  // Performance monitoring removed for production optimization
   
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0)
   const [touchStart, setTouchStart] = useState(0)

@@ -27,6 +27,9 @@ export function middleware(request: NextRequest) {
   )
 
   // Add performance and caching headers
+  response.headers.set('X-DNS-Prefetch-Control', 'on')
+  response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
+  
   if (request.nextUrl.pathname.includes('/logo') || 
       request.nextUrl.pathname.includes('.jpg') ||
       request.nextUrl.pathname.includes('.png') ||

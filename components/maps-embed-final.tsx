@@ -9,7 +9,6 @@ export default function MapsEmbed() {
   const [isLoading, setIsLoading] = useState(true)
   const [showFallback, setShowFallback] = useState(false)
   
-  const address = "Jl. Manyar Sambongan No.30, Kertajaya, Kec. Gubeng, Surabaya, Jawa Timur 60282"
   const googleMapsUrl = "https://www.google.com/maps/place/Jl.+Manyar+Sambongan+No.30,+Kertajaya,+Kec.+Gubeng,+Surabaya,+Jawa+Timur+60282"
   
   // Timeout fallback jika maps tidak load dalam 8 detik
@@ -25,7 +24,7 @@ export default function MapsEmbed() {
     return () => clearTimeout(timer)
   }, [isLoading])
   
-  // Jika ada error loading map atau timeout, tampilkan fallback
+  // Jika ada error loading map atau timeout, tampilkan fallback minimal
   if (mapError || showFallback) {
     return (
       <motion.div
@@ -37,41 +36,6 @@ export default function MapsEmbed() {
       >
         <div className="text-center p-6">
           <MapPin className="h-12 w-12 text-[#BFA2DB] mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-            Lokasi Momo Florist
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 max-w-xs">
-            {address}
-          </p>
-          <div className="space-y-2">
-            <motion.a
-              href={googleMapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center space-x-2 bg-[#BFA2DB] hover:bg-[#8B5A9F] text-white px-4 py-2 rounded-lg transition-colors duration-200 mr-2 mb-2"
-            >
-              <span>Google Maps</span>
-              <ExternalLink className="h-4 w-4" />
-            </motion.a>
-            <motion.a
-              href="https://waze.com/ul?ll=-7.2653,112.7508&navigate=yes"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
-            >
-              <span>Waze</span>
-              <ExternalLink className="h-4 w-4" />
-            </motion.a>
-          </div>
-          {showFallback && (
-            <p className="text-xs text-gray-500 mt-3">
-              Peta sedang dimuat. Gunakan tombol di atas untuk navigasi.
-            </p>
-          )}
         </div>
       </motion.div>
     )
@@ -89,8 +53,7 @@ export default function MapsEmbed() {
       {isLoading && (
         <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 flex items-center justify-center z-10">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-2 border-[#BFA2DB] border-t-transparent mx-auto mb-2"></div>
-            <p className="text-sm text-gray-600 dark:text-gray-300">Memuat peta...</p>
+            <div className="animate-spin rounded-full h-8 w-8 border-2 border-[#BFA2DB] border-t-transparent mx-auto"></div>
           </div>
         </div>
       )}
@@ -104,7 +67,7 @@ export default function MapsEmbed() {
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-        title="Lokasi Momo Florist - Jl. Manyar Sambongan No.30, Kertajaya, Gubeng, Surabaya"
+        title="Momo Florist Location Map"
         onError={(e) => {
           console.error('Map failed to load:', e)
           setMapError(true)
@@ -116,16 +79,15 @@ export default function MapsEmbed() {
         }}
       />
       
-      {/* Button overlay untuk membuka Google Maps */}
+      {/* Button overlay untuk membuka Google Maps - hidden untuk tampilan bersih */}
       <motion.a
         href={googleMapsUrl}
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.05 }}
-        className="absolute top-4 right-4 bg-white/90 hover:bg-white text-gray-900 p-2 rounded-lg shadow-md transition-all duration-200 flex items-center space-x-1 text-sm z-20"
+        className="absolute top-4 right-4 bg-white/90 hover:bg-white text-gray-900 p-2 rounded-lg shadow-md transition-all duration-200 flex items-center space-x-1 text-sm z-20 opacity-0 hover:opacity-100"
       >
         <ExternalLink className="h-4 w-4" />
-        <span className="hidden sm:inline">Buka Maps</span>
       </motion.a>
     </motion.div>
   )

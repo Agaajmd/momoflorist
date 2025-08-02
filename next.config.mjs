@@ -34,8 +34,16 @@ const nextConfig = {
   // Enable experimental features for better performance
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-icons'],
-    // optimizeCss: true, // Disabled temporarily due to critters dependency issue
+    // optimizeCss: true, // Disabled due to critters dependency issue
     webVitalsAttribution: ['CLS', 'LCP'],
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
   },
   // Enable bundle analyzer in production
   env: {

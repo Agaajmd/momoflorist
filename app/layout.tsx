@@ -172,7 +172,16 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://api.whatsapp.com" />
+        <link rel="dns-prefetch" href="https://maps.google.com" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
+        <link rel="preload" href="/logo MomoFlorist.png" as="image" type="image/png" />
+        <link rel="modulepreload" href="/_next/static/chunks/webpack.js" />
         <meta name="format-detection" content="telephone=no" />
+        <meta name="resource-type" content="document" />
+        <meta name="distribution" content="global" />
+        <meta name="rating" content="general" />
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="MobileOptimized" content="width" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />

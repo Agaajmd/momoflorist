@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button"
 
 // Lazy load heavy components
 const MobileProductGrid = lazy(() => import("@/components/mobile-product-grid"))
-const MapsEmbed = lazy(() => import("@/components/maps-embed"))
+const MapsEmbed = lazy(() => import("@/components/maps-embed-final"))
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic' // Removed for better build performance
 
 const galleryImages = [
   // Bunga Papan

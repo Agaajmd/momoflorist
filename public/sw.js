@@ -1,6 +1,6 @@
-const CACHE_NAME = 'momo-florist-v2';
-const CACHE_STATIC_NAME = 'momo-florist-static-v2';
-const CACHE_DYNAMIC_NAME = 'momo-florist-dynamic-v2';
+const CACHE_NAME = 'momo-florist-v3';
+const CACHE_STATIC_NAME = 'momo-florist-static-v3';
+const CACHE_DYNAMIC_NAME = 'momo-florist-dynamic-v3';
 
 const urlsToCache = [
   '/',
