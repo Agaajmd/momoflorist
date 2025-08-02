@@ -1,7 +1,14 @@
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Memuat... | Momo Florist',
+  robots: 'noindex'
+}
+
 export default function Loading() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#CDB6BD] dark:bg-[#2F3134]">
-      <div className="flex flex-col items-center space-y-6">
+      <div className="flex flex-col items-center space-y-6" role="status" aria-label="Memuat halaman">
         {/* Animated flower icon */}
         <div className="relative">
           <div className="w-16 h-16 border-4 border-[#BFA2DB]/30 border-t-[#BFA2DB] rounded-full animate-spin"></div>
@@ -16,12 +23,12 @@ export default function Loading() {
             Momo Florist
           </h2>
           <p className="text-lg text-gray-700 dark:text-[#C6BBAE] animate-pulse">
-            Sedang memuat...
+            Sedang memuat halaman...
           </p>
         </div>
         
         {/* Animated dots */}
-        <div className="flex space-x-2">
+        <div className="flex space-x-2" aria-hidden="true">
           <div className="w-3 h-3 bg-[#BFA2DB] rounded-full animate-bounce"></div>
           <div className="w-3 h-3 bg-[#D4C3A6] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
           <div className="w-3 h-3 bg-[#BFA2DB] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>

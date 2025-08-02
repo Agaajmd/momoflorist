@@ -1,13 +1,15 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense, lazy } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Clock, Truck, Heart, Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
-import SocialSidebar from "@/components/social-sidebar"
+
+// Lazy load components that are not immediately visible
+const SocialSidebar = lazy(() => import("@/components/social-sidebar"))
 
 export const dynamic = 'force-dynamic'
 
@@ -188,8 +190,10 @@ export default function HomePage() {
   }
   return (
     <div className="min-h-screen">
-      {/* Social Sidebar */}
-      <SocialSidebar />
+      {/* Social Sidebar - Lazy loaded */}
+      <Suspense fallback={<div className="hidden lg:block fixed left-4 top-1/2 transform -translate-y-1/2 z-50 w-12 h-40 bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse" />}>
+        <SocialSidebar />
+      </Suspense>
       
       {/* Hero Section with Responsive Image Slider (swipe only) */}
       <section className="relative w-full overflow-hidden px-2 md:px-8 pt-4 md:pt-8 pb-8 md:pb-12">
@@ -220,7 +224,10 @@ export default function HomePage() {
                   fill
                   className="object-cover w-full h-full"
                   priority={idx === 0}
+                  quality={idx === 0 ? 90 : 75}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
             ))}

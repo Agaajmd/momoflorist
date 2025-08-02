@@ -2,10 +2,13 @@
 
 import { motion } from "framer-motion"
 import { Phone, MessageCircle, MapPin, Clock, Instagram, ArrowRight } from "lucide-react"
-import MobileProductGrid from "@/components/mobile-product-grid"
-import MapsEmbed from "@/components/maps-embed"
+import { Suspense, lazy } from "react"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
+
+// Lazy load heavy components
+const MobileProductGrid = lazy(() => import("@/components/mobile-product-grid"))
+const MapsEmbed = lazy(() => import("@/components/maps-embed"))
 
 export const dynamic = 'force-dynamic'
 
@@ -353,7 +356,9 @@ export default function GalleryPage() {
               Rangkaian <span className="font-bold">bunga salib</span> untuk <span className="font-bold">duka cita</span>, <span className="font-bold">peringatan</span>, dan <span className="font-bold">penghormatan</span> dengan desain premium dan penuh makna. Cocok untuk acara <span className="font-bold">gereja</span> dan <span className="font-bold">upacara keagamaan</span>.
             </p>
           </motion.div>
-          <MobileProductGrid products={bungaSalib} columns={3} />
+          <Suspense fallback={<div className="grid grid-cols-3 gap-3 md:gap-6"><div className="aspect-square bg-gray-200 dark:bg-gray-800 rounded-3xl animate-pulse"></div><div className="aspect-square bg-gray-200 dark:bg-gray-800 rounded-3xl animate-pulse"></div><div className="aspect-square bg-gray-200 dark:bg-gray-800 rounded-3xl animate-pulse"></div></div>}>
+            <MobileProductGrid products={bungaSalib} columns={3} />
+          </Suspense>
         </div>
       </section>
 
@@ -372,7 +377,9 @@ export default function GalleryPage() {
               Pilihan <span className="font-bold">bunga potong pita</span> untuk acara <span className="font-bold">peresmian</span>, <span className="font-bold">grand opening</span>, <span className="font-bold">opening ceremony</span> dan momen spesial lainnya. Desain elegan untuk <span className="font-bold">acara bisnis</span> dan <span className="font-bold">corporate event</span>.
             </p>
           </motion.div>
-          <MobileProductGrid products={bungaPotongPita} columns={3} />
+          <Suspense fallback={<div className="grid grid-cols-3 gap-3 md:gap-6"><div className="aspect-square bg-gray-200 dark:bg-gray-800 rounded-3xl animate-pulse"></div><div className="aspect-square bg-gray-200 dark:bg-gray-800 rounded-3xl animate-pulse"></div><div className="aspect-square bg-gray-200 dark:bg-gray-800 rounded-3xl animate-pulse"></div></div>}>
+            <MobileProductGrid products={bungaPotongPita} columns={3} />
+          </Suspense>
         </div>
       </section>
 
@@ -391,7 +398,9 @@ export default function GalleryPage() {
               Lihat koleksi karya terbaik kami dari berbagai kategori <span className="font-bold">bunga dan dekorasi</span>. Inspirasi untuk <span className="font-bold">wedding</span>, <span className="font-bold">event</span>, <span className="font-bold">ulang tahun</span> dan <span className="font-bold">acara spesial</span> Anda.
             </p>
           </motion.div>
-          <MobileProductGrid products={galleryImages} columns={3} />
+          <Suspense fallback={<div className="grid grid-cols-3 gap-3 md:gap-6"><div className="aspect-square bg-gray-200 dark:bg-gray-800 rounded-3xl animate-pulse"></div><div className="aspect-square bg-gray-200 dark:bg-gray-800 rounded-3xl animate-pulse"></div><div className="aspect-square bg-gray-200 dark:bg-gray-800 rounded-3xl animate-pulse"></div></div>}>
+            <MobileProductGrid products={galleryImages} columns={3} />
+          </Suspense>
         </div>
       </section>
 

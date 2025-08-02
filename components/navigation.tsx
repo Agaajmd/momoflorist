@@ -157,6 +157,14 @@ export default function Navigation() {
 
   return (
     <>
+      {/* Skip Navigation */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 z-[100] bg-blue-600 text-white px-4 py-2 rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      >
+        Langsung ke konten utama
+      </a>
+
       {/* Information Text */}
       <div className="bg-white dark:bg-black text-black dark:text-white py-3 px-4 text-center transition-colors duration-300">
         <p className="text-sm font-medium">

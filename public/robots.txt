@@ -1,0 +1,24 @@
+# Robots.txt for Momo Florist
+# https://momoflorist.vercel.app/robots.txt
+
+User-agent: *
+Allow: /
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow important pages
+Allow: /bunga-papan
+Allow: /bunga-papan-mini  
+Allow: /bunga-standing
+Allow: /hand-bouquet
+Allow: /gallery
+
+# Sitemap location
+Sitemap: https://momoflorist.vercel.app/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1

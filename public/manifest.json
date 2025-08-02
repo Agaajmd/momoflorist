@@ -1,0 +1,36 @@
+{
+  "name": "Momo Florist - Toko Bunga Online Surabaya",
+  "short_name": "Momo Florist",
+  "description": "Toko bunga online terpercaya di Surabaya. Spesialis bunga papan, standing flower, hand bouquet. Buka 24 jam, gratis ongkir, pengerjaan cepat 2 jam.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#CDB6BD",
+  "theme_color": "#BFA2DB",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/logo MomoFlorist.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/logo MomoFlorist.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["shopping", "lifestyle", "business"],
+  "lang": "id",
+  "dir": "ltr",
+  "screenshots": [
+    {
+      "src": "/bunga papan/bunga papan.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ]
+}

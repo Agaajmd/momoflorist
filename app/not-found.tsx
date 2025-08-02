@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Home, ArrowLeft } from "lucide-react"
+import { Home, ArrowLeft, Phone, Search } from "lucide-react"
 
 export const dynamic = 'force-dynamic'
 
@@ -11,6 +11,11 @@ export default function NotFound() {
     <div className="min-h-screen flex items-center justify-center bg-[#CDB6BD] dark:bg-[#2F3134]">
       <div className="max-w-md w-full mx-auto p-8 text-center">
         <div className="mb-8">
+          {/* Flower Icon */}
+          <div className="w-32 h-32 mx-auto mb-6 bg-[#BFA2DB]/20 dark:bg-[#BFA2DB]/10 rounded-full flex items-center justify-center">
+            <span className="text-6xl">🌸</span>
+          </div>
+          
           {/* 404 Number */}
           <h1 className="text-8xl font-bold text-[#BFA2DB] dark:text-[#BFA2DB] mb-4 drop-shadow-lg">
             404

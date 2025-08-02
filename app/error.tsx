@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import { useEffect } from "react"
-import { Button } from "@/components/ui/button"
-
-export const dynamic = 'force-dynamic'
+import { useEffect } from 'react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { RefreshCw, Home, Phone } from 'lucide-react'
 
 export default function Error({
   error,
@@ -13,51 +13,74 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
-    console.error(error)
+    // Log error to monitoring service
+    console.error('Application error:', error)
   }, [error])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
-      <div className="max-w-md w-full mx-auto p-8 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-[#CDB6BD] dark:bg-[#2F3134] px-4">
+      <div className="max-w-md mx-auto text-center">
         <div className="mb-8">
-          <h1 className="text-6xl font-bold text-gray-400 dark:text-gray-600 mb-4">
-            Oops!
+          <div className="w-24 h-24 mx-auto mb-6 bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center">
+            <span className="text-4xl">🌸</span>
+          </div>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-[#EDE6DE] mb-4">
+            Oops! Terjadi Kesalahan
           </h1>
-          <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
-            Terjadi Kesalahan
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-8">
-            Maaf, terjadi kesalahan yang tidak terduga. Tim kami telah diberitahu dan akan segera memperbaikinya.
+          <p className="text-lg text-gray-700 dark:text-[#C6BBAE] mb-8">
+            Maaf, terjadi kesalahan tak terduga. Tim kami akan segera memperbaikinya.
           </p>
         </div>
 
         <div className="space-y-4">
-          <Button 
+          <Button
             onClick={reset}
-            className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-medium py-3 rounded-lg transition-all duration-200"
+            className="w-full bg-[#BFA2DB] hover:bg-[#A67FA3] text-white"
+            size="lg"
           >
+            <RefreshCw className="w-4 h-4 mr-2" />
             Coba Lagi
           </Button>
           
-          <Button 
+          <Button
+            asChild
             variant="outline"
-            onClick={() => window.location.href = '/'}
-            className="w-full border-2 border-pink-300 text-pink-600 hover:bg-pink-50 dark:border-pink-600 dark:text-pink-400 dark:hover:bg-pink-900/20 font-medium py-3 rounded-lg transition-all duration-200"
+            className="w-full border-[#BFA2DB] text-[#BFA2DB] hover:bg-[#BFA2DB] hover:text-white"
+            size="lg"
           >
-            Kembali ke Beranda
+            <Link href="/">
+              <Home className="w-4 h-4 mr-2" />
+              Kembali ke Beranda
+            </Link>
           </Button>
+
+          <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+              Butuh bantuan segera?
+            </p>
+            <Button
+              asChild
+              variant="ghost"
+              className="text-[#BFA2DB] hover:text-[#A67FA3]"
+            >
+              <a href="tel:081213142558">
+                <Phone className="w-4 h-4 mr-2" />
+                Hubungi: 081213142558
+              </a>
+            </Button>
+          </div>
         </div>
 
-        <div className="mt-8 text-sm text-gray-500 dark:text-gray-400">
-          <p>Jika masalah berlanjut, silakan hubungi kami di:</p>
-          <a 
-            href="https://wa.me/6281213142558" 
-            className="text-pink-600 dark:text-pink-400 hover:underline font-medium"
-          >
-            WhatsApp: 081213142558
-          </a>
-        </div>
+        {process.env.NODE_ENV === 'development' && (
+          <details className="mt-8 text-left">
+            <summary className="cursor-pointer text-sm text-gray-500 dark:text-gray-400">
+              Error Details (Development)
+            </summary>
+            <pre className="mt-2 p-4 bg-gray-100 dark:bg-gray-800 rounded text-xs overflow-auto">
+              {error.message}
+            </pre>
+          </details>
+        )}
       </div>
     </div>
   )
