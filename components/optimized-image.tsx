@@ -17,6 +17,7 @@ interface OptimizedImageProps {
   blurDataURL?: string
   onLoad?: () => void
   onError?: () => void
+  loading?: 'lazy' | 'eager'
 }
 
 export default function OptimizedImage({
@@ -33,10 +34,16 @@ export default function OptimizedImage({
   blurDataURL,
   onLoad,
   onError,
+  loading = 'lazy',
   ...props
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
+
+  // Generate blur data URL for better UX
+  const generateBlurDataURL = () => {
+    return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciPjxzdG9wIHN0b3AtY29sb3I9IiNmMGYwZjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlMGUwZTAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2cpIi8+PC9zdmc+"
+  }
 
   const handleLoad = () => {
     setIsLoading(false)
@@ -74,14 +81,15 @@ export default function OptimizedImage({
         priority={priority}
         sizes={sizes}
         quality={quality}
-        placeholder={placeholder}
-        blurDataURL={blurDataURL || defaultBlurDataURL}
+        placeholder={placeholder === 'blur' ? 'blur' : 'empty'}
+        blurDataURL={blurDataURL || generateBlurDataURL()}
         onLoad={handleLoad}
         onError={handleError}
+        loading={loading}
         {...props}
       />
       {isLoading && (
-        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse flex items-center justify-center">
+        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse flex items-center justify-center" aria-hidden="true">
           <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
         </div>
       )}

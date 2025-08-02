@@ -9,25 +9,50 @@ export function middleware(request: NextRequest) {
   response.headers.set('X-Content-Type-Options', 'nosniff')
   response.headers.set('Referrer-Policy', 'origin-when-cross-origin')
   response.headers.set('X-XSS-Protection', '1; mode=block')
+  response.headers.set('Permissions-Policy', 'geolocation=(), microphone=(), camera=()')
   
   // Add CSP header for security - Allow Google Maps frames
   response.headers.set(
     'Content-Security-Policy',
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-eval' 'unsafe-inline'; " +
-    "style-src 'self' 'unsafe-inline' fonts.googleapis.com; " +
-    "img-src 'self' data: images.unsplash.com *.googleapis.com *.gstatic.com; " +
-    "font-src 'self' fonts.gstatic.com; " +
-    "connect-src 'self' api.whatsapp.com *.googleapis.com; " +
-    "frame-src 'self' *.google.com *.googleapis.com *.gstatic.com;"
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googleapis.com *.google.com; " +
+    "style-src 'self' 'unsafe-inline' fonts.googleapis.com *.googleapis.com; " +
+    "img-src 'self' data: blob: images.unsplash.com *.googleapis.com *.gstatic.com *.google.com; " +
+    "font-src 'self' fonts.gstatic.com *.googleapis.com; " +
+    "connect-src 'self' api.whatsapp.com *.googleapis.com *.google.com; " +
+    "frame-src 'self' *.google.com *.googleapis.com *.gstatic.com; " +
+    "object-src 'none'; " +
+    "base-uri 'self'; " +
+    "form-action 'self';"
   )
 
-  // Add cache headers for static assets
+  // Add performance and caching headers
   if (request.nextUrl.pathname.includes('/logo') || 
       request.nextUrl.pathname.includes('.jpg') ||
       request.nextUrl.pathname.includes('.png') ||
-      request.nextUrl.pathname.includes('.webp')) {
+      request.nextUrl.pathname.includes('.webp') ||
+      request.nextUrl.pathname.includes('.svg') ||
+      request.nextUrl.pathname.includes('.ico')) {
     response.headers.set('Cache-Control', 'public, max-age=31536000, immutable')
+    response.headers.set('Vary', 'Accept-Encoding')
+  }
+
+  // Add cache headers for API routes
+  if (request.nextUrl.pathname.startsWith('/api/')) {
+    response.headers.set('Cache-Control', 'public, max-age=300, s-maxage=600')
+  }
+
+  // Add HSTS for security (only in production)
+  if (process.env.NODE_ENV === 'production') {
+    response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
+  }
+
+  // Preload critical resources
+  if (request.nextUrl.pathname === '/') {
+    response.headers.set('Link', 
+      '</logo%20MomoFlorist.png>; rel=preload; as=image, ' +
+      '<https://fonts.googleapis.com>; rel=preconnect; crossorigin'
+    )
   }
 
   return response

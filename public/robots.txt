@@ -9,15 +9,40 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /private/
+Disallow: /*.json$
 
-# Allow important pages
+# Allow important pages for better SEO
 Allow: /bunga-papan
 Allow: /bunga-papan-mini  
 Allow: /bunga-standing
 Allow: /hand-bouquet
 Allow: /gallery
 
+# Allow static assets
+Allow: /logo*
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.webp
+Allow: /*.svg
+
 # Sitemap location
+Sitemap: https://momoflorist.vercel.app/sitemap.xml
+
+# Crawl delay for better server performance
+Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
 Sitemap: https://momoflorist.vercel.app/sitemap.xml
 
 # Crawl delay (optional)

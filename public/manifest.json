@@ -3,12 +3,47 @@
   "short_name": "Momo Florist",
   "description": "Toko bunga online terpercaya di Surabaya. Spesialis bunga papan, standing flower, hand bouquet. Buka 24 jam, gratis ongkir, pengerjaan cepat 2 jam.",
   "start_url": "/",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#CDB6BD",
   "theme_color": "#BFA2DB",
   "orientation": "portrait-primary",
   "scope": "/",
+  "id": "momoflorist-pwa",
+  "categories": ["shopping", "lifestyle", "business"],
+  "lang": "id",
+  "dir": "ltr",
+  "prefer_related_applications": false,
   "icons": [
+    {
+      "src": "/logo MomoFlorist.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo MomoFlorist.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo MomoFlorist.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo MomoFlorist.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo MomoFlorist.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "/logo MomoFlorist.png",
       "sizes": "192x192",
@@ -17,20 +52,33 @@
     },
     {
       "src": "/logo MomoFlorist.png", 
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo MomoFlorist.png", 
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
     }
   ],
-  "categories": ["shopping", "lifestyle", "business"],
-  "lang": "id",
-  "dir": "ltr",
   "screenshots": [
     {
       "src": "/bunga papan/bunga papan.jpg",
       "sizes": "1280x720",
       "type": "image/jpeg",
-      "form_factor": "wide"
+      "form_factor": "wide",
+      "label": "Koleksi Bunga Papan Momo Florist"
+    },
+    {
+      "src": "/hand bouquet/hand bouquet.jpg",
+      "sizes": "640x1136",
+      "type": "image/jpeg", 
+      "form_factor": "narrow",
+      "label": "Hand Bouquet Premium"
     }
-  ]
+  ],
+  "related_applications": [],
+  "iarc_rating_id": ""
 }

@@ -7,11 +7,16 @@ import Image from "next/image"
 import { ArrowRight, Clock, Truck, Heart, Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
+import { usePerformanceMonitoring } from "@/hooks/use-performance-monitoring"
 
 // Lazy load components that are not immediately visible
 const SocialSidebar = lazy(() => import("@/components/social-sidebar"))
 
-export const dynamic = 'force-dynamic'
+// Preload critical components
+const ImageGallery = lazy(() => import("@/components/image-gallery"))
+
+// Remove force-dynamic for better performance
+// export const dynamic = 'force-dynamic'
 
 const categories = [
   {
@@ -82,6 +87,9 @@ const features = [
 ]
 
 export default function HomePage() {
+  // Initialize performance monitoring
+  usePerformanceMonitoring()
+  
   const [currentSlide, setCurrentSlide] = useState(0)
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0)
   const [touchStart, setTouchStart] = useState(0)
